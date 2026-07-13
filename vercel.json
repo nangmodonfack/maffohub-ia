@@ -10,6 +10,13 @@
       ],
       "destination": "/ia/index.html"
     },
+  {
+  "rewrites": [
+    { "source": "/support", "destination": "/ia/support/index.html" },
+    { "source": "/support/", "destination": "/ia/support/index.html" },
+    { "source": "/(.*)", "destination": "/ia/index.html" }
+  ]
+}
     {
       "source": "/",
       "has": [
