@@ -268,46 +268,68 @@
             line-height: 1.6;
             font-size: 0.95rem;
         }
+        header { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; padding: 20px; box-sizing: border-box; }
+        .nav-links { display: flex; align-items: center; gap: 12px; }
+        .nav-item { color: var(--text-color); text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 8px 10px; transition: 0.2s; white-space: nowrap; }
+        .nav-item:hover { color: var(--accent-gold); }
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn { background-color: var(--card-bg); color: var(--text-color); padding: 10px 16px; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+        .dropbtn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: #0b1f1a; min-width: 260px; box-shadow: 0px 8px 16px rgba(0,0,0,0.6); border: 1px solid var(--border-color); border-radius: 8px; z-index: 1000; max-height: 400px; overflow-y: auto; padding: 10px 0; }
+        .dropdown-content a { color: var(--text-muted); padding: 10px 20px; text-decoration: none; display: block; font-size: 0.9rem; transition: 0.2s; }
+        .dropdown-content a:hover { background-color: #113129; color: #fff; }
+        .dropdown-group { display: block; padding: 8px 20px 4px 20px; font-size: 0.75rem; font-weight: bold; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; border-top: 1px solid rgba(22, 56, 48, 0.4); }
+        .dropdown-group:first-child { border-top: none; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        @media (max-width: 992px) {
+            .nav-item { display: none; }
+        }
     </style>
 </head>
 <body>
 
-  <header>
-        <div class="logo">Maffo Hub ia</div>
-        <!-- MENU DÉROULANT MINIMALISTE -->
-        <div class="dropdown">
-            <button class="dropbtn">🧰 Nos Outils IA ▾</button>
-            <div class="dropdown-content">
-                <span class="dropdown-group">🔥 Les Meilleures IA</span>
-                <a href="/ia-gratuite/">🤖 IA Gratuite</a>
-                <a href="/chatgpt-gratuit/">💬 ChatGPT Gratuit</a>
-                <a href="/gpt-4o-gratuit/">⚡ GPT-4o Gratuit</a>
-                <a href="/chatgpt-o1-gratuit/">🧠 ChatGPT o1 Gratuit</a>
-                <a href="/chatgpt5-agi-gratuit/">🌐 ChatGPT 5 Gratuit</a>
-                
-                <span class="dropdown-group">🚀 Business & Création</span>
-                <a href="/scripts-tiktok-reels/">🎬 Scripts TikTok</a>
-                <a href="/idees-accroches-virales/">💡 Accroches Virales</a>
-                <a href="/redacteur-business/">💼 Rédacteur Business</a>
-                <a href="/stratege-contenu/">🎯 Stratège de Contenu</a>
-                
-                <span class="dropdown-group">📈 Vie Pro & Études</span>
-                <a href="/lettre-motivation/">📝 Lettre de Motivation</a>
-                <a href="/reformuler-texte/">🔄 Reformuler Texte</a>
-                <a href="/corriger-fautes/">✅ Corriger Fautes</a>
-                <a href="/repondre-mail/">✉️ Répondre à un Mail</a>
-                <a href="/analyseur-synthese/">📊 Analyseur & Synthèse</a>
-                <a href="/traducteur-universel/">🌐 Traducteur Universel</a>
-                <a href="/codeur-informaticien/">💻 Codeur / Informaticien</a>
-                <a href="/aide-administratif/">📂 Aide Administratif</a>
-                <a href="/conseiller-juridique-avocat/">⚖️ Conseiller Juridique</a>
-                <a href="/detecteur-ia/">🔍 Détecteur d'IA</a>
-                <a href="/humaniser-texte-ia/">✍️ Humaniser Texte IA</a>
-                <a href="/prof-maths/">📐 Le Prof de Maths</a>
-                <a href="/prof-langues/">🗣️ Le Prof de Langues</a>
+ <header>
+        <div class="logo">Maffo Hub</div>
+        
+        <!-- LIENS DIRECTS VERS LES OUTILS LES PLUS RECHERCHÉS (FIXES) -->
+        <nav class="nav-links">
+            <a href="/ia-gratuite/" class="nav-item">🤖 IA Gratuite</a>
+            <a href="/chatgpt-gratuit/" class="nav-item">💬 ChatGPT Gratuit</a>
+            <a href="/scripts-tiktok-reels/" class="nav-item">🎬 Scripts TikTok</a>
+            <a href="/humaniser-texte-ia/" class="nav-item">✍️ Humaniser Texte IA</a>
+            
+            <!-- LE RESTE DES OUTILS DANS LE MENU DÉROULANT -->
+            <div class="dropdown">
+                <button class="dropbtn">➕ Plus d'outils ▾</button>
+                <div class="dropdown-content">
+                    <span class="dropdown-group">🔥 Spécialités IA</span>
+                    <a href="/gpt-4o-gratuit/">⚡ GPT-4o Gratuit</a>
+                    <a href="/chatgpt-o1-gratuit/">🧠 ChatGPT o1 Gratuit</a>
+                    <a href="/chatgpt5-agi-gratuit/">🌐 ChatGPT 5 Gratuit</a>
+                    
+                    <span class="dropdown-group">🚀 Business & Création</span>
+                    <a href="/idees-accroches-virales/">💡 Accroches Virales</a>
+                    <a href="/redacteur-business/">💼 Rédacteur Business</a>
+                    <a href="/stratege-contenu/">🎯 Stratège de Contenu</a>
+                    
+                    <span class="dropdown-group">📈 Vie Pro & Études</span>
+                    <a href="/lettre-motivation/">📝 Lettre de Motivation</a>
+                    <a href="/reformuler-texte/">🔄 Reformuler Texte</a>
+                    <a href="/corriger-fautes/">✅ Corriger Fautes</a>
+                    <a href="/repondre-mail/">✉️ Répondre à un Mail</a>
+                    <a href="/analyseur-synthese/">📊 Analyseur & Synthèse</a>
+                    <a href="/traducteur-universel/">🌐 Traducteur Universel</a>
+                    <a href="/codeur-informaticien/">💻 Codeur / Informaticien</a>
+                    <a href="/aide-administratif/">📂 Aide Administratif</a>
+                    <a href="/conseiller-juridique-avocat/">⚖️ Conseiller Juridique</a>
+                    <a href="/detecteur-ia/">🔍 Détecteur d'IA</a>
+                    <a href="/prof-maths/">📐 Le Prof de Maths</a>
+                    <a href="/prof-langues/">🗣️ Le Prof de Langues</a>
+                </div>
             </div>
-        </div>
-    </header> 
+        </nav>
+    </header>
     <main>
         <!-- APPORT DES ARGUMENTS DE GRATUITÉ & DE NON-INSCRIPTION -->
         <div class="hero">
