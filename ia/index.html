@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maffo Hub IA - Outils Professionnels & Créateurs</title>
+    <title>Maffo Hub IA - Plateforme d'Intelligence Artificielle Gratuite</title>
     <!-- Script Cloudflare Turnstile pour la sécurité Anti-Robot -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Palette Vert Émeraude Sombre & Or */
-            --bg-color: #061310; /* Vert émeraude très sombre et profond */
-            --card-bg: #0b1f1a;  /* Émeraude légèrement plus clair pour les cartes */
+            --bg-color: #061310; 
+            --card-bg: #0b1f1a;  
             --accent-gold: #d4af37;
             --text-color: #ffffff;
             --text-muted: #94a9a4;
@@ -50,7 +51,7 @@
 
         main {
             width: 100%;
-            max-width: 900px;
+            max-width: 1100px;
             padding: 40px 20px;
             box-sizing: border-box;
         }
@@ -61,9 +62,10 @@
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             color: #ffffff;
             margin-bottom: 10px;
+            font-weight: 700;
         }
 
         h1 span {
@@ -73,6 +75,8 @@
         .hero p {
             color: var(--text-muted);
             font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .tool-container {
@@ -81,19 +85,23 @@
             border-radius: 12px;
             padding: 30px;
             box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
-            margin-bottom: 50px;
+            margin-bottom: 60px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-weight: 600;
             color: var(--accent-gold);
+            font-size: 1.05rem;
         }
 
         textarea {
             width: 100%;
-            height: 150px;
+            height: 160px;
             background-color: #040d0b;
             border: 1px solid var(--border-color);
             border-radius: 8px;
@@ -103,6 +111,7 @@
             font-size: 1rem;
             resize: vertical;
             margin-bottom: 20px;
+            font-family: inherit;
         }
 
         textarea:focus {
@@ -121,7 +130,7 @@
             background: linear-gradient(135deg, #d4af37 0%, #aa841e 100%);
             color: #000;
             border: none;
-            padding: 15px;
+            padding: 16px;
             font-size: 1.1rem;
             font-weight: bold;
             border-radius: 8px;
@@ -134,62 +143,70 @@
             opacity: 0.9;
         }
 
-        /* SECTION NOS OUTILS SEO CATALOGUE */
+        /* SECTION CATALOGUE TOUT-EN-UN */
         .catalog-section {
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .catalog-section h2 {
             color: #ffffff;
             font-size: 1.8rem;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             border-left: 4px solid var(--accent-gold);
             padding-left: 15px;
+            text-align: left;
+        }
+
+        .category-block {
+            margin-bottom: 40px;
+        }
+
+        .category-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .catalog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 15px;
         }
 
         .catalog-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 20px;
+            padding: 15px 20px;
             text-decoration: none;
             color: inherit;
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            align-items: center;
+            gap: 15px;
             transition: transform 0.2s, border-color 0.2s;
             cursor: pointer;
         }
 
         .catalog-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             border-color: var(--accent-gold);
             background-color: #0f2b24;
         }
 
         .catalog-icon {
-            font-size: 28px;
+            font-size: 24px;
         }
 
         .catalog-name {
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 14px;
+            font-weight: 500;
             color: #ffffff;
         }
 
-        .catalog-desc {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-
-        /* Section SEO en bas */
+        /* ZONE TEXTE SEO GOOGLE */
         .seo-content {
             margin-top: 60px;
             border-top: 1px solid var(--border-color);
@@ -212,15 +229,16 @@
     </header>
 
     <main>
+        <!-- EN-TÊTE GÉNÉRALISTE -->
         <div class="hero">
-            <h1>Outils IA <span>Business & Créateurs</span></h1>
-            <p>Testez gratuitement nos modules d'intelligence artificielle ultra-rapides.</p>
+            <h1>Toutes vos <span>Intelligences Artificielles</span> au même endroit</h1>
+            <p>Posez votre question ou utilisez l'un de nos assistants spécialisés ci-dessous pour démarrer gratuitement.</p>
         </div>
 
-        <!-- ZONE DE PROMPT PRINCIPALE -->
+        <!-- ZONE DE PROMPT PRINCIPALE (SANS LE "EX:") -->
         <div class="tool-container">
-            <label for="user-input">Entrez votre texte ou votre idée ici :</label>
-            <textarea id="user-input" placeholder="Ex: Rédige un script TikTok pour un business de consulting en finance..."></textarea>
+            <label for="user-input">Entrez votre texte, votre question ou votre idée ici :</label>
+            <textarea id="user-input" placeholder="Rédige une lettre de motivation, corrige ce texte ou donne-moi des idées de business..."></textarea>
             
             <div class="turnstile-box">
                 <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark"></div>
@@ -229,76 +247,131 @@
             <button class="btn-generate" onclick="declencherMonetagEtRedirect()">✨ Générer avec l'IA</button>
         </div>
 
-        <!-- LISTE ET CATALOGUE DES OUTILS POUR LE RÉFÉRENCEMENT SEO -->
+        <!-- LE CATALOGUE DES OUTILS -->
         <section class="catalog-section">
-            <h2>Explorez nos modules spécialisés</h2>
-            <div class="catalog-grid">
-                
-                <a href="#" class="catalog-card">
-                    <div class="catalog-icon">🎬</div>
-                    <div class="catalog-name">Scripts TikTok / Reels</div>
-                    <div class="catalog-desc">Générez des structures vidéo short-form captivantes à forte rétention.</div>
-                </a>
+            <h2>Nos Assistants IA Spécialisés</h2>
 
-                <a href="#" class="catalog-card">
-                    <div class="catalog-icon">💡</div>
-                    <div class="catalog-name">Idées & Accroches Virales</div>
-                    <div class="catalog-desc">Trouvez des hooks psychologiques puissants pour stopper le scroll.</div>
-                </a>
+            <!-- 1. BUSINESS & CRÉATEURS -->
+            <div class="category-block">
+                <div class="category-subtitle">🚀 Business & Créateurs</div>
+                <div class="catalog-grid">
+                    <div class="catalog-card" onclick="envoyerOutil('Scripts TikTok / Reels')">
+                        <div class="catalog-icon">🎬</div><div class="catalog-name">Scripts TikTok / Reels</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Idées & Accroches Virales')">
+                        <div class="catalog-icon">💡</div><div class="catalog-name">Idées & Accroches Virales</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Rédacteur Business')">
+                        <div class="catalog-icon">💼</div><div class="catalog-name">Rédacteur Business</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Stratège de Contenu')">
+                        <div class="catalog-icon">🎯</div><div class="catalog-name">Stratège de Contenu</div>
+                    </div>
+                </div>
+            </div>
 
-                <a href="#" class="catalog-card">
-                    <div class="catalog-icon">🚀</div>
-                    <div class="catalog-name">Rédacteur Business</div>
-                    <div class="catalog-desc">Rédaction de posts professionnels pour LinkedIn, Threads et newsletters.</div>
-                </a>
+            <!-- 2. VIE PROFESSIONNELLE & ÉTUDES -->
+            <div class="category-block">
+                <div class="category-subtitle">📈 Vie Pro & Études</div>
+                <div class="catalog-grid">
+                    <div class="catalog-card" onclick="envoyerOutil('Reformuler Texte')">
+                        <div class="catalog-icon">🔄</div><div class="catalog-name">Reformuler Texte</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Corriger Fautes')">
+                        <div class="catalog-icon">✅</div><div class="catalog-name">Corriger Fautes</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Répondre à un Mail')">
+                        <div class="catalog-icon">✉️</div><div class="catalog-name">Répondre à un Mail</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Analyseur & Synthèse')">
+                        <div class="catalog-icon">📊</div><div class="catalog-name">Analyseur & Synthèse</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Traducteur Universel')">
+                        <div class="catalog-icon">🌐</div><div class="catalog-name">Traducteur Universel</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('L\'Informaticien / Codeur')">
+                        <div class="catalog-icon">💻</div><div class="catalog-name">L'Informaticien / Codeur</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Aide Administratif')">
+                        <div class="catalog-icon">📂</div><div class="catalog-name">Aide Administratif</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Lettre de Motivation')">
+                        <div class="catalog-icon">📝</div><div class="catalog-name">Lettre de Motivation</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Conseiller Juridique')">
+                        <div class="catalog-icon">⚖️</div><div class="catalog-name">Conseiller Juridique / Avocat</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Détecteur d\'IA')">
+                        <div class="catalog-icon">🔍</div><div class="catalog-name">Détecteur d'IA</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Humaniser Texte IA')">
+                        <div class="catalog-icon">✍️</div><div class="catalog-name">Humaniser Texte IA</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Le Prof de Maths')">
+                        <div class="catalog-icon">📐</div><div class="catalog-name">Le Prof de Maths</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Le Prof de Langues')">
+                        <div class="catalog-icon">🗣️</div><div class="catalog-name">Le Prof de Langues</div>
+                    </div>
+                </div>
+            </div>
 
-                <a href="#" class="catalog-card">
-                    <div class="catalog-icon">🎯</div>
-                    <div class="catalog-name">Stratège de Contenu</div>
-                    <div class="catalog-desc">Planifiez vos calendriers éditoriaux et tunnels marketing en un clic.</div>
-                </a>
-
-                <a href="#" class="catalog-card">
-                    <div class="catalog-icon">🔄</div>
-                    <div class="catalog-name">Reformuler Texte</div>
-                    <div class="catalog-desc">Optimisez la fluidité de vos écrits et adoptez un ton naturel moderne.</div>
-                </a>
-
-                <a href="#" class="catalog-card">
-                    <div class="catalog-icon">✅</div>
-                    <div class="catalog-name">Corriger Fautes</div>
-                    <div class="catalog-desc">Éliminez les erreurs d'orthographe et de syntaxe instantanément.</div>
-                </a>
-
-                <a href="#" class="catalog-card">
-                    <div class="catalog-icon">✉️</div>
-                    <div class="catalog-name">Répondre à un Mail</div>
-                    <div class="catalog-desc">Rédigez des réponses de courriels professionnelles, claires et persuasives.</div>
-                </a>
-
-                <a href="#" class="catalog-card">
-                    <div class="catalog-icon">📊</div>
-                    <div class="catalog-name">Analyseur & Synthèse</div>
-                    <div class="catalog-desc">Résumez de longs rapports et extrayez les données clés d'un texte.</div>
-                </a>
-
+            <!-- 3. CRÉATIVITÉ & VIE PERSO -->
+            <div class="category-block">
+                <div class="category-subtitle">🎨 Créativité & Vie Perso</div>
+                <div class="catalog-grid">
+                    <div class="catalog-card" onclick="envoyerOutil('Créer une image IA')">
+                        <div class="catalog-icon">🎨</div><div class="catalog-name">Créer une image IA</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('L\'Ami Virtuel')">
+                        <div class="catalog-icon">🤝</div><div class="catalog-name">L'Ami Virtuel</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Coach Personnel')">
+                        <div class="catalog-icon">🧠</div><div class="catalog-name">Coach Perso / Mindset</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Coach Sportif')">
+                        <div class="catalog-icon">💪</div><div class="catalog-name">Coach Sportif</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Coach Méditation & ASMR')">
+                        <div class="catalog-icon">🧘</div><div class="catalog-name">Coach Méditation & ASMR</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Coach Santé')">
+                        <div class="catalog-icon">🍏</div><div class="catalog-name">Coach Santé</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Coach Séduction')">
+                        <div class="catalog-icon">✨</div><div class="catalog-name">Coach Séduction</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Coach Relooking')">
+                        <div class="catalog-icon">👔</div><div class="catalog-name">Coach Relooking / Style</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Le Cuisinier')">
+                        <div class="catalog-icon">🍳</div><div class="catalog-name">Le Cuisinier</div>
+                    </div>
+                    <div class="catalog-card" onclick="envoyerOutil('Le Jardinier')">
+                        <div class="catalog-icon">🌱</div><div class="catalog-name">Le Jardinier</div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Section Texte optimisée pour Google -->
         <section class="seo-content">
-            <h2>Pourquoi optimiser vos scripts et contenus avec l'IA Maffo Hub ?</h2>
-            <p>À l'ère du digital, la création de contenu short-form sur des plateformes comme TikTok, Instagram Reels ou Pinterest requiert une vitesse d'exécution redoutable et une régularité sans faille. L'utilisation d'outils d'intelligence artificielle avancés spécifiquement calibrés pour le business en ligne et les créateurs de contenu est devenue le levier majeur pour se démarquer des algorithmes saturés.</p>
-            <p>Notre suite technologique propose des modules exclusifs de reformulation humaine, de génération de hooks psychologiques et de structuration de scripts viraux. En éliminant le syndrome de la page blanche, vous pouvez vous concentrer sur la stratégie de votre marque et la monétisation de vos communautés. Chaque prompt système est affiné pour offrir un ton fluide, moderne, et captivant dès les trois premières secondes d'écoute, maximisant ainsi le taux de rétention de votre audience.</p>
-            <p>Que vous cherchiez à concevoir un tunnel de vente automatisé, à rédiger des newsletters percutantes pour votre business, ou à humaniser vos productions textuelles pour contourner les détecteurs d'IA, Maffo Hub met à votre disposition la puissance brute des derniers modèles linguistiques mondiaux, intégrés dans une interface Dark Luxury épurée et sécurisée.</p>
+            <h2>Maffo Hub IA : Votre plateforme d'intelligence artificielle tout-en-un</h2>
+            <p>Découvrez la puissance de l'IA accessible gratuitement et instantanément. Que vous soyez un créateur de contenu, un entrepreneur du web, ou un étudiant ayant besoin d'aide pour la rédaction d'une lettre de motivation ou la correction de ses devoirs, notre suite d'outils s'adapte à tous vos besoins quotidiens.</p>
         </section>
     </main>
 
     <script {nonce}>
         function declencherMonetagEtRedirect() {
             const texte = encodeURIComponent(document.getElementById('user-input').value);
-            console.log("Monetag Popunder déclenché");
-            // Redirection vers l'application
+            // Redirige directement vers l'application de chat principale
+            window.location.href = `https://app.maffohub.com/?text=${texte}`;
+        }
+
+        function envoyerOutil(nomOutil) {
+            // Prépare une consigne claire pour forcer l'application à ouvrir l'assistant
+            const texte = encodeURIComponent(`Bonjour ! Active l'assistant spécialisé : ${nomOutil}`);
+            // Redirige directement vers la page du chat avec l'instruction
             window.location.href = `https://app.maffohub.com/?text=${texte}`;
         }
     </script>
