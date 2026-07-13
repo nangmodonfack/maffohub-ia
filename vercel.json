@@ -1,0 +1,24 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "ia.maffohub.com"
+        }
+      ],
+      "destination": "/ia/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "app.maffohub.com"
+        }
+      ],
+      "destination": "/app/index.html"
+    }
+  ]
+}
