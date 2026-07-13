@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Client | Maffo Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #061310; --card-bg: #0b1f1a; --accent-gold: #d4af37; --text-color: #ffffff; --text-muted: #94a9a4; --border-color: #163830; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
+        header { width: 100%; max-width: 1200px; padding: 20px; box-sizing: border-box; border-bottom: 1px solid var(--border-color); }
+        .logo { font-size: 24px; font-weight: bold; color: var(--accent-gold); }
+        .support-wrapper { display: flex; gap: 40px; max-width: 1100px; width: 100%; margin: 50px auto; padding: 0 20px; box-sizing: border-box; }
+        .support-info { flex: 1; }
+        .support-info h1 { font-size: 2.5rem; margin-bottom: 20px; }
+        .email-box { background: var(--card-bg); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-top: 30px; }
+        .email-link { color: #fff; font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent-gold); }
+        .chatbot-container { width: 450px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; height: 550px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .chatbot-header { background: #113129; padding: 20px; border-bottom: 1px solid var(--border-color); }
+        .chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+        .msg { padding: 12px 16px; border-radius: 12px; max-width: 80%; font-size: 0.95rem; }
+        .msg.bot { background: #061310; border: 1px solid var(--border-color); align-self: flex-start; }
+        .msg.user { background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.3); align-self: flex-end; }
+        .chat-input-area { padding: 15px; border-top: 1px solid var(--border-color); display: flex; gap: 10px; }
+        .chat-input-area input { flex: 1; background: #061310; border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; color: #fff; outline: none; }
+        .chat-input-area button { background: var(--accent-gold); border: none; padding: 0 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        @media (max-width: 900px) { .support-wrapper { flex-direction: column; } .chatbot-container { width: 100%; } }
+    </style>
+</head>
+<body>
+    <header><div class="logo">Maffo Hub</div></header>
+    <div class="support-wrapper">
+        <div class="support-info">
+            <h1>Support Client 👋</h1>
+            <p style="color: var(--text-muted);">Posez vos questions à notre assistant intelligent ou contactez-nous directement.</p>
+            <div class="email-box">
+                <h3>📧 Email direct</h3>
+                <a href="mailto:maffo.business1@gmail.com" class="email-link">maffo.business1@gmail.com</a>
+            </div>
+        </div>
+        <div class="chatbot-container">
+            <div class="chatbot-header"><h2>Assistant Maffo Hub</h2><p style="font-size: 0.8rem; color: var(--text-muted);">En ligne 🟢</p></div>
+            <div class="chat-messages" id="chat-box"><div class="msg bot">Bonjour ! Comment puis-je vous aider aujourd'hui ?</div></div>
+            <div class="chat-input-area"><input type="text" id="user-msg" placeholder="Votre message..."><button onclick="handleSupportChat()">Envoyer</button></div>
+        </div>
+    </div>
+    <script>
+        function handleSupportChat() {
+            const input = document.getElementById('user-msg');
+            const chatBox = document.getElementById('chat-box');
+            if (!input.value.trim()) return;
+            chatBox.innerHTML += `<div class="msg user">${input.value}</div>`;
+            const userText = input.value.toLowerCase();
+            input.value = '';
+            setTimeout(() => {
+                let reply = "Je ne suis pas sûr de comprendre. Écrivez-nous à maffo.business1@gmail.com pour une aide personnalisée.";
+                if(userText.includes('premium') || userText.includes('prix')) reply = "Le plan Premium débloque toutes les options (fichiers, audio, modèles avancés).";
+                else if(userText.includes('bug') || userText.includes('erreur')) reply = "Essayez de vider votre cache ou envoyez une capture d'écran à maffo.business1@gmail.com.";
+                else if(userText.includes('bonjour') || userText.includes('salut')) reply = "Bonjour ! Comment puis-je vous assister sur Maffo Hub ?";
+                chatBox.innerHTML += `<div class="msg bot">${reply}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 600);
+        }
+    </script>
+</body>
+</html>
