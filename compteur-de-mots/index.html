@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compteur de Mots et Caractères Gratuit | Maffo Hub</title>
+    <style>
+        :root { --bg-color: #061310; --card-bg: #0b1f1a; --accent-gold: #d4af37; --text-color: #ffffff; --text-muted: #94a9a4; --border-color: #163830; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        
+        /* Header & Navigation */
+        header { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; padding: 20px; box-sizing: border-box; border-bottom: 1px solid var(--border-color); }
+        .logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; color: #fff; }
+        .nav-links { display: flex; align-items: center; gap: 10px; }
+        .nav-item { color: var(--text-color); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 6px 8px; transition: 0.2s; white-space: nowrap; }
+        .nav-item:hover { color: var(--accent-gold); }
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn { background-color: var(--card-bg); color: var(--text-color); padding: 10px 14px; font-size: 0.88rem; font-weight: 600; border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+        .dropbtn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: #0b1f1a; min-width: 260px; box-shadow: 0px 8px 16px rgba(0,0,0,0.6); border: 1px solid var(--border-color); border-radius: 8px; z-index: 1000; max-height: 400px; overflow-y: auto; padding: 10px 0; }
+        .dropdown-content a { color: var(--text-muted); padding: 10px 20px; text-decoration: none; display: block; font-size: 0.9rem; transition: 0.2s; }
+        .dropdown-content a:hover { background-color: #113129; color: #fff; }
+        .dropdown-group { display: block; padding: 8px 20px 4px 20px; font-size: 0.75rem; font-weight: bold; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; border-top: 1px solid rgba(22, 56, 48, 0.4); }
+        .dropdown-group:first-child { border-top: none; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* Outil & Mini-Chat */
+        .tool-container { width: 100%; max-width: 800px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; margin: 40px auto 20px auto; box-sizing: border-box; }
+        label { display: block; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; }
+        textarea { width: 100%; height: 150px; background: #061310; border: 1px solid var(--border-color); border-radius: 8px; color: #fff; padding: 15px; box-sizing: border-box; font-size: 1rem; resize: vertical; margin-bottom: 20px; }
+        
+        /* Compteurs en live (Spécifique à cet outil) */
+        .counter-stats { display: flex; gap: 20px; margin-bottom: 20px; }
+        .stat-box { background: #061310; border: 1px solid var(--border-color); padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 0.95rem; }
+        .stat-box span { color: var(--accent-gold); }
+
+        .btn-generate { background: var(--accent-gold); color: #061310; border: none; padding: 12px 24px; font-size: 1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; transition: 0.2s; }
+        .btn-generate:hover { opacity: 0.9; }
+
+        /* Sections SEO & FAQ */
+        .seo-section { max-width: 850px; margin: 40px auto; padding: 20px; line-height: 1.7; color: var(--text-muted); }
+        .seo-section h2 { color: #fff; font-size: 1.8rem; margin-bottom: 20px; }
+        .seo-section h3 { color: var(--accent-gold); margin-top: 30px; }
+        .faq-item { margin-top: 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(22, 56, 48, 0.4); }
+        .faq-item h4 { color: #fff; margin-bottom: 8px; font-size: 1.1rem; }
+
+        @media (max-width: 1100px) { .nav-item { display: none; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Maffo Hub</div>
+        <nav class="nav-links">
+            <a href="/ia-gratuite/" class="nav-item">🤖 IA Gratuite</a>
+            <a href="/chatgpt-gratuit/" class="nav-item">💬 ChatGPT Gratuit</a>
+            <a href="/scripts-tiktok-reels/" class="nav-item">🎬 Scripts TikTok</a>
+            <a href="/humaniser-texte-ia/" class="nav-item">✍️ Humaniser Texte IA</a>
+            <a href="/compteur-de-mots/" class="nav-item">📊 Compteur de mots</a>
+            
+            <div class="dropdown">
+                <button class="dropbtn">➕ Plus d'outils ▾</button>
+                <div class="dropdown-content">
+                    <!-- ... Reste de ta liste d'outils identique ... -->
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MINI-CHAT INTERACTIF DE L'OUTIL -->
+    <div class="tool-container">
+        <label>📊 Compteur de Mots & Analyseur de Texte IA :</label>
+        <textarea id="user-input" placeholder="Collez votre texte ici pour compter les mots en temps réel, ou demandez à l'IA de l'analyser..."></textarea>
+        
+        <!-- Stats d'analyse en direct -->
+        <div class="counter-stats">
+            <div class="stat-box">Mots : <span id="word-count">0</span></div>
+            <div class="stat-box">Caractères : <span id="char-count">0</span></div>
+        </div>
+
+        <button class="btn-generate" onclick="redirectToApp()">Analyser et Améliorer avec l'IA 🚀</button>
+    </div>
+
+    <!-- BLOC STRATÉGIQUE SEO & FAQ -->
+    <section class="seo-section">
+        <h2>Pourquoi utiliser un compteur de mots intelligent en ligne ?</h2>
+        <p>Que vous soyez rédacteur web, étudiant en pleine rédaction de mémoire, ou créateur de contenu sur les réseaux sociaux, maîtriser la longueur de vos textes est crucial pour le SEO et l'impact de vos messages. Notre outil gratuit calcule instantanément le volume exact de vos écrits.</p>
+        
+        <h3>Optimisez vos contenus pour Google et les réseaux sociaux</h3>
+        <p>Les critères de référencement actuels exigent des formats précis. Un article de blog performant dépasse généralement les 1000 mots, tandis qu'une publication LinkedIn ou une description de vidéo doit capter l'attention en un nombre restreint de caractères. Grâce à notre analyseur, ajustez la densité de vos paragraphes en un clin d'œil.</p>
+
+        <h3>Foire Aux Questions (FAQ)</h3>
+        <div class="faq-item">
+            <h4>Comment fonctionne le comptage en temps réel ?</h4>
+            <p>Le script analyse chaque espace et caractère saisis dans le mini-chat pour mettre à jour les statistiques de manière instantanée, sans ralentir votre navigation.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Mes textes textuels sont-ils conservés ou partagés ?</h4>
+            <p>Absolument pas. Le traitement s'effectue localement dans votre navigateur. Vos écrits restent 100% confidentiels et sécurisés.</p>
+        </div>
+    </section>
+
+    <!-- SCRIPT DE REDIRECTION VERS LE SECOND SOUS-DOMAINE -->
+    <script>
+        // Code pour compter en direct dans le textarea
+        const tx = document.getElementById('user-input');
+        tx.addEventListener('input', function() {
+            const text = tx.value.trim();
+            document.getElementById('char-count').innerText = text.length;
+            document.getElementById('word-count').innerText = text === "" ? 0 : text.split(/\s+/).length;
+        });
+
+        // Fonction magique de redirection vers app.maffohub
+        function redirectToApp() {
+            const clientText = encodeURIComponent(tx.value);
+            if(clientText.trim() === "") {
+                alert("Veuillez saisir un texte ou une consigne avant de lancer la génération.");
+                return;
+            }
+            // Envoie la réponse et la consigne directement sur ton dashboard applicatif
+            window.location.href = "https://app.maffohub.com/?prompt=" + clientText;
+        }
+    </script>
+</body>
+</html>
