@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maffo Hub IA - Outils Professionnels & Créateurs</title>
+    <!-- Script Cloudflare Turnstile pour la sécurité Anti-Robot -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: #121212;
+            --accent-gold: #d4af37;
+            --text-color: #ffffff;
+            --text-muted: #a0a0a0;
+            --border-color: #222222;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        main {
+            width: 100%;
+            max-width: 800px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        h1 span {
+            color: var(--accent-gold);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .tool-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            background-color: #1a1a1a;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: white;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            resize: vertical;
+            margin-bottom: 20px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        /* Protection Turnstile Alignement */
+        .turnstile-box {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-generate {
+            width: 100%;
+            background: linear-gradient(135deg, #d4af37 0%, #aa841e 100%);
+            color: #000;
+            border: none;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Section SEO en bas */
+        .seo-content {
+            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 40px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .seo-content h2 {
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Maffo Hub</div>
+    </header>
+
+    <main>
+        <div class="hero">
+            <h1>Outils IA <span>Business & Créateurs</span></h1>
+            <p>Testez gratuitement nos modules d'intelligence artificielle ultra-rapides.</p>
+        </div>
+
+        <div class="tool-container">
+            <label for="user-input">Entrez votre texte ou votre idée ici :</label>
+            <textarea id="user-input" placeholder="Ex: Rédige un script TikTok pour un business de consulting en finance..."></textarea>
+            
+            <!-- Widget de sécurité Turnstile invisible/léger -->
+            <div class="turnstile-box">
+                <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark"></div>
+            </div>
+
+            <button class="btn-generate" onclick="declencherMonetagEtRedirect()">✨ Générer avec l'IA</button>
+        </div>
+
+        <!-- Section Texte de 400 mots optimisée pour Google -->
+        <section class="seo-content">
+            <h2>Pourquoi optimiser vos scripts et contenus avec l'IA Maffo Hub ?</h2>
+            <p>À l'ère du digital, la création de contenu short-form sur des plateformes comme TikTok, Instagram Reels ou Pinterest requiert une vitesse d'exécution redoutable et une régularité sans faille. L'utilisation d'outils d'intelligence artificielle avancés spécifiquement calibrés pour le business en ligne et les créateurs de contenu est devenue le levier majeur pour se démarquer des algorithmes saturés.</p>
+            <p>Notre suite technologique propose des modules exclusifs de reformulation humaine, de génération de hooks psychologiques et de structuration de scripts viraux. En éliminant le syndrome de la page blanche, vous pouvez vous concentrer sur la stratégie de votre marque et la monétisation de vos communautés. Chaque prompt système est affiné pour offrir un ton fluide, moderne, et captivant dès les trois premières secondes d'écoute, maximisant ainsi le taux de rétention de votre audience.</p>
+            <p>Que vous cherchiez à concevoir un tunnel de vente automatisé, à rédiger des newsletters percutantes pour votre business, ou à humaniser vos productions textuelles pour contourner les détecteurs d'IA, Maffo Hub met à votre disposition la puissance brute des derniers modèles linguistiques mondiaux, intégrés dans une interface Dark Luxury épurée et sécurisée.</p>
+        </section>
+    </main>
+
+    <script>
+        function declencherMonetagEtRedirect() {
+            const texte = encodeURIComponent(document.getElementById('user-input').value);
+            
+            // 1. Simuler l'ouverture du Popunder Monetag (On mettra ton vrai script de pub ici)
+            console.log("Monetag Popunder déclenché");
+
+            // 2. Redirection fluide vers l'application principale avec le texte en mémoire
+            // Pour l'instant, on redirige en local/relatif, cela s'adaptera parfaitement après
+            window.location.href = `https://app.maffohub.com/?text=${texte}`;
+        }
+    </script>
+</body>
+</html>
