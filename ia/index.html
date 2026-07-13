@@ -281,16 +281,16 @@
         </div>
 
         <!-- RECHERCHE GLOBALE ACCUEIL -->
-        <div class="tool-container">
-            <label for="user-input">Posez votre question ou décrivez votre besoin directement :</label>
-            <textarea id="user-input" placeholder="Rédige une lettre de motivation, corrige ce texte ou donne-moi des idées de business..."></textarea>
-            
-            <div class="turnstile-box">
-                <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark"></div>
-            </div>
+      <div class="tool-container">
+    <label for="user-input">✍️ Générateur de Lettre de Motivation IA Professionnelle :</label>
+    <textarea id="user-input" placeholder="Ex: Rédige une lettre de motivation pour un poste de Community Manager en alternance. J'ai de l'expérience en gestion de pages Facebook..."></textarea>
+    
+    <div class="turnstile-box">
+        <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark"></div>
+    </div>
 
-            <button class="btn-generate" onclick="declencherMonetagEtRedirect()">✨ Tester l'IA instantanément</button>
-        </div>
+    <button class="btn-generate" onclick="declencherMonetagEtRedirect()">✨ Tester l'IA instantanément</button>
+</div> 
 
         <section class="catalog-section">
             <h2>Nos Assistants IA Spécialisés</h2>
@@ -475,8 +475,10 @@
 
     <script {nonce}>
         function declencherMonetagEtRedirect() {
-            const texte = encodeURIComponent(document.getElementById('user-input').value);
-            window.location.href = `https://app.maffohub.com/?text=${texte}`;
+           const texteUtilisateur = document.getElementById('user-input').value;
+const promptOptimise = `Rédige une lettre de motivation professionnelle et percutante basée sur ces informations : ${texteUtilisateur}`;
+
+window.location.href = `https://app.maffohub.com/?text=${encodeURIComponent(promptOptimise)}`;
         }
     </script>
 </body>
