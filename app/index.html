@@ -17,6 +17,7 @@
             --text-muted: #9ca3af;
             --border-color: #2a2e33;
             --active-item: rgba(212, 175, 55, 0.1);
+            --accent-purple: #6366f1; /* Teinte violette pour le bouton d'aide */
         }
 
         body {
@@ -29,7 +30,7 @@
             overflow: hidden;
         }
 
-        /* BARRE LATÉRALE À GAUCHE (Déroulable s'il y a beaucoup d'outils) */
+        /* BARRE LATÉRALE À GAUCHE */
         .sidebar {
             width: 300px;
             background-color: var(--bg-sidebar);
@@ -118,6 +119,50 @@
             font-weight: 500;
         }
 
+        /* SECTION DE SUPPORT BAS DE PAGE (STICKY EN BAS) */
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            background-color: #17191b;
+        }
+
+        .help-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .help-box p {
+            margin: 0 0 12px 0;
+            font-size: 13px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .btn-help {
+            background-color: var(--accent-purple);
+            color: #ffffff;
+            border: none;
+            width: 100%;
+            padding: 10px 0;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .btn-help:hover {
+            background-color: #4f46e5;
+            transform: scale(1.02);
+        }
+
         /* INTERFACE DE CHAT CENTRALE */
         .main-content {
             flex: 1;
@@ -190,7 +235,7 @@
             color: #e5e7eb;
         }
 
-        /* Zone d'écriture en bas */
+        /* Zone d'écriture multimédia enrichie */
         .chat-input-area {
             background-color: var(--bg-sidebar);
             border: 1px solid var(--border-color);
@@ -198,7 +243,7 @@
             padding: 12px 20px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
@@ -214,6 +259,25 @@
             font-family: inherit;
         }
 
+        /* Styles des boutons d'options d'envoi */
+        .btn-action-chat {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s, transform 0.1s;
+        }
+
+        .btn-action-chat:hover {
+            color: var(--accent-gold);
+            transform: scale(1.08);
+        }
+
         .btn-send {
             background: linear-gradient(135deg, #d4af37 0%, #aa841e 100%);
             color: #000;
@@ -227,6 +291,7 @@
             align-items: center;
             justify-content: center;
             transition: transform 0.2s;
+            flex-shrink: 0;
         }
 
         .btn-send:hover {
@@ -272,6 +337,9 @@
             <!-- 2. VIE PRO -->
             <div class="menu-section">
                 <div class="menu-title">📈 Vie Pro</div>
+                <div class="menu-item" id="btn-compteur" onclick="switchTool('compteur', 'Compteur de Mots & Analyseur IA 📊')">
+                    <span>📊</span> Compteur de mots
+                </div>
                 <div class="menu-item" id="btn-reformuler" onclick="switchTool('reformuler', 'Reformuler Texte 🔄')">
                     <span>🔄</span> Reformuler Texte
                 </div>
@@ -281,8 +349,8 @@
                 <div class="menu-item" id="btn-mail" onclick="switchTool('mail', 'Répondre à un Mail ✉️')">
                     <span>✉️</span> Répondre à un Mail
                 </div>
-                <div class="menu-item" id="btn-analyseur" onclick="switchTool('analyseur', 'Analyseur & Synthèse 📊')">
-                    <span>📊</span> Analyseur & Synthèse
+                <div class="menu-item" id="btn-analyseur" onclick="switchTool('analyseur', 'Analyseur & Synthèse 📋')">
+                    <span>📋</span> Analyseur & Synthèse
                 </div>
                 <div class="menu-item" id="btn-traducteur" onclick="switchTool('traducteur', 'Traducteur Universel 🌐')">
                     <span>🌐</span> Traducteur Universel
@@ -316,9 +384,6 @@
             <!-- 3. CRÉATIVITÉ & VIE PERSO -->
             <div class="menu-section">
                 <div class="menu-title">🎨 Créativité & Perso</div>
-                <div class="menu-item" id="btn-image-prompt" onclick="switchTool('image-prompt', 'Créer une image IA 🎨')">
-                    <span>🎨</span> Créer une image IA
-                </div>
                 <div class="menu-item" id="btn-ami" onclick="switchTool('ami', 'L\'Ami Virtuel 🤝')">
                     <span>🤝</span> L'Ami Virtuel
                 </div>
@@ -348,6 +413,14 @@
                 </div>
             </div>
         </div>
+
+        <!-- BLOC BESOIN D'AIDE AJOUTÉ ICI TOUT EN BAS -->
+        <div class="sidebar-footer">
+            <div class="help-box">
+                <p>🚨 Besoin d'aide ?</p>
+                <button class="btn-help" onclick="window.open('https://ia.maffohub.com/support/', '_blank')">Ouvrir l'aide</button>
+            </div>
+        </div>
     </div>
 
     <!-- ZONE DE CHAT PRINCIPALE (TOUJOURS AU MILIEU) -->
@@ -364,9 +437,19 @@
                 </div>
             </div>
 
-            <!-- Formulaire d'envoi du message -->
+            <!-- Formulaire d'envoi du message enrichi -->
             <div class="chat-input-area">
+                <!-- Bouton Fichier caché & icône trombone -->
+                <input type="file" id="file-upload" style="display:none;" onchange="handleFileSelect(this)">
+                <button class="btn-action-chat" title="Envoyer un fichier ou une image" onclick="document.getElementById('file-upload').click()">📎</button>
+                
+                <!-- Bouton Note vocale / Micro -->
+                <button class="btn-action-chat" id="btn-voice" title="Enregistrer une note vocale" onclick="toggleVoiceRecord()">🎤</button>
+                
+                <!-- Zone de saisie principale -->
                 <input type="text" id="chat-input" class="chat-input" placeholder="Envoyez un message..." onkeydown="if(event.key === 'Enter') sendMessage()">
+                
+                <!-- Bouton envoyer -->
                 <button class="btn-send" onclick="sendMessage()">➔</button>
             </div>
         </div>
@@ -374,19 +457,17 @@
 
     <script>
         let currentToolId = 'discussion';
+        let isRecording = false;
 
         function switchTool(toolId, toolName) {
             currentToolId = toolId;
             
-            // Met à jour la classe active dans le menu latéral
             document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
             const activeItem = document.getElementById('btn-' + toolId);
             if(activeItem) activeItem.classList.add('active');
 
-            // Met à jour le titre du haut
             document.getElementById('current-tool-title').innerText = toolName;
 
-            // Réinitialise ou adapte le message de bienvenue du chat
             const history = document.getElementById('chat-history');
             history.innerHTML = `<div class="message system">✨ Assistant activé : Mode <b>${toolName}</b>. Prêt à exécuter vos consignes.</div>`;
         }
@@ -396,10 +477,8 @@
             const history = document.getElementById('chat-history');
             if(!input.value.trim()) return;
 
-            // Message de l'utilisateur
             history.innerHTML += `<div class="message user"><b>Vous :</b> ${input.value}</div>`;
             
-            // Simulation de la réponse IA (En attendant la clé API finale sur Vercel)
             const promptValue = input.value;
             input.value = '';
             
@@ -411,14 +490,73 @@
             history.scrollTop = history.scrollHeight;
         }
 
-        // Interceptation magique du trafic venant de ia.maffohub.com
+        // Gestion de l'envoi de fichiers / images
+        function handleFileSelect(input) {
+            if (input.files && input.files[0]) {
+                const fileName = input.files[0].name;
+                const history = document.getElementById('chat-history');
+                history.innerHTML += `<div class="message user"><b>Vous :</b> 📄 <i>Fichier joint : ${fileName}</i></div>`;
+                history.scrollTop = history.scrollHeight;
+                
+                setTimeout(() => {
+                    history.innerHTML += `<div class="message ai"><b>IA Maffo Hub :</b> Document reçu avec succès. L'analyse de fichier et l'analyse visuelle de vos médias s'exécuteront ici.</div>`;
+                    history.scrollTop = history.scrollHeight;
+                }, 600);
+            }
+        }
+
+        // Gestion de la note vocale (Interface micro)
+        function toggleVoiceRecord() {
+            const voiceBtn = document.getElementById('btn-voice');
+            const history = document.getElementById('chat-history');
+            
+            if(!isRecording) {
+                isRecording = true;
+                voiceBtn.style.color = '#ef4444'; 
+                voiceBtn.title = "Arrêter l'enregistrement";
+            } else {
+                isRecording = false;
+                voiceBtn.style.color = 'var(--text-muted)';
+                voiceBtn.title = "Enregistrer une note vocale";
+                
+                history.innerHTML += `<div class="message user"><b>Vous :</b> 🎵 <i>Note vocale transmise (Audio)</i></div>`;
+                history.scrollTop = history.scrollHeight;
+                
+                setTimeout(() => {
+                    history.innerHTML += `<div class="message ai"><b>IA Maffo Hub :</b> Note vocale bien reçue ! Nous travaillons actuellement sur l'activation du module de transcription pour transformer votre voix en texte instantanément. 🎙️</div>`;
+                    history.scrollTop = history.scrollHeight;
+                }, 600);
+            }
+        }
+
+        // INTERCEPTION MAGIQUE ET AUTOMATIQUE DE TOUTES LES PAGES OUTILS (ia.maffohub.com)
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
-            const initialText = urlParams.get('text');
-            if(initialText) {
-                // S'il vient de la page SEO principale, on le met d'office sur l'outil TikTok
+            const promptText = urlParams.get('prompt');
+            const targetModel = urlParams.get('model');
+
+            if(promptText) {
+                const cleanedText = decodeURIComponent(promptText);
+                
+                if(targetModel === 'gpt-4o') {
+                    switchTool('discussion', 'Discussion libre (GPT-4o) 💬');
+                } else if(targetModel === 'o1') {
+                    switchTool('informaticien', 'L\'Informaticien / Codeur (o1) 💻');
+                } else if(window.location.href.includes('compteur') || cleanedText.includes('mots') || cleanedText.length > 300) {
+                    switchTool('compteur', 'Compteur de Mots & Analyseur IA 📊');
+                } else {
+                    switchTool('script-tiktok', 'Scripts TikTok / Reels 🎬');
+                }
+
+                document.getElementById('chat-input').value = cleanedText;
+                sendMessage();
+            }
+            
+            const legacyText = urlParams.get('text');
+            if(legacyText && !promptText) {
                 switchTool('script-tiktok', 'Scripts TikTok / Reels 🎬');
-                document.getElementById('chat-input').value = decodeURIComponent(initialText);
+                document.getElementById('chat-input').value = decodeURIComponent(legacyText);
+                sendMessage();
             }
         }
     </script>
