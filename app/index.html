@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard App - Maffo Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #0a0a0a;
-            --bg-sidebar: #111111;
-            --bg-card: #161616;
+            /* Palette Tech Luxury / Ardoise adoucie */
+            --bg-main: #141517;
+            --bg-sidebar: #1a1c1e;
+            --bg-card: #202326;
+            --bg-input: #181a1c;
             --accent-gold: #d4af37;
-            --text-light: #ffffff;
-            --text-muted: #888888;
-            --border-color: #222222;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #2a2e33;
+            --active-item: rgba(212, 175, 55, 0.1);
         }
 
         body {
@@ -26,15 +29,19 @@
             overflow: hidden;
         }
 
-        /* Barre latérale gauche fixe */
+        /* BARRE LATÉRALE À GAUCHE (Déroulable s'il y a beaucoup d'outils) */
         .sidebar {
-            width: 280px;
+            width: 300px;
             background-color: var(--bg-sidebar);
             border-right: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
-            padding: 20px;
-            box-sizing: border-box;
+            height: 100%;
+        }
+
+        .sidebar-header {
+            padding: 25px 20px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .sidebar-logo {
@@ -42,8 +49,33 @@
             font-weight: 700;
             color: var(--accent-gold);
             letter-spacing: 2px;
-            margin-bottom: 30px;
             text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .plan-badge {
+            font-size: 11px;
+            color: var(--accent-gold);
+            background-color: var(--active-item);
+            padding: 2px 8px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .sidebar-menu {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 15px;
+        }
+
+        /* Personnalisation de la barre de défilement de la sidebar */
+        .sidebar-menu::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar-menu::-webkit-scrollbar-thumb {
+            background-color: var(--border-color);
+            border-radius: 3px;
         }
 
         .menu-section {
@@ -54,44 +86,53 @@
             font-size: 11px;
             text-transform: uppercase;
             color: var(--text-muted);
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             margin-bottom: 10px;
             font-weight: 700;
+            padding-left: 10px;
         }
 
         .menu-item {
-            padding: 10px 12px;
-            border-radius: 6px;
+            padding: 12px 15px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
-            color: #ccc;
-            transition: all 0.2s;
+            color: #e5e7eb;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            margin-bottom: 4px;
+            border: 1px solid transparent;
         }
 
-        .menu-item:hover, .menu-item.active {
-            background-color: #1a1a1a;
+        .menu-item:hover {
+            background-color: #22262a;
+            color: #ffffff;
+        }
+
+        .menu-item.active {
+            background-color: var(--active-item);
             color: var(--accent-gold);
+            border-color: rgba(212, 175, 55, 0.3);
+            font-weight: 500;
         }
 
-        /* Zone de contenu principale */
+        /* INTERFACE DE CHAT CENTRALE */
         .main-content {
             flex: 1;
             display: flex;
             flex-direction: column;
             height: 100%;
+            background-color: var(--bg-main);
         }
 
-        /* Topbar d'application */
         .topbar {
-            height: 70px;
+            height: 75px;
             border-bottom: 1px solid var(--border-color);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
+            padding: 0 40px;
             background-color: var(--bg-sidebar);
         }
 
@@ -99,313 +140,255 @@
             margin: 0;
             font-size: 18px;
             font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
-        /* Conteneur dynamique (Grille d'outils ou Chat actif) */
-        .workspace {
+        .chat-container {
             flex: 1;
-            padding: 30px;
-            overflow-y: auto;
-            box-sizing: border-box;
-        }
-
-        /* Grille des outils du Dashboard */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 20px;
-        }
-
-        .category-header {
-            grid-column: 1 / -1;
-            font-size: 18px;
-            color: var(--accent-gold);
-            margin-top: 20px;
-            margin-bottom: 5px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
-        }
-
-        .tool-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            cursor: pointer;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-gold);
-        }
-
-        .tool-icon {
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
-
-        .tool-name {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        /* Interface de Chat masquée par défaut */
-        .chat-interface {
-            display: none;
+            display: flex;
             flex-direction: column;
-            height: 100%;
-            max-width: 800px;
+            max-width: 850px;
+            width: 100%;
             margin: 0 auto;
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            padding: 30px 20px;
+            box-sizing: border-box;
+            justify-content: space-between;
         }
 
         .chat-history {
             flex: 1;
-            padding: 20px;
             overflow-y: auto;
-            border-bottom: 1px solid var(--border-color);
+            padding-right: 10px;
+            margin-bottom: 20px;
         }
 
+        /* Bulles de discussion */
+        .message {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 12px;
+            line-height: 1.5;
+            font-size: 15px;
+        }
+
+        .message.system {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+        }
+
+        .message.user {
+            background-color: var(--active-item);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: #ffffff;
+            align-self: flex-end;
+        }
+
+        .message.ai {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: #e5e7eb;
+        }
+
+        /* Zone d'écriture en bas */
         .chat-input-area {
-            padding: 20px;
+            background-color: var(--bg-sidebar);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 12px 20px;
             display: flex;
+            align-items: center;
             gap: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .chat-input {
             flex: 1;
-            background-color: #0a0a0a;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: white;
-            padding: 15px;
-            font-size: 14px;
-            resize: none;
-            height: 50px;
-        }
-
-        .chat-input:focus {
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            font-size: 15px;
             outline: none;
-            border-color: var(--accent-gold);
+            resize: none;
+            height: 24px;
+            font-family: inherit;
         }
 
         .btn-send {
             background: linear-gradient(135deg, #d4af37 0%, #aa841e 100%);
-            color: black;
+            color: #000;
             border: none;
-            padding: 0 25px;
-            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             font-weight: bold;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        .btn-send:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
 
-    <!-- BARRE LATÉRALE DE NAVIGATION -->
+    <!-- BARRE LATÉRALE AVEC TOUTES LES CATÉGORIES -->
     <div class="sidebar">
-        <div class="sidebar-logo">Maffo Hub App</div>
-        
-        <div class="menu-section">
-            <div class="menu-title">Navigation</div>
-            <div class="menu-item active" onclick="showDashboard()">🏠 Tableau de bord</div>
+        <div class="sidebar-header">
+            <div class="sidebar-logo">Maffo Hub App</div>
+            <div class="plan-badge">Premium Plan ⭐</div>
         </div>
+        
+        <div class="sidebar-menu">
+            <!-- DISCUSSION LIBRE (ONGLET PAR DÉFAUT) -->
+            <div class="menu-section">
+                <div class="menu-title">Général</div>
+                <div class="menu-item active" id="btn-discussion" onclick="switchTool('discussion', 'Discussion libre 💬')">
+                    <span>💬</span> Discussion libre
+                </div>
+            </div>
 
-        <div class="menu-section">
-            <div class="menu-title">Priorités Business</div>
-            <div class="menu-item" onclick="scrollToCategory('biz')">🚀 Business & Créateurs</div>
-            <div class="menu-item" onclick="scrollToCategory('pro')">📈 Vie Pro</div>
+            <!-- 1. BUSINESS & CRÉATEURS -->
+            <div class="menu-section">
+                <div class="menu-title">🚀 Business & Créateurs</div>
+                <div class="menu-item" id="btn-script-tiktok" onclick="switchTool('script-tiktok', 'Scripts TikTok / Reels 🎬')">
+                    <span>🎬</span> Scripts TikTok / Reels
+                </div>
+                <div class="menu-item" id="btn-hooks-idees" onclick="switchTool('hooks-idees', 'Idées & Accroches Virales 💡')">
+                    <span>💡</span> Idées & Accroches Virales
+                </div>
+                <div class="menu-item" id="btn-posts-reseaux" onclick="switchTool('posts-reseaux', 'Rédacteur Business 💼')">
+                    <span>💼</span> Rédacteur Business
+                </div>
+                <div class="menu-item" id="btn-stratege-contenu" onclick="switchTool('stratege-contenu', 'Stratège de Contenu 🎯')">
+                    <span>🎯</span> Stratège de Contenu
+                </div>
+            </div>
+
+            <!-- 2. VIE PRO -->
+            <div class="menu-section">
+                <div class="menu-title">📈 Vie Pro</div>
+                <div class="menu-item" id="btn-reformuler" onclick="switchTool('reformuler', 'Reformuler Texte 🔄')">
+                    <span>🔄</span> Reformuler Texte
+                </div>
+                <div class="menu-item" id="btn-corriger" onclick="switchTool('corriger', 'Corriger Fautes ✅')">
+                    <span>✅</span> Corriger Fautes
+                </div>
+                <div class="menu-item" id="btn-mail" onclick="switchTool('mail', 'Répondre à un Mail ✉️')">
+                    <span>✉️</span> Répondre à un Mail
+                </div>
+                <div class="menu-item" id="btn-analyseur" onclick="switchTool('analyseur', 'Analyseur & Synthèse 📊')">
+                    <span>📊</span> Analyseur & Synthèse
+                </div>
+                <div class="menu-item" id="btn-traducteur" onclick="switchTool('traducteur', 'Traducteur Universel 🌐')">
+                    <span>🌐</span> Traducteur Universel
+                </div>
+                <div class="menu-item" id="btn-informaticien" onclick="switchTool('informaticien', 'L\'Informaticien / Codeur 💻')">
+                    <span>💻</span> L'Informaticien / Codeur
+                </div>
+                <div class="menu-item" id="btn-admin" onclick="switchTool('admin', 'Aide Administratif 📂')">
+                    <span>📂</span> Aide Administratif
+                </div>
+                <div class="menu-item" id="btn-lettre" onclick="switchTool('lettre', 'Lettre de Motivation 📝')">
+                    <span>📝</span> Lettre de Motivation
+                </div>
+                <div class="menu-item" id="btn-juridique" onclick="switchTool('juridique', 'Conseiller Juridique ⚖️')">
+                    <span>⚖️</span> Conseiller Juridique
+                </div>
+                <div class="menu-item" id="btn-detecteur-ia" onclick="switchTool('detecteur-ia', 'Détecteur d\'IA 🔍')">
+                    <span>🔍</span> Détecteur d'IA
+                </div>
+                <div class="menu-item" id="btn-humaniser" onclick="switchTool('humaniser', 'Humaniser Texte IA ✍️')">
+                    <span>✍️</span> Humaniser Texte IA
+                </div>
+                <div class="menu-item" id="btn-prof-maths" onclick="switchTool('prof-maths', 'Le Prof de Maths 📐')">
+                    <span>📐</span> Le Prof de Maths
+                </div>
+                <div class="menu-item" id="btn-prof-langues" onclick="switchTool('prof-langues', 'Le Prof de Langues 🗣️')">
+                    <span>🗣️</span> Le Prof de Langues
+                </div>
+            </div>
+
+            <!-- 3. CRÉATIVITÉ & VIE PERSO -->
+            <div class="menu-section">
+                <div class="menu-title">🎨 Créativité & Perso</div>
+                <div class="menu-item" id="btn-image-prompt" onclick="switchTool('image-prompt', 'Créer une image IA 🎨')">
+                    <span>🎨</span> Créer une image IA
+                </div>
+                <div class="menu-item" id="btn-ami" onclick="switchTool('ami', 'L\'Ami Virtuel 🤝')">
+                    <span>🤝</span> L'Ami Virtuel
+                </div>
+                <div class="menu-item" id="btn-coach-perso" onclick="switchTool('coach-perso', 'Coach Personnel 🧠')">
+                    <span>🧠</span> Coach Personnel / Mindset
+                </div>
+                <div class="menu-item" id="btn-sport" onclick="switchTool('sport', 'Coach Sportif 💪')">
+                    <span>💪</span> Coach Sportif
+                </div>
+                <div class="menu-item" id="btn-meditation" onclick="switchTool('meditation', 'Coach Méditation & ASMR 🧘')">
+                    <span>🧘</span> Coach Méditation & ASMR
+                </div>
+                <div class="menu-item" id="btn-sante" onclick="switchTool('sante', 'Coach Santé 🍏')">
+                    <span>🍏</span> Coach Santé
+                </div>
+                <div class="menu-item" id="btn-seduction" onclick="switchTool('seduction', 'Coach Séduction ✨')">
+                    <span>✨</span> Coach Séduction
+                </div>
+                <div class="menu-item" id="btn-style" onclick="switchTool('style', 'Coach Relooking 👔')">
+                    <span>👔</span> Coach Relooking
+                </div>
+                <div class="menu-item" id="btn-cuisinier" onclick="switchTool('cuisinier', 'Le Cuisinier 🍳')">
+                    <span>🍳</span> Le Cuisinier
+                </div>
+                <div class="menu-item" id="btn-jardinier" onclick="switchTool('jardinier', 'Le Jardinier 🌱')">
+                    <span>🌱</span> Le Jardinier
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- ZONE D'AFFICHAGE PRINCIPALE -->
+    <!-- ZONE DE CHAT PRINCIPALE (TOUJOURS AU MILIEU) -->
     <div class="main-content">
         <div class="topbar">
-            <h2 id="page-title">Tableau de bord de vos outils</h2>
-            <div style="color: var(--accent-gold); font-size: 14px;">Premium Plan ⭐</div>
+            <h2 id="current-tool-title">Discussion libre 💬</h2>
         </div>
 
-        <div class="workspace">
-            
-            <!-- GRILLE DE VOS 30 OUTILS -->
-            <div id="dashboard-view" class="dashboard-grid">
-                
-                <!-- PRIORITÉ 1 : BUSINESS & CRÉATEURS -->
-                <div class="category-header" id="cat-biz">🚀 Business & Créateurs</div>
-                <div class="tool-card" onclick="startTool('script-tiktok', 'Concepteur de Scripts TikTok/Reels')">
-                    <div class="tool-icon">🎬</div>
-                    <div class="tool-name">Scripts TikTok / Reels</div>
-                </div>
-                <div class="tool-card" onclick="startTool('hooks-idees', 'Générateur d\'Idées & Hooks')">
-                    <div class="tool-icon">💡</div>
-                    <div class="tool-name">Idées & Accroches Virales</div>
-                </div>
-                <div class="tool-card" onclick="startTool('posts-reseaux', 'Rédacteur LinkedIn & Threads')">
-                    <div class="tool-icon">🚀</div>
-                    <div class="tool-name">Rédacteur Business</div>
-                </div>
-                <div class="tool-card" onclick="startTool('stratege-contenu', 'Stratège de Contenu')">
-                    <div class="tool-icon">🎯</div>
-                    <div class="tool-name">Stratège de Contenu</div>
-                </div>
-
-                <!-- PRIORITÉ 2 : VIE PRO -->
-                <div class="category-header" id="cat-pro">📈 Vie Pro</div>
-                <div class="tool-card" onclick="startTool('reformuler', 'Reformuler Texte')">
-                    <div class="tool-icon">🔄</div>
-                    <div class="tool-name">Reformuler Texte</div>
-                </div>
-                <div class="tool-card" onclick="startTool('corriger', 'Corriger Fautes')">
-                    <div class="tool-icon">✅</div>
-                    <div class="tool-name">Corriger Fautes</div>
-                </div>
-                <div class="tool-card" onclick="startTool('mail', 'Répondre à un Mail')">
-                    <div class="tool-icon">✉️</div>
-                    <div class="tool-name">Répondre à un Mail</div>
-                </div>
-                <div class="tool-card" onclick="startTool('analyseur', 'Analyseur de Texte')">
-                    <div class="tool-icon">📊</div>
-                    <div class="tool-name">Analyseur & Synthèse</div>
-                </div>
-                <div class="tool-card" onclick="startTool('traducteur', 'Traducteur Universel')">
-                    <div class="tool-icon">🌐</div>
-                    <div class="tool-name">Traducteur Universel</div>
-                </div>
-                <div class="tool-card" onclick="startTool('informaticien', 'L\'Informaticien / Codeur')">
-                    <div class="tool-icon">💻</div>
-                    <div class="tool-name">L'Informaticien / Codeur</div>
-                </div>
-                <div class="tool-card" onclick="startTool('admin', 'Aide Administratif')">
-                    <div class="tool-icon">📂</div>
-                    <div class="tool-name">Aide Administratif</div>
-                </div>
-                <div class="tool-card" onclick="startTool('lettre', 'Lettre de Motivation')">
-                    <div class="tool-icon">📝</div>
-                    <div class="tool-name">Lettre de Motivation</div>
-                </div>
-                <div class="tool-card" onclick="startTool('juridique', 'Conseiller Juridique Simulé')">
-                    <div class="tool-icon">⚖️</div>
-                    <div class="tool-name">Conseiller Juridique</div>
-                </div>
-                <div class="tool-card" onclick="startTool('detecteur-ia', 'Détecteur d\'IA')">
-                    <div class="tool-icon">🔍</div>
-                    <div class="tool-name">Détecteur d'IA</div>
-                </div>
-                <div class="tool-card" onclick="startTool('humaniser', 'Humaniser Texte IA')">
-                    <div class="tool-icon">✍️</div>
-                    <div class="tool-name">Humaniser Texte IA</div>
-                </div>
-                <div class="tool-card" onclick="startTool('prof-maths', 'Le Prof de Maths')">
-                    <div class="tool-icon">📐</div>
-                    <div class="tool-name">Le Prof de Maths</div>
-                </div>
-                <div class="tool-card" onclick="startTool('prof-langues', 'Le Prof de Langues')">
-                    <div class="tool-icon">🗣️</div>
-                    <div class="tool-name">Le Prof de Langues</div>
-                </div>
-
-                <!-- AUTRES CATÉGORIES (PASSENT APRÈS) -->
-                <div class="category-header">🎨 Créativité</div>
-                <div class="tool-card" onclick="startTool('discussion', 'Discussion libre')">
-                    <div class="tool-icon">💬</div>
-                    <div class="tool-name">Discussion libre</div>
-                </div>
-                <div class="tool-card" onclick="startTool('image-prompt', 'Créer une image IA')">
-                    <div class="tool-icon">🎨</div>
-                    <div class="tool-name">Créer une image IA</div>
-                </div>
-
-                <div class="category-header">🤝 Vie Perso</div>
-                <div class="tool-card" onclick="startTool('ami', 'L\'Ami Virtuel')">
-                    <div class="tool-icon">🤝</div>
-                    <div class="tool-name">L'Ami Virtuel</div>
-                </div>
-                <div class="tool-card" onclick="startTool('coach-perso', 'Coach Personnel / Mindset')">
-                    <div class="tool-icon">🧠</div>
-                    <div class="tool-name">Coach Personnel</div>
-                </div>
-                <div class="tool-card" onclick="startTool('sport', 'Coach Sportif')">
-                    <div class="tool-icon">💪</div>
-                    <div class="tool-name">Coach Sportif</div>
-                </div>
-                <div class="tool-card" onclick="startTool('meditation', 'Coach Méditation & ASMR')">
-                    <div class="tool-icon">🧘</div>
-                    <div class="tool-name">Coach Méditation & ASMR</div>
-                </div>
-                <div class="tool-card" onclick="startTool('sante', 'Coach Santé')">
-                    <div class="tool-icon">🍏</div>
-                    <div class="tool-name">Coach Santé</div>
-                </div>
-                <div class="tool-card" onclick="startTool('seduction', 'Coach Séduction')">
-                    <div class="tool-icon">✨</div>
-                    <div class="tool-name">Coach Séduction</div>
-                </div>
-                <div class="tool-card" onclick="startTool('style', 'Coach Relooking & Style')">
-                    <div class="tool-icon">👔</div>
-                    <div class="tool-name">Coach Relooking</div>
-                </div>
-                <div class="tool-card" onclick="startTool('cuisinier', 'Le Cuisinier')">
-                    <div class="tool-icon">🍳</div>
-                    <div class="tool-name">Le Cuisinier</div>
-                </div>
-                <div class="tool-card" onclick="startTool('jardinier', 'Le Jardinier')">
-                    <div class="tool-icon">🌱</div>
-                    <div class="tool-name">Le Jardinier</div>
-                </div>
-
-                <div class="category-header">☕ Divers</div>
-                <div class="tool-card" onclick="startTool('pause-cafe', 'Pause Café')">
-                    <div class="tool-icon">☕</div>
-                    <div class="tool-name">Pause Café</div>
-                </div>
-                <div class="tool-card" onclick="startTool('aide', 'Besoin d\'aide ?')">
-                    <div class="tool-icon">❓</div>
-                    <div class="tool-name">Besoin d'aide ?</div>
-                </div>
-
-            </div>
-
-            <!-- INTERFACE DE CHAT SECRÈTE (SE DÉCLENCHE QUAND ON CHOISIT UN OUTIL) -->
-            <div id="chat-view" class="chat-interface">
-                <div class="chat-history" id="chat-history">
-                    <!-- Les messages s'afficheront ici -->
-                </div>
-                <div class="chat-input-area">
-                    <textarea id="chat-input" class="chat-input" placeholder="Tapez votre consigne ici..."></textarea>
-                    <button class="btn-send" onclick="sendMessage()">Envoyer</button>
+        <div class="chat-container">
+            <!-- Historique des échanges -->
+            <div class="chat-history" id="chat-history">
+                <div class="message system" id="system-welcome">
+                    Je lance l'assistant de discussion libre... Posez-moi vos questions ou choisissez un assistant spécialisé dans le menu latéral.
                 </div>
             </div>
 
+            <!-- Formulaire d'envoi du message -->
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" class="chat-input" placeholder="Envoyez un message..." onkeydown="if(event.key === 'Enter') sendMessage()">
+                <button class="btn-send" onclick="sendMessage()">➔</button>
+            </div>
         </div>
     </div>
 
     <script>
-        let currentToolId = '';
+        let currentToolId = 'discussion';
 
-        function scrollToCategory(catId) {
-            showDashboard();
-            const element = document.getElementById('cat-' + catId);
-            if(element) element.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function showDashboard() {
-            document.getElementById('chat-view').style.display = 'none';
-            document.getElementById('dashboard-view').style.display = 'grid';
-            document.getElementById('page-title').innerText = "Tableau de bord de vos outils";
-        }
-
-        function startTool(toolId, toolName) {
+        function switchTool(toolId, toolName) {
             currentToolId = toolId;
-            document.getElementById('dashboard-view').style.display = 'none';
-            document.getElementById('chat-view').style.display = 'flex';
-            document.getElementById('page-title').innerText = toolName;
             
+            // Met à jour la classe active dans le menu latéral
+            document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
+            const activeItem = document.getElementById('btn-' + toolId);
+            if(activeItem) activeItem.classList.add('active');
+
+            // Met à jour le titre du haut
+            document.getElementById('current-tool-title').innerText = toolName;
+
+            // Réinitialise ou adapte le message de bienvenue du chat
             const history = document.getElementById('chat-history');
-            history.innerHTML = `<div style="color: var(--accent-gold); margin-bottom: 15px;">✨ Système : Mode ${toolName} activé. Prêt à vous aider.</div>`;
+            history.innerHTML = `<div class="message system">✨ Assistant activé : Mode <b>${toolName}</b>. Prêt à exécuter vos consignes.</div>`;
         }
 
         function sendMessage() {
@@ -413,22 +396,28 @@
             const history = document.getElementById('chat-history');
             if(!input.value.trim()) return;
 
-            // Affichage du message de l'utilisateur
-            history.innerHTML += `<div style="margin-bottom: 15px;"><b>Vous :</b> ${input.value}</div>`;
+            // Message de l'utilisateur
+            history.innerHTML += `<div class="message user"><b>Vous :</b> ${input.value}</div>`;
             
-            // Simulation de réponse IA en attendant la clé API de l'étape suivante
-            history.innerHTML += `<div style="color: #aaa; margin-bottom: 15px;"><b>IA Maffo Hub :</b> Connexion au serveur Vercel en cours... Vos prompts de configuration s'exécuteront ici dès l'ajout de votre clé API à l'étape finale.</div>`;
-            
+            // Simulation de la réponse IA (En attendant la clé API finale sur Vercel)
+            const promptValue = input.value;
             input.value = '';
+            
+            setTimeout(() => {
+                history.innerHTML += `<div class="message ai"><b>IA Maffo Hub :</b> Connexion au serveur Vercel établie. Vos modules s'exécuteront ici avec vos prompts spécifiques dès l'activation finale de votre clé API.</div>`;
+                history.scrollTop = history.scrollHeight;
+            }, 400);
+
             history.scrollTop = history.scrollHeight;
         }
 
-        // Récupération automatique du texte si l'utilisateur vient de la page SEO (ia.maffohub.com)
+        // Interceptation magique du trafic venant de ia.maffohub.com
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const initialText = urlParams.get('text');
             if(initialText) {
-                startTool('script-tiktok', 'Concepteur de Scripts TikTok/Reels');
+                // S'il vient de la page SEO principale, on le met d'office sur l'outil TikTok
+                switchTool('script-tiktok', 'Scripts TikTok / Reels 🎬');
                 document.getElementById('chat-input').value = decodeURIComponent(initialText);
             }
         }
