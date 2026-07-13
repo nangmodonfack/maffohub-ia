@@ -8,12 +8,13 @@
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --card-bg: #121212;
+            /* Palette Vert Émeraude Sombre & Or */
+            --bg-color: #061310; /* Vert émeraude très sombre et profond */
+            --card-bg: #0b1f1a;  /* Émeraude légèrement plus clair pour les cartes */
             --accent-gold: #d4af37;
             --text-color: #ffffff;
-            --text-muted: #a0a0a0;
-            --border-color: #222222;
+            --text-muted: #94a9a4;
+            --border-color: #163830;
         }
 
         body {
@@ -36,6 +37,7 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-color);
+            box-sizing: border-box;
         }
 
         .logo {
@@ -48,7 +50,7 @@
 
         main {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             padding: 40px 20px;
             box-sizing: border-box;
         }
@@ -78,7 +80,8 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+            margin-bottom: 50px;
         }
 
         label {
@@ -91,7 +94,7 @@
         textarea {
             width: 100%;
             height: 150px;
-            background-color: #1a1a1a;
+            background-color: #040d0b;
             border: 1px solid var(--border-color);
             border-radius: 8px;
             color: white;
@@ -107,7 +110,6 @@
             border-color: var(--accent-gold);
         }
 
-        /* Protection Turnstile Alignement */
         .turnstile-box {
             margin-bottom: 20px;
             display: flex;
@@ -130,6 +132,61 @@
         .btn-generate:hover {
             transform: translateY(-2px);
             opacity: 0.9;
+        }
+
+        /* SECTION NOS OUTILS SEO CATALOGUE */
+        .catalog-section {
+            margin-bottom: 50px;
+        }
+
+        .catalog-section h2 {
+            color: #ffffff;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--accent-gold);
+            padding-left: 15px;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .catalog-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: transform 0.2s, border-color 0.2s;
+            cursor: pointer;
+        }
+
+        .catalog-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-gold);
+            background-color: #0f2b24;
+        }
+
+        .catalog-icon {
+            font-size: 28px;
+        }
+
+        .catalog-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .catalog-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.4;
         }
 
         /* Section SEO en bas */
@@ -160,11 +217,11 @@
             <p>Testez gratuitement nos modules d'intelligence artificielle ultra-rapides.</p>
         </div>
 
+        <!-- ZONE DE PROMPT PRINCIPALE -->
         <div class="tool-container">
             <label for="user-input">Entrez votre texte ou votre idée ici :</label>
             <textarea id="user-input" placeholder="Ex: Rédige un script TikTok pour un business de consulting en finance..."></textarea>
             
-            <!-- Widget de sécurité Turnstile invisible/léger -->
             <div class="turnstile-box">
                 <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark"></div>
             </div>
@@ -172,7 +229,63 @@
             <button class="btn-generate" onclick="declencherMonetagEtRedirect()">✨ Générer avec l'IA</button>
         </div>
 
-        <!-- Section Texte de 400 mots optimisée pour Google -->
+        <!-- LISTE ET CATALOGUE DES OUTILS POUR LE RÉFÉRENCEMENT SEO -->
+        <section class="catalog-section">
+            <h2>Explorez nos modules spécialisés</h2>
+            <div class="catalog-grid">
+                
+                <a href="#" class="catalog-card">
+                    <div class="catalog-icon">🎬</div>
+                    <div class="catalog-name">Scripts TikTok / Reels</div>
+                    <div class="catalog-desc">Générez des structures vidéo short-form captivantes à forte rétention.</div>
+                </a>
+
+                <a href="#" class="catalog-card">
+                    <div class="catalog-icon">💡</div>
+                    <div class="catalog-name">Idées & Accroches Virales</div>
+                    <div class="catalog-desc">Trouvez des hooks psychologiques puissants pour stopper le scroll.</div>
+                </a>
+
+                <a href="#" class="catalog-card">
+                    <div class="catalog-icon">🚀</div>
+                    <div class="catalog-name">Rédacteur Business</div>
+                    <div class="catalog-desc">Rédaction de posts professionnels pour LinkedIn, Threads et newsletters.</div>
+                </a>
+
+                <a href="#" class="catalog-card">
+                    <div class="catalog-icon">🎯</div>
+                    <div class="catalog-name">Stratège de Contenu</div>
+                    <div class="catalog-desc">Planifiez vos calendriers éditoriaux et tunnels marketing en un clic.</div>
+                </a>
+
+                <a href="#" class="catalog-card">
+                    <div class="catalog-icon">🔄</div>
+                    <div class="catalog-name">Reformuler Texte</div>
+                    <div class="catalog-desc">Optimisez la fluidité de vos écrits et adoptez un ton naturel moderne.</div>
+                </a>
+
+                <a href="#" class="catalog-card">
+                    <div class="catalog-icon">✅</div>
+                    <div class="catalog-name">Corriger Fautes</div>
+                    <div class="catalog-desc">Éliminez les erreurs d'orthographe et de syntaxe instantanément.</div>
+                </a>
+
+                <a href="#" class="catalog-card">
+                    <div class="catalog-icon">✉️</div>
+                    <div class="catalog-name">Répondre à un Mail</div>
+                    <div class="catalog-desc">Rédigez des réponses de courriels professionnelles, claires et persuasives.</div>
+                </a>
+
+                <a href="#" class="catalog-card">
+                    <div class="catalog-icon">📊</div>
+                    <div class="catalog-name">Analyseur & Synthèse</div>
+                    <div class="catalog-desc">Résumez de longs rapports et extrayez les données clés d'un texte.</div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Section Texte optimisée pour Google -->
         <section class="seo-content">
             <h2>Pourquoi optimiser vos scripts et contenus avec l'IA Maffo Hub ?</h2>
             <p>À l'ère du digital, la création de contenu short-form sur des plateformes comme TikTok, Instagram Reels ou Pinterest requiert une vitesse d'exécution redoutable et une régularité sans faille. L'utilisation d'outils d'intelligence artificielle avancés spécifiquement calibrés pour le business en ligne et les créateurs de contenu est devenue le levier majeur pour se démarquer des algorithmes saturés.</p>
@@ -181,15 +294,11 @@
         </section>
     </main>
 
-    <script>
+    <script {nonce}>
         function declencherMonetagEtRedirect() {
             const texte = encodeURIComponent(document.getElementById('user-input').value);
-            
-            // 1. Simuler l'ouverture du Popunder Monetag (On mettra ton vrai script de pub ici)
             console.log("Monetag Popunder déclenché");
-
-            // 2. Redirection fluide vers l'application principale avec le texte en mémoire
-            // Pour l'instant, on redirige en local/relatif, cela s'adaptera parfaitement après
+            // Redirection vers l'application
             window.location.href = `https://app.maffohub.com/?text=${texte}`;
         }
     </script>
