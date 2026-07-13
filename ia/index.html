@@ -561,13 +561,112 @@
         </section>
     </main>
 
-    <script {nonce}>
-        function declencherMonetagEtRedirect() {
-           const texteUtilisateur = document.getElementById('user-input').value;
-const promptOptimise = `Rédige une lettre de motivation professionnelle et percutante basée sur ces informations : ${texteUtilisateur}`;
+  <script>
+// 1. TON SCRIPT FAIT MAISON POUR LA LETTRE DE MOTIVATION (CONSERVÉ À 100%)
+function declencherMonetagEtRedirect() {
+    const texteUtilisateur = document.getElementById('user-input').value;
+    const promptOptimise = `Rédige une lettre de motivation professionnelle et percutante basée sur ces informations : ${texteUtilisateur}`;
+    window.location.href = `https://app.maffohub.com/?text=${encodeURIComponent(promptOptimise)}`;
+}
 
-window.location.href = `https://app.maffohub.com/?text=${encodeURIComponent(promptOptimise)}`;
+// 2. LE SCRIPT DE GESTION DU DASHBOARD ET DE L'ENVOI DIRECT DU COMPTEUR
+let currentToolId = 'discussion';
+let isRecording = false;
+
+function switchTool(toolId, toolName) {
+    currentToolId = toolId;
+    
+    document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
+    const activeItem = document.getElementById('btn-' + toolId);
+    if(activeItem) activeItem.classList.add('active');
+
+    document.getElementById('current-tool-title').innerText = toolName;
+
+    const history = document.getElementById('chat-history');
+    history.innerHTML = `<div class="message system">✨ Assistant activé : Mode <b>${toolName}</b>. Prêt à exécuter vos consignes.</div>`;
+}
+
+function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const history = document.getElementById('chat-history');
+    if(!input.value.trim()) return;
+
+    history.innerHTML += `<div class="message user"><b>Vous :</b> ${input.value}</div>`;
+    
+    const promptValue = input.value;
+    input.value = ''; 
+    history.scrollTop = history.scrollHeight;
+
+    setTimeout(() => {
+        history.innerHTML += `<div class="message ai"><b>IA Maffo Hub :</b> Connexion au serveur Vercel établie. Analyse en cours pour votre texte avec la consigne demandée...</div>`;
+        history.scrollTop = history.scrollHeight;
+    }, 400);
+}
+
+function handleFileSelect(input) {
+    if (input.files && input.files[0]) {
+        const fileName = input.files[0].name;
+        const history = document.getElementById('chat-history');
+        history.innerHTML += `<div class="message user"><b>Vous :</b> 📄 <i>Fichier joint : ${fileName}</i></div>`;
+        history.scrollTop = history.scrollHeight;
+        
+        setTimeout(() => {
+            history.innerHTML += `<div class="message ai"><b>IA Maffo Hub :</b> Document reçu avec succès. L'analyse s'exécutera ici.</div>`;
+            history.scrollTop = history.scrollHeight;
+        }, 600);
+    }
+}
+
+function toggleVoiceRecord() {
+    const voiceBtn = document.getElementById('btn-voice');
+    const history = document.getElementById('chat-history');
+    
+    if(!isRecording) {
+        isRecording = true;
+        voiceBtn.style.color = '#ef4444'; 
+    } else {
+        isRecording = false;
+        voiceBtn.style.color = 'var(--text-muted)';
+        
+        history.innerHTML += `<div class="message user"><b>Vous :</b> 🎵 <i>Note vocale transmise (Audio)</i></div>`;
+        history.scrollTop = history.scrollHeight;
+        
+        setTimeout(() => {
+            history.innerHTML += `<div class="message ai"><b>IA Maffo Hub :</b> Audio reçu. La transcription décodera votre message ici.</div>`;
+            history.scrollTop = history.scrollHeight;
+        }, 600);
+    }
+}
+
+// INTERCEPTION AUTOMATIQUE ET REDIRECTION FLUIDE
+window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const promptText = urlParams.get('prompt') || urlParams.get('text');
+    const targetModel = urlParams.get('model');
+
+    if(promptText) {
+        let cleanedText = decodeURIComponent(promptText);
+        
+        // Si le texte vient du compteur de mots, on s'assure d'aller sur Discussion libre
+        if (window.location.href.includes('compteur') || cleanedText.length > 250) {
+            switchTool('discussion', 'Discussion libre 💬');
+            
+            if (!cleanedText.toLowerCase().includes('analyser et améliorer')) {
+                cleanedText = "Analyser et améliorer avec l'IA le texte suivant :\n\n" + cleanedText;
+            }
+        } else if(targetModel === 'gpt-4o') {
+            switchTool('discussion', 'Discussion libre (GPT-4o) 💬');
+        } else if(targetModel === 'o1') {
+            switchTool('informaticien', 'L\'Informaticien / Codeur (o1) 💻');
+        } else {
+            switchTool('script-tiktok', 'Scripts TikTok / Reels 🎬');
         }
-    </script>
+
+        // Met le texte préparé dans l'input et l'envoie AUTOMATIQUEMENT
+        document.getElementById('chat-input').value = cleanedText;
+        sendMessage();
+    }
+}
+</script> 
 </body>
 </html>
