@@ -5,6 +5,10 @@
       "destination": "/ia/support/index.html"
     },
     {
+      "source": "/support/",
+      "destination": "/ia/support/index.html"
+    },
+    {
       "source": "/",
       "has": [
         { "type": "host", "value": "ia.maffohub.com" }
