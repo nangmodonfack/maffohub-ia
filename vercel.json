@@ -1,29 +1,20 @@
 {
   "rewrites": [
     {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "ia.maffohub.com"
-        }
-      ],
-      "destination": "/ia/index.html"
+      "source": "/support",
+      "destination": "/ia/support/index.html"
     },
-  {
-  "rewrites": [
-    { "source": "/support", "destination": "/ia/support/index.html" },
-    { "source": "/support/", "destination": "/ia/support/index.html" },
-    { "source": "/(.*)", "destination": "/ia/index.html" }
-  ]
-}
     {
       "source": "/",
       "has": [
-        {
-          "type": "host",
-          "value": "app.maffohub.com"
-        }
+        { "type": "host", "value": "ia.maffohub.com" }
+      ],
+      "destination": "/ia/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        { "type": "host", "value": "app.maffohub.com" }
       ],
       "destination": "/app/index.html"
     }
