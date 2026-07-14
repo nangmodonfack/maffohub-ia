@@ -2,12 +2,9 @@
   "rewrites": [
     { "source": "/support", "destination": "/ia/support/index.html" },
     { "source": "/support/", "destination": "/ia/support/index.html" },
-    { "source": "/gpt-4o", "destination": "/ia/gpt-4o/index.html" },
-    { "source": "/gpt-4o/", "destination": "/ia/gpt-4o/index.html" },
-    { "source": "/o1", "destination": "/ia/o1/index.html" },
-    { "source": "/o1/", "destination": "/ia/o1/index.html" },
-    { "source": "/chatgpt5", "destination": "/ia/chatgpt5/index.html" },
-    { "source": "/chatgpt5/", "destination": "/ia/chatgpt5/index.html" },
+    { "source": "/gpt-4o-gratuit/", "destination": "/ia/gpt-4o/index.html" },
+    { "source": "/chatgpt-o1-gratuit/", "destination": "/ia/o1/index.html" },
+    { "source": "/chatgpt5-agi-gratuit/", "destination": "/ia/chatgpt5/index.html" },
     {
       "source": "/",
       "has": [ { "type": "host", "value": "ia.maffohub.com" } ],
