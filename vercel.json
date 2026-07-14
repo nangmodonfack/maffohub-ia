@@ -5,16 +5,16 @@
       "destination": "/ia/support/index.html"
     },
     {
-  "rewrites": [
-    { "source": "/support", "destination": "/ia/support/index.html" },
-    { "source": "/gpt-4o", "destination": "/ia/gpt-4o/index.html" },
-    { "source": "/o1", "destination": "/ia/o1/index.html" },
-    { "source": "/chatgpt5", "destination": "/ia/chatgpt5/index.html" }
-  ]
-}
+      "source": "/gpt-4o",
+      "destination": "/ia/gpt-4o/index.html"
+    },
     {
-      "source": "/support/",
-      "destination": "/ia/support/index.html"
+      "source": "/o1",
+      "destination": "/ia/o1/index.html"
+    },
+    {
+      "source": "/chatgpt5",
+      "destination": "/ia/chatgpt5/index.html"
     },
     {
       "source": "/",
