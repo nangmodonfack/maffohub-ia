@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Gratuite Générale | Assistant Polyvalent | Maffo Hub</title>
+    <style>
+        :root { --bg-color: #061310; --card-bg: #0b1f1a; --accent-gold: #d4af37; --text-color: #ffffff; --text-muted: #94a9a4; --border-color: #163830; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        header { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; padding: 20px; border-bottom: 1px solid var(--border-color); }
+        .logo { font-size: 24px; font-weight: bold; color: #fff; }
+        .tool-container { width: 100%; max-width: 800px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; margin: 40px auto; }
+        textarea { width: 100%; height: 150px; background: #061310; border: 1px solid var(--border-color); border-radius: 8px; color: #fff; padding: 15px; margin-bottom: 20px; }
+        .btn-generate { background: var(--accent-gold); color: #061310; border: none; padding: 12px 24px; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; }
+        .seo-section { max-width: 850px; margin: 20px auto; padding: 20px; line-height: 1.7; color: var(--text-muted); }
+        h2 { color: #fff; } h3 { color: var(--accent-gold); margin-top: 30px; }
+        .faq-item { margin-top: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
+        footer { width: 100%; background-color: var(--card-bg); border-top: 1px solid var(--border-color); padding: 40px 20px; margin-top: 60px; text-align: center; color: var(--text-muted); }
+        .footer-links { margin-bottom: 10px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <header>
+    <a href="/" style="text-decoration: none;">
+        <div class="logo" style="color: #d4af37; font-weight: bold;">Maffo Hub</div>
+    </a>
+    <div style="font-size: 0.8rem; margin-bottom: 10px;"><a href="/">Accueil</a></div>
+</header>
+    <div class="tool-container">
+        <label>🤖 IA Gratuite Générale & Assistant Intelligent :</label>
+        <textarea id="user-input" placeholder="Posez vos questions, demandez des conseils ou de l'aide sur n'importe quel sujet..."></textarea>
+        <button class="btn-generate" onclick="redirectToApp()">Lancer l'IA Gratuite 🚀</button>
+    </div>
+
+    <section class="seo-section">
+        <h2>IA Gratuite Générale : Votre assistant polyvalent au quotidien</h2>
+        <p>Besoin d'un assistant capable de jongler entre rédaction créative, analyse de données complexes et brainstorming stratégique ? Notre outil d'<strong>IA Gratuite</strong> est conçu pour centraliser toutes vos tâches cognitives. Contrairement aux modèles spécialisés, cette IA est entraînée pour être un "couteau suisse" numérique, capable de s'adapter à une multitude de domaines.</p>
+        
+        <h3>Guide pratique : Optimiser vos résultats avec l'IA</h3>
+        <p>Pour tirer le meilleur parti de notre outil, appliquez la méthode du "contexte-tâche-format". 1. **Définissez le rôle** : Agissez comme un expert. 2. **Précisez la tâche** : Soyez explicite sur votre besoin. 3. **Déterminez le format** : Listes, tableaux, ou textes narratifs. En suivant cette méthode, vous transformez l'IA en un véritable bras droit stratégique.</p>
+
+        <h3>Comparaison : IA Générale vs Outils spécialisés</h3>
+        <p>L'IA Générale est supérieure pour les tâches multidimensionnelles. Elle analyse la logique, la cohérence, et propose des solutions créatives sortant du cadre strict. Sur Maffo Hub, nous avons configuré cette instance pour privilégier la réflexion critique.</p>
+
+        <h3>Foire Aux Questions (FAQ)</h3>
+        <div class="faq-item"><h4>Quels types de tâches puis-je déléguer ?</h4><p>Rédaction d'e-mails, création de plans d'articles, résumé de documents longs et génération d'idées de business.</p></div>
+        <div class="faq-item"><h4>Est-ce que cette IA apprend de mes saisies ?</h4><p>Votre confidentialité est notre priorité. Maffo Hub traite vos demandes sans réutiliser vos données pour entraîner des modèles tiers.</p></div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/support/">Contact</a> | 
+            <a href="/mentions-legales/">Mentions Légales</a> | 
+            <a href="https://maffohub.com/blog/">Blog</a>
+        </div>
+        <p>&copy; 2026 Maffo Hub.</p>
+    </footer>
+
+    <script>
+        function redirectToApp() {
+            const val = document.getElementById('user-input').value;
+            if(!val) return alert("Veuillez saisir votre demande.");
+            window.location.href = "https://app.maffohub.com/?prompt=" + encodeURIComponent(val) + "&mode=general";
+        }
+    </script>
+</body>
+</html>
