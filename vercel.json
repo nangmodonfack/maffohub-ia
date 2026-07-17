@@ -7,6 +7,10 @@
     { "source": "/chatgpt5-agi-gratuit/", "destination": "/ia/chatgpt5/index.html" },
     { "source": "/ia-gratuite/", "destination": "/ia/gratuite/index.html" },
     { "source": "/chatgpt-gratuit/", "destination": "/ia/chatgpt-gratuit/index.html" },
+    { "source": "/mentions-legales/", "destination": "/ia/legales/mentions/index.html" },
+    { "source": "/politique-donnees/", "destination": "/ia/legales/donnees/index.html" },
+    { "source": "/cgv/", "destination": "/ia/legales/cgv/index.html" },
+    { "source": "/qui-sommes-nous/", "destination": "/ia/legales/qui-sommes-nous./index.html" },
     {
       "source": "/",
       "has": [ { "type": "host", "value": "ia.maffohub.com" } ],
