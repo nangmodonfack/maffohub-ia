@@ -5,6 +5,8 @@
     { "source": "/gpt-4o-gratuit/", "destination": "/ia/gpt-4o/index.html" },
     { "source": "/chatgpt-o1-gratuit/", "destination": "/ia/o1/index.html" },
     { "source": "/chatgpt5-agi-gratuit/", "destination": "/ia/chatgpt5/index.html" },
+    { "source": "/ia-gratuite/", "destination": "/ia/gratuite/index.html" },
+    { "source": "/chatgpt-gratuit/", "destination": "/ia/chatgpt-gratuit/index.html" },
     {
       "source": "/",
       "has": [ { "type": "host", "value": "ia.maffohub.com" } ],
