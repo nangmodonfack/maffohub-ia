@@ -9,6 +9,21 @@
     { "source": "/chatgpt-gratuit/", "destination": "/ia/chatgpt-gratuit/index.html" },
     { "source": "/tiktok-scripts/", "destination": "/ia/tiktok-scripts/index.html" },
     { "source": "/idees-accroches-virales/", "destination": "/ia/idees-accroches/index.html" },
+    { "source": "/redacteur-business/", "destination": "/ia/redacteur-business/index.html" },
+    { "source": "/stratege-contenu/", "destination": "/ia/stratege-contenu/index.html" },
+    { "source": "/lettre-motivation/", "destination": "/ia/lettre-motivation/index.html" },
+    { "source": "/reformuler-texte/", "destination": "/ia/reformuler-texte/index.html" },
+    { "source": "/corriger-fautes/", "destination": "/ia/corriger-fautes/index.html" },
+    { "source": "/repondre-mail/", "destination": "/ia/repondre-mail/index.html" },
+    { "source": "/analyseur-synthese/", "destination": "/ia/analyseur-synthese/index.html" },
+    { "source": "/traducteur-universel/", "destination": "/ia/traducteur-universel/index.html" },
+    { "source": "/codeur-informaticien/", "destination": "/ia/codeur-informaticien/index.html" },
+    { "source": "/aide-administratif/", "destination": "/ia/aide-administratif/index.html" },
+    { "source": "/conseiller-juridique-avocat/", "destination": "/ia/conseiller-juridique/index.html" },
+    { "source": "/detecteur-ia/", "destination": "/ia/detecteur-ia/index.html" },
+    { "source": "/humaniser-texte-ia/", "destination": "/ia/humaniser-texte/index.html" },
+    { "source": "/prof-maths/", "destination": "/ia/prof-maths/index.html" },
+    { "source": "/prof-langues/", "destination": "/ia/prof-langues/index.html" },
     { "source": "/mentions-legales/", "destination": "/ia/legales/mentions/index.html" },
     { "source": "/politique-donnees/", "destination": "/ia/legales/donnees/index.html" },
     { "source": "/cgv/", "destination": "/ia/legales/cgv/index.html" },
@@ -25,3 +40,5 @@
     }
   ]
 }
+
+```
