@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -39,15 +40,6 @@
             border-bottom: 1px solid var(--border-color);
             box-sizing: border-box;
         }
-.dropdown { position: relative; display: inline-block; }
-        .dropbtn { background-color: var(--card-bg); color: var(--text-color); padding: 10px 18px; font-size: 0.95rem; font-weight: 600; border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; transition: 0.2s; }
-        .dropbtn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
-        .dropdown-content { display: none; position: absolute; right: 0; background-color: #0b1f1a; min-width: 260px; box-shadow: 0px 8px 16px rgba(0,0,0,0.6); border: 1px solid var(--border-color); border-radius: 8px; z-index: 1000; max-height: 400px; overflow-y: auto; padding: 10px 0; }
-        .dropdown-content a { color: var(--text-muted); padding: 10px 20px; text-decoration: none; display: block; font-size: 0.9rem; transition: 0.2s; }
-        .dropdown-content a:hover { background-color: #113129; color: #fff; }
-        .dropdown-group { display: block; padding: 8px 20px 4px 20px; font-size: 0.75rem; font-weight: bold; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; border-top: 1px solid rgba(22, 56, 48, 0.4); }
-        .dropdown-group:first-child { border-top: none; }
-        .dropdown:hover .dropdown-content { display: block; }
         .logo {
             font-size: 24px;
             font-weight: bold;
@@ -229,7 +221,6 @@
             color: #ffffff;
         }
 
-        /* SECTION FAQ STYLE */
         .faq-section {
             margin-top: 60px;
             border-top: 1px solid var(--border-color);
@@ -268,7 +259,7 @@
             line-height: 1.6;
             font-size: 0.95rem;
         }
-       header { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; padding: 20px; box-sizing: border-box; }
+
         .nav-links { display: flex; align-items: center; gap: 10px; }
         .nav-item { color: var(--text-color); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 6px 8px; transition: 0.2s; white-space: nowrap; }
         .nav-item:hover { color: var(--accent-gold); }
@@ -282,42 +273,43 @@
         .dropdown-group:first-child { border-top: none; }
         .dropdown:hover .dropdown-content { display: block; }
 
-        /* Gestion responsive pour éviter les bugs d'affichage */
         @media (max-width: 1100px) {
-            .nav-item { display: none; } /* Tout bascule dans le menu déroulant sur écran moyen et mobile */
+            .nav-item { display: none; }
         }
+
         footer {
-    width: 100%;
-    background-color: var(--card-bg);
-    border-top: 1px solid var(--border-color);
-    padding: 40px 20px;
-    margin-top: 60px;
-    text-align: center;
-}
+            width: 100%;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            margin-top: 60px;
+            text-align: center;
+            box-sizing: border-box;
+        }
 
-.footer-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 20px;
-}
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
 
-.footer-links a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: 0.3s;
-}
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
 
-.footer-links a:hover {
-    color: var(--accent-gold);
-}
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
 
-footer p {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-}
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
@@ -325,15 +317,13 @@ footer p {
 <header>
         <div class="logo">Maffo Hub</div>
         
-        <!-- LIENS DIRECTS VERS LES OUTILS LES PLUS RECHERCHÉS (FIXES) -->
         <nav class="nav-links">
             <a href="/ia-gratuite/" class="nav-item">🤖 IA Gratuite</a>
             <a href="/chatgpt-gratuit/" class="nav-item">💬 ChatGPT Gratuit</a>
-            <a href="/scripts-tiktok-reels/" class="nav-item">🎬 Scripts TikTok</a>
+            <a href="/tiktok-scripts/" class="nav-item">🎬 Scripts TikTok</a>
             <a href="/humaniser-texte-ia/" class="nav-item">✍️ Humaniser Texte IA</a>
             <a href="/compteur-de-mots/" class="nav-item">📊 Compteur de mots</a>
             
-            <!-- LE RESTE DES OUTILS DANS LE MENU DÉROULANT -->
             <div class="dropdown">
                 <button class="dropbtn">➕ Plus d'outils ▾</button>
                 <div class="dropdown-content">
@@ -343,6 +333,7 @@ footer p {
                     <a href="/chatgpt5-agi-gratuit/">🌐 ChatGPT 5 Gratuit</a>
                     
                     <span class="dropdown-group">🚀 Business & Création</span>
+                    <a href="/tiktok-scripts/">🎬 Scripts TikTok / Reels</a>
                     <a href="/idees-accroches-virales/">💡 Accroches Virales</a>
                     <a href="/redacteur-business/">💼 Rédacteur Business</a>
                     <a href="/stratege-contenu/">🎯 Stratège de Contenu</a>
@@ -363,9 +354,9 @@ footer p {
                 </div>
             </div>
         </nav>
-    </header>
-    <main>
-        <!-- APPORT DES ARGUMENTS DE GRATUITÉ & DE NON-INSCRIPTION -->
+</header>
+
+<main>
         <div class="hero">
             <h1>L'Intelligence Artificielle <span>Gratuite</span> en Ligne, pour Tous</h1>
             <p>Profitez d'un accès instantané et illimité à nos agents conversationnels et utilitaires en français. Simplifiez votre quotidien sans aucune barrière technique.</p>
@@ -376,19 +367,17 @@ footer p {
             </div>
         </div>
 
-        <!-- RECHERCHE GLOBALE ACCUEIL -->
       <div class="tool-container">
-    <label for="user-input">✍️ Générateur de Lettre de Motivation IA Professionnelle :</label>
-    <textarea id="user-input" placeholder="Ex: Rédige une lettre de motivation pour un poste de Community Manager en alternance. J'ai de l'expérience en gestion de pages Facebook..."></textarea>
-    
-    <div class="turnstile-box">
-        <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark"></div>
-    </div>
+        <label for="user-input">✍️ Générateur de Lettre de Motivation IA Professionnelle :</label>
+        <textarea id="user-input" placeholder="Ex: Rédige une lettre de motivation pour un poste de Community Manager en alternance. J'ai de l'expérience en gestion de pages Facebook..."></textarea>
+        
+        <div class="turnstile-box">
+            <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark"></div>
+        </div>
 
-    <button class="btn-generate" onclick="declencherMonetagEtRedirect()">✨ Tester l'IA instantanément</button>
-</div> 
+        <button class="btn-generate" onclick="declencherMonetagEtRedirect()">✨ Tester l'IA instantanément</button>
+      </div> 
 
-    <!-- BLOC DE RÉFÉRENCEMENT SEO : GENERATEUR LETTRE DE MOTIVATION -->
 <section class="seo-tool-description" style="max-width: 850px; margin: 40px auto; padding: 20px; line-height: 1.7; color: var(--text-muted);">
     <h2 style="color: #fff; font-size: 1.8rem; margin-bottom: 20px;">Comment rédiger une lettre de motivation efficace grâce à l'intelligence artificielle ?</h2>
     <p>La recherche d'un emploi, d'un stage ou d'une formation exige aujourd'hui une réactivité sans faille. Face à des dizaines de candidatures à envoyer, la rédaction d'une lettre de motivation originale et percutante devient rapidement chronophage. C'est ici que notre <strong>générateur de lettre de motivation en ligne gratuit</strong> intervient pour transformer cette corvée en une formalité de quelques secondes.</p>
@@ -415,7 +404,6 @@ footer p {
         <section class="catalog-section">
             <h2>Nos Assistants IA Spécialisés</h2>
 
-            <!-- BLOC STRATÉGIQUE : LES MEILLEURES IA (CLICKBAIT SEO COMME LE CONCURRENT) -->
             <div class="category-block">
                 <div class="category-subtitle">🔥 Les Meilleures IA Gratuites</div>
                 <div class="catalog-grid">
@@ -437,11 +425,10 @@ footer p {
                 </div>
             </div>
 
-            <!-- 1. BUSINESS & CRÉATEURS -->
             <div class="category-block">
                 <div class="category-subtitle">🚀 Business & Créateurs</div>
                 <div class="catalog-grid">
-                    <a href="/scripts-tiktok-reels/" class="catalog-card">
+                    <a href="/tiktok-scripts/" class="catalog-card">
                         <div class="catalog-icon">🎬</div><div class="catalog-name">Scripts TikTok / Reels</div>
                     </a>
                     <a href="/idees-accroches-virales/" class="catalog-card">
@@ -456,7 +443,6 @@ footer p {
                 </div>
             </div>
 
-            <!-- 2. VIE PROFESSIONNELLE & ÉTUDES -->
             <div class="category-block">
                 <div class="category-subtitle">📈 Vie Pro & Études</div>
                 <div class="catalog-grid">
@@ -501,28 +487,21 @@ footer p {
                     </a>
                 </div>
             </div>
-
-
         </section>
 
-        <!-- SECTION FAQ ACCUEIL POUR LE RÉFÉRENCEMENT -->
-<!-- SECTION AVIS UTILISATEURS -->
 <section class="testimonials-section">
     <h2 style="text-align: center; margin-bottom: 40px;">Ce qu'en disent nos utilisateurs</h2>
     <div class="testimonial-grid">
-        <!-- Avis 1 -->
         <div class="testimonial-card">
             <div class="stars">★★★★★</div>
             <p>"Je devais refaire mon CV en urgence pour une candidature. Je n'avais vraiment pas envie de m'inscrire sur une énième plateforme qui demande mon email. Ici, j'ai juste copié mon texte, lancé l'IA, et c'était réglé en 2 minutes. Efficace et direct."</p>
             <div class="user-name">— Marc, Étudiant en alternance</div>
         </div>
-        <!-- Avis 2 -->
         <div class="testimonial-card">
             <div class="stars">★★★★★</div>
             <p>"En tant que créateur de contenu, la page blanche, c'est mon quotidien. J'utilise surtout l'outil pour les scripts TikTok. Ça ne fait pas tout le travail à ma place, mais ça me donne la structure qu'il me manquait pour filmer sans bafouiller. Un bon gain de temps."</p>
             <div class="user-name">— Sarah, Créatrice digitale</div>
         </div>
-        <!-- Avis 3 -->
         <div class="testimonial-card">
             <div class="stars">★★★★☆</div>
             <p>"C'est devenu mon réflexe quand j'ai besoin de traduire un mail pro ou de résumer un document long. L'interface est épurée, ça charge instantanément et c'est gratuit. Honnêtement, je ne vois pas pourquoi aller payer ailleurs pour des tâches simples."</p>
@@ -591,17 +570,15 @@ footer p {
                 <p>Oui, l'accès à nos différents assistants est entièrement gratuit et conçu pour un usage quotidien fluide. En cas de forte affluence sur nos serveurs, de légères régulations de requêtes peuvent être appliquées pour maintenir une vitesse optimale pour chaque utilisateur.</p>
             </div>
         </section>
-    </main>
+</main>
 
-  <script>
-// 1. TON SCRIPT FAIT MAISON POUR LA LETTRE DE MOTIVATION (CONSERVÉ À 100%)
+<script>
 function declencherMonetagEtRedirect() {
     const texteUtilisateur = document.getElementById('user-input').value;
     const promptOptimise = `Rédige une lettre de motivation professionnelle et percutante basée sur ces informations : ${texteUtilisateur}`;
     window.location.href = `https://app.maffohub.com/?text=${encodeURIComponent(promptOptimise)}`;
 }
 
-// 2. LE SCRIPT DE GESTION DU DASHBOARD ET DE L'ENVOI DIRECT DU COMPTEUR
 let currentToolId = 'discussion';
 let isRecording = false;
 
@@ -615,13 +592,13 @@ function switchTool(toolId, toolName) {
     document.getElementById('current-tool-title').innerText = toolName;
 
     const history = document.getElementById('chat-history');
-    history.innerHTML = `<div class="message system">✨ Assistant activé : Mode <b>${toolName}</b>. Prêt à exécuter vos consignes.</div>`;
+    if(history) history.innerHTML = `<div class="message system">✨ Assistant activé : Mode <b>${toolName}</b>. Prêt à exécuter vos consignes.</div>`;
 }
 
 function sendMessage() {
     const input = document.getElementById('chat-input');
     const history = document.getElementById('chat-history');
-    if(!input.value.trim()) return;
+    if(!input || !input.value.trim() || !history) return;
 
     history.innerHTML += `<div class="message user"><b>Vous :</b> ${input.value}</div>`;
     
@@ -635,51 +612,14 @@ function sendMessage() {
     }, 400);
 }
 
-function handleFileSelect(input) {
-    if (input.files && input.files[0]) {
-        const fileName = input.files[0].name;
-        const history = document.getElementById('chat-history');
-        history.innerHTML += `<div class="message user"><b>Vous :</b> 📄 <i>Fichier joint : ${fileName}</i></div>`;
-        history.scrollTop = history.scrollHeight;
-        
-        setTimeout(() => {
-            history.innerHTML += `<div class="message ai"><b>IA Maffo Hub :</b> Document reçu avec succès. L'analyse s'exécutera ici.</div>`;
-            history.scrollTop = history.scrollHeight;
-        }, 600);
-    }
-}
-
-function toggleVoiceRecord() {
-    const voiceBtn = document.getElementById('btn-voice');
-    const history = document.getElementById('chat-history');
-    
-    if(!isRecording) {
-        isRecording = true;
-        voiceBtn.style.color = '#ef4444'; 
-    } else {
-        isRecording = false;
-        voiceBtn.style.color = 'var(--text-muted)';
-        
-        history.innerHTML += `<div class="message user"><b>Vous :</b> 🎵 <i>Note vocale transmise (Audio)</i></div>`;
-        history.scrollTop = history.scrollHeight;
-        
-        setTimeout(() => {
-            history.innerHTML += `<div class="message ai"><b>IA Maffo Hub :</b> Audio reçu. La transcription décodera votre message ici.</div>`;
-            history.scrollTop = history.scrollHeight;
-        }, 600);
-    }
-}
-
-// INTERCEPTION AUTOMATIQUE ET REDIRECTION FLUIDE
 window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const promptText = urlParams.get('prompt') || urlParams.get('text');
     const targetModel = urlParams.get('model');
 
-    if(promptText) {
+    if(promptText && document.getElementById('chat-input')) {
         let cleanedText = decodeURIComponent(promptText);
         
-        // Si le texte vient du compteur de mots, on s'assure d'aller sur Discussion libre
         if (window.location.href.includes('compteur') || cleanedText.length > 250) {
             switchTool('discussion', 'Discussion libre 💬');
             
@@ -694,13 +634,13 @@ window.onload = function() {
             switchTool('script-tiktok', 'Scripts TikTok / Reels 🎬');
         }
 
-        // Met le texte préparé dans l'input et l'envoie AUTOMATIQUEMENT
         document.getElementById('chat-input').value = cleanedText;
         sendMessage();
     }
 }
 </script> 
-    <footer>
+
+<footer>
     <div class="footer-container">
         <div class="footer-links">
             <a href="/support/">Contact</a>
@@ -715,3 +655,5 @@ window.onload = function() {
 </footer>
 </body>
 </html>
+
+```
