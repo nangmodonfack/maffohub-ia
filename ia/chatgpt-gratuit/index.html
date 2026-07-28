@@ -7,15 +7,25 @@
     <style>
         :root { --bg-color: #061310; --card-bg: #0b1f1a; --accent-gold: #d4af37; --text-color: #ffffff; --text-muted: #94a9a4; --border-color: #163830; }
         body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        header { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; padding: 20px; border-bottom: 1px solid var(--border-color); }
+        header { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; padding: 20px; border-bottom: 1px solid var(--border-color); box-sizing: border-box; }
         .logo { font-size: 24px; font-weight: bold; color: #fff; }
-        .tool-container { width: 100%; max-width: 800px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; margin: 40px auto; }
-        textarea { width: 100%; height: 150px; background: #061310; border: 1px solid var(--border-color); border-radius: 8px; color: #fff; padding: 15px; margin-bottom: 20px; }
-        .btn-generate { background: var(--accent-gold); color: #061310; border: none; padding: 12px 24px; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; }
+        .tool-container { width: 100%; max-width: 800px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; margin: 40px auto; box-sizing: border-box; }
+        label { display: block; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; }
+        textarea { width: 100%; height: 150px; background: #061310; border: 1px solid var(--border-color); border-radius: 8px; color: #fff; padding: 15px; margin-bottom: 20px; box-sizing: border-box; font-size: 1rem; resize: vertical; }
+        .btn-generate { background: var(--accent-gold); color: #061310; border: none; padding: 12px 24px; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; transition: 0.2s; }
+        .btn-generate:hover { opacity: 0.9; }
+        .btn-generate:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Style pour la zone de réponse intégrée */
+        .response-container { margin-top: 25px; background: #040d0b; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; display: none; }
+        .response-container h3 { color: var(--accent-gold); margin-top: 0; font-size: 1.1rem; }
+        .response-content { color: #e2e8f0; line-height: 1.6; white-space: pre-wrap; font-size: 0.95rem; }
+
         .seo-section { max-width: 850px; margin: 20px auto; padding: 20px; line-height: 1.7; color: var(--text-muted); }
         h2 { color: #fff; } h3 { color: #d4af37; margin-top: 30px; }
         .faq-item { margin-top: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
-        footer { width: 100%; background-color: var(--card-bg); border-top: 1px solid var(--border-color); padding: 40px 20px; margin-top: 60px; text-align: center; color: var(--text-muted); }
+        .faq-item h4 { color: #fff; margin-bottom: 8px; font-size: 1.1rem; }
+        footer { width: 100%; background-color: var(--card-bg); border-top: 1px solid var(--border-color); padding: 40px 20px; margin-top: 60px; text-align: center; color: var(--text-muted); box-sizing: border-box; }
         .footer-links { margin-bottom: 10px; }
         .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; }
     </style>
@@ -25,13 +35,19 @@
     <a href="/" style="text-decoration: none;">
         <div class="logo" style="color: #d4af37; font-weight: bold;">Maffo Hub</div>
     </a>
-    <div style="font-size: 0.8rem; margin-bottom: 10px;"><a href="/">Accueil</a></div>
+    <div style="font-size: 0.8rem; margin-bottom: 10px;"><a href="/" style="color: var(--text-muted); text-decoration: none;">Accueil</a></div>
 </header>
 
     <div class="tool-container">
         <label>💬 Assistant ChatGPT Gratuit :</label>
         <textarea id="user-input" placeholder="Discutez avec l'assistant ChatGPT pour vos besoins quotidiens, rédaction ou brainstorming..."></textarea>
-        <button class="btn-generate" onclick="redirectToApp()">Démarrer la discussion 🚀</button>
+        <button id="generate-btn" class="btn-generate" onclick="askAI()">Démarrer la discussion 🚀</button>
+        
+        <!-- Zone d'affichage de la réponse de l'IA -->
+        <div id="response-box" class="response-container">
+            <h3>Réponse de l'Assistant :</h3>
+            <div id="response-text" class="response-content"></div>
+        </div>
     </div>
 
     <section class="seo-section">
@@ -83,10 +99,49 @@
     </footer>
 
     <script>
-        function redirectToApp() {
-            const val = document.getElementById('user-input').value;
-            if(!val) return alert("Veuillez saisir votre message.");
-            window.location.href = "https://app.maffohub.com/?prompt=" + encodeURIComponent(val) + "&model=chatgpt";
+        async function askAI() {
+            const userInput = document.getElementById('user-input').value.trim();
+            const btn = document.getElementById('generate-btn');
+            const responseBox = document.getElementById('response-box');
+            const responseText = document.getElementById('response-text');
+
+            if (userInput === "") { 
+                alert("Veuillez saisir votre message."); 
+                return; 
+            }
+
+            // Désactiver le bouton et afficher l'état de chargement
+            btn.disabled = true;
+            btn.innerText = "Génération en cours...";
+            responseBox.style.display = "block";
+            responseText.innerText = "L'assistant analyse votre requête...";
+
+            try {
+                // Point de terminaison backend pour l'API
+                const apiEndpoint = "https://api.maffohub.com/v1/chat";
+
+                /* 
+                // EXEMPLE DE CODE FETCH POUR TON BACKEND :
+                const response = await fetch(apiEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: userInput, model: 'chatgpt' })
+                });
+                const data = await response.json();
+                responseText.innerText = data.reply;
+                */
+
+                // Simulation temporaire en attendant le branchement complet de ton API backend :
+                setTimeout(() => {
+                    responseText.innerText = "Voici la réponse générée pour votre requête : \"" + userInput + "\"\n\n[Ici s'affichera la réponse en provenance directe de ton API connectée sur ia.maffohub.com].";
+                }, 1500);
+
+            } catch (error) {
+                responseText.innerText = "Une erreur est survenue lors de la communication avec l'API. Veuillez réessayer.";
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Démarrer la discussion 🚀";
+            }
         }
     </script>
 </body>
