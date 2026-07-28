@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Scripts TikTok & Reels | Maffo Hub</title>
+    <style>
+        :root { --bg-color: #061310; --card-bg: #0b1f1a; --accent-gold: #d4af37; --text-color: #ffffff; --text-muted: #94a9a4; --border-color: #163830; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        header { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; padding: 20px; box-sizing: border-box; border-bottom: 1px solid var(--border-color); }
+        .logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; color: #fff; }
+        
+        /* Carte de réassurance professionnelle */
+        .reassurance-card { width: 100%; max-width: 800px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(11, 31, 26, 0.9) 100%); border: 1px solid var(--accent-gold); border-radius: 12px; padding: 20px 25px; margin: 30px auto 10px auto; box-sizing: border-box; }
+        .reassurance-card h4 { color: var(--accent-gold); margin: 0 0 8px 0; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+        .reassurance-card p { color: var(--text-muted); margin: 0; font-size: 0.9rem; line-height: 1.5; }
+
+        .tool-container { width: 100%; max-width: 800px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; margin: 20px auto; box-sizing: border-box; }
+        label { display: block; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; }
+        textarea { width: 100%; height: 150px; background: #061310; border: 1px solid var(--border-color); border-radius: 8px; color: #fff; padding: 15px; box-sizing: border-box; font-size: 1rem; resize: vertical; margin-bottom: 20px; }
+        .btn-generate { background: var(--accent-gold); color: #061310; border: none; padding: 12px 24px; font-size: 1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; transition: 0.2s; }
+        .btn-generate:hover { opacity: 0.9; }
+        .btn-generate:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Zone de réponse intégrée */
+        .response-container { margin-top: 25px; background: #040d0b; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; display: none; }
+        .response-container h3 { color: var(--accent-gold); margin-top: 0; font-size: 1.1rem; }
+        .response-content { color: #e2e8f0; line-height: 1.6; white-space: pre-wrap; font-size: 0.95rem; }
+
+        .seo-section { max-width: 850px; margin: 40px auto; padding: 20px; line-height: 1.7; color: var(--text-muted); }
+        .seo-section h2 { color: #fff; font-size: 1.8rem; margin-bottom: 20px; }
+        .seo-section h3 { color: var(--accent-gold); margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" style="text-decoration: none;">
+            <div class="logo" style="color: #d4af37; font-weight: bold;">Maffo Hub</div>
+        </a>
+        <div style="font-size: 0.8rem;"><a href="/" style="color: var(--text-muted); text-decoration: none;">← Retour au Dashboard</a></div>
+    </header>
+
+    <!-- Carte de réassurance pro -->
+    <div class="reassurance-card">
+        <h4>🎯 Pourquoi cet outil a été conçu pour vous</h4>
+        <p>Captiver l'attention sur les réseaux sociaux en moins de 3 secondes relève du défi permanent. Ce module intègre un prompt expert calibré pour structurer vos vidéos courtes (Hook percutant, corps dynamique et Call-to-Action irrésistible), vous évitant le syndrome de la page blanche et maximisant l'engagement de votre audience.</p>
+    </div>
+
+    <div class="tool-container">
+        <label>🎬 Scripts TikTok / Reels :</label>
+        <textarea id="user-input" placeholder="Décrivez votre sujet, votre thématique ou collez votre idée de base..."></textarea>
+        <button id="generate-btn" class="btn-generate" onclick="askAI()">Générer mon script viral 🚀</button>
+        
+        <div id="response-box" class="response-container">
+            <h3>Script généré par l'IA :</h3>
+            <div id="response-text" class="response-content"></div>
+        </div>
+    </div>
+
+    <section class="seo-section">
+        <h2>Créez des Scripts TikTok & Reels à fort taux de conversion</h2>
+        <p>Le format court est devenu le canal d'acquisition organique le plus puissant pour les créateurs et les entrepreneurs du web. Grâce à notre générateur de scripts intelligent, structurez vos idées en vidéos dynamiques prêtes à être tournées, sans y passer des heures.</p>
+    </section>
+
+    <script>
+        async function askAI() {
+            const userInput = document.getElementById('user-input').value.trim();
+            const btn = document.getElementById('generate-btn');
+            const responseBox = document.getElementById('response-box');
+            const responseText = document.getElementById('response-text');
+
+            if (userInput === "") { 
+                alert("Veuillez saisir votre sujet ou idée de vidéo."); 
+                return; 
+            }
+
+            btn.disabled = true;
+            btn.innerText = "Rédaction du script en cours...";
+            responseBox.style.display = "block";
+            responseText.innerText = "L'IA analyse votre thématique et structure le script (Hook, corps, CTA)...";
+
+            try {
+                const apiEndpoint = "https://api.maffohub.com/v1/chat";
+
+                /* 
+                // Code Fetch pour ton backend :
+                const response = await fetch(apiEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: userInput, model: 'tiktok-scripts' })
+                });
+                const data = await response.json();
+                responseText.innerText = data.reply;
+                */
+
+                // Simulation temporaire en attendant le branchement de l'API backend :
+                setTimeout(() => {
+                    responseText.innerText = "🎯 **[HOOK - 0 à 3 secondes]** :\n\"Tu perds des clients parce que tu fais cette erreur fatale...\"\n\n📜 **[CORPS DU SCRIPT]** :\nDéveloppement de votre sujet : " + userInput + "\n\n🚀 **[APPEL À L'ACTION - CTA]** :\n\"Commente 'INFO' pour recevoir le guide complet en message privé !\"";
+                }, 1500);
+
+            } catch (error) {
+                responseText.innerText = "Une erreur est survenue lors de la communication avec l'API. Veuillez réessayer.";
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Générer mon script viral 🚀";
+            }
+        }
+    </script>
+</body>
+</html>
