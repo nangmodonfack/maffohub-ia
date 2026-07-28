@@ -14,25 +14,38 @@
     textarea { width: 100%; height: 150px; background: #061310; border: 1px solid var(--border-color); border-radius: 8px; color: #fff; padding: 15px; box-sizing: border-box; font-size: 1rem; resize: vertical; margin-bottom: 20px; }
     .btn-generate { background: var(--accent-gold); color: #061310; border: none; padding: 12px 24px; font-size: 1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; transition: 0.2s; }
     .btn-generate:hover { opacity: 0.9; }
+    .btn-generate:disabled { opacity: 0.5; cursor: not-allowed; }
+    
+    /* Style pour la zone de réponse de l'IA */
+    .response-container { margin-top: 25px; background: #040d0b; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; display: none; }
+    .response-container h3 { color: var(--accent-gold); margin-top: 0; font-size: 1.1rem; }
+    .response-content { color: #e2e8f0; line-height: 1.6; white-space: pre-wrap; font-size: 0.95rem; }
+
     .seo-section { max-width: 850px; margin: 40px auto; padding: 20px; line-height: 1.7; color: var(--text-muted); }
     .seo-section h2 { color: #fff; font-size: 1.8rem; margin-bottom: 20px; }
     .seo-section h3 { color: var(--accent-gold); margin-top: 30px; }
     .faq-item { margin-top: 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(22, 56, 48, 0.4); }
     .faq-item h4 { color: #fff; margin-bottom: 8px; font-size: 1.1rem; }
-</style>
+  </style>
 </head>
 <body>
  <header>
     <a href="/" style="text-decoration: none;">
         <div class="logo" style="color: #d4af37; font-weight: bold;">Maffo Hub</div>
     </a>
-    <div style="font-size: 0.8rem; margin-bottom: 10px;"><a href="/">Accueil</a></div>
+    <div style="font-size: 0.8rem; margin-bottom: 10px;"><a href="/" style="color: var(--text-muted); text-decoration: none;">Accueil</a></div>
 </header>
 
     <div class="tool-container">
         <label>🧠 ChatGPT o1 Gratuit (Modèle de Raisonnement Complexe) :</label>
         <textarea id="user-input" placeholder="Soumettez un problème de logique complexe, un bug de code introuvable ou une analyse mathématique approfondie..."></textarea>
-        <button class="btn-generate" onclick="redirectToApp()">Lancer le raisonnement IA o1 🚀</button>
+        <button id="generate-btn" class="btn-generate" onclick="askAI()">Lancer le raisonnement IA o1 🚀</button>
+        
+        <!-- Zone d'affichage de la réponse de l'IA -->
+        <div id="response-box" class="response-container">
+            <h3>Réponse de l'IA :</h3>
+            <div id="response-text" class="response-content"></div>
+        </div>
     </div>
 
     <section class="seo-section">
@@ -41,32 +54,17 @@
         
         <h3>Un outil indispensable pour les développeurs, ingénieurs et scientifiques</h3>
         <p>Ce modèle de traitement avancé excelle dans la création de code informatique de haut niveau, le débogage de scripts complexes, la résolution de problèmes mathématiques ardus et l'analyse stratégique de business. Si vous butez sur un problème conceptuel, l'algorithme o1 décortiquera la logique pour vous fournir un plan d'action infaillible et sans failles.</p>
-<h3 style="color: var(--accent-gold); margin-top: 30px;">Optimisation des flux de travail : L'IA au cœur de votre business</h3>
-<p style="color: var(--text-muted); line-height: 1.7;">
-    Au-delà de la simple génération de texte, la véritable puissance des modèles avancés réside dans leur capacité à transformer vos processus métier. Pour un créateur digital ou un gestionnaire de communauté, l'IA ne doit pas être vue comme un outil isolé, mais comme le moteur central d'un écosystème automatisé. 
-    <br><br>
-    <strong>La chaîne de valeur numérique :</strong>
-    Le secret des créateurs les plus performants est la création de "workflows" enchaînés. Par exemple, commencez par soumettre vos idées brutes à l'IA pour obtenir une structure de plan éditorial. Utilisez ensuite cette même structure pour générer des scripts vidéo, des articles de blog, et des séquences d'emails marketing. En conservant le même contexte dans une session de travail, vous assurez une cohérence de ton et de style sur toutes vos plateformes de distribution.
-    <br><br>
-    <strong>La gestion intelligente des données :</strong>
-    L'un des plus grands défis du monde actuel est la surcharge informationnelle. Nos outils vous permettent de filtrer cette complexité. Que ce soit pour synthétiser des rapports de performance, analyser des feedbacks d'audience ou traduire des documents techniques pour vos projets internationaux, l'IA agit comme un filtre qui ne garde que l'essentiel. En délégant ces tâches cognitives répétitives, vous libérez un temps précieux que vous pouvez réinvestir dans la stratégie, la créativité pure et le développement de nouvelles opportunités de croissance pour Maffo Hub.
-    <br><br>
-    <strong>Vers une autonomie technologique :</strong>
-    Nous avons conçu cette interface pour qu'elle soit le point d'entrée vers une autonomie totale. En utilisant régulièrement ces modèles, vous développez ce que l'on appelle "l'IA Literacy" ou littératie numérique. Vous apprenez à formuler des problèmes complexes, à anticiper les capacités des machines et à devenir un véritable chef d'orchestre numérique. Chaque prompt que vous rédigez est une brique supplémentaire dans la construction de votre autorité en ligne. 
-    <br><br>
-    Ne considérez pas ces outils comme une simple aide ponctuelle, mais comme un investissement sur vos compétences de demain. Plus vous intégrerez ces modèles dans vos routines quotidiennes — de la rédaction de vos notes de service à la planification de vos campagnes publicitaires — plus votre efficacité décuplera. C'est cette synergie entre l'intuition humaine et la puissance de calcul de l'intelligence artificielle qui définit les leaders digitaux de cette nouvelle décennie. Avec Maffo Hub, vous avez désormais toutes les clés en main pour dominer votre niche et propulser vos projets vers de nouveaux sommets de performance et de rentabilité.
-</p>
-        <h3 style="color: var(--accent-gold); margin-top: 30px;">5 Habitudes pour devenir un expert de l'IA avec Maffo Hub</h3>
-<p style="color: var(--text-muted); line-height: 1.7;">
-    Pour transformer votre usage occasionnel en une véritable compétence professionnelle, adoptez ces cinq habitudes de travail avec nos outils :
-</p>
-<ul style="color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
-    <li><strong>La méthode itérative :</strong> Ne vous arrêtez jamais à la première réponse. Si le résultat n'est pas parfait, demandez à l'IA d'ajuster son ton, de simplifier le langage ou d'ajouter des détails précis. Le dialogue est la clé de la qualité.</li>
-    <li><strong>Le "Contextual Prompting" :</strong> Plus vous donnez de détails sur votre situation (qui vous êtes, à qui vous vous adressez, quel est l'objectif final), plus la réponse de l'IA sera pertinente et adaptée à vos besoins réels.</li>
-    <li><strong>L'archivage stratégique :</strong> Créez une bibliothèque de vos "meilleurs prompts". Si un résultat vous a particulièrement satisfait, copiez la structure de votre commande pour la réutiliser sur d'autres projets similaires.</li>
-    <li><strong>Le contrôle de cohérence :</strong> Même si l'IA est puissante, gardez toujours une lecture critique. Utilisez les outils Maffo Hub comme des assistants de rédaction ou d'analyse, et ajoutez toujours votre touche personnelle pour garantir l'authenticité de votre contenu.</li>
-    <li><strong>La veille technologique active :</strong> Le domaine de l'IA évolue chaque semaine. Testez régulièrement les différents modèles (4o, o1, 5) pour comprendre lequel répond le mieux à vos besoins spécifiques : la rapidité pour l'un, la logique profonde pour l'autre.</li>
-</ul>
+        <h3 style="color: var(--accent-gold); margin-top: 30px;">Optimisation des flux de travail : L'IA au cœur de votre business</h3>
+        <p style="color: var(--text-muted); line-height: 1.7;">
+            Au-delà de la simple génération de texte, la véritable puissance des modèles avancés réside dans leur capacité à transformer vos processus métier. Pour un créateur digital ou un gestionnaire de communauté, l'IA ne doit pas être vue comme un outil isolé, mais comme le moteur central d'un écosystème automatisé. 
+            <br><br>
+            <strong>La chaîne de valeur numérique :</strong>
+            Le secret des créateurs les plus performants est la création de "workflows" enchaînés. Par exemple, commencez par soumettre vos idées brutes à l'IA pour obtenir une structure de plan éditorial. Utilisez ensuite cette même structure pour générer des scripts vidéo, des articles de blog, et des séquences d'emails marketing. En conservant le même contexte dans une session de travail, vous assurez une cohérence de ton et de style sur toutes vos plateformes de distribution.
+            <br><br>
+            <strong>La gestion intelligente des données :</strong>
+            L'un des plus grands défis du monde actuel est la surcharge informationnelle. Nos outils vous permettent de filtrer cette complexité. Que ce soit pour synthétiser des rapports de performance, analyser des feedbacks d'audience ou traduire des documents techniques pour vos projets internationaux, l'IA agit comme un filtre qui ne garde que l'essentiel. En délégant ces tâches cognitives répétitives, vous libérez un temps précieux que vous pouvez réinvestir dans la stratégie, la créativité pure et le développement de nouvelles opportunités de croissance pour Maffo Hub.
+        </p>
+        
         <h3>Foire Aux Questions (FAQ) - ChatGPT o1</h3>
         <div class="faq-item">
             <h4>Pourquoi l'IA o1 met-elle plus de temps à répondre ?</h4>
@@ -76,31 +74,52 @@
             <h4>Quand faut-il préférer le modèle o1 à GPT-4o ?</h4>
             <p>Utilisez o1 pour des tâches de pure logique, de la programmation avancée ou des analyses financières pointues. Pour la rédaction de textes simples ou de scripts marketing, préférez GPT-4o qui est plus instantané.</p>
         </div>
-        <div class="faq-item">
-    <h4>Comment le processus de réflexion (Chain of Thought) améliore-t-il la précision de mes réponses ?</h4>
-    <p style="color: var(--text-muted); line-height: 1.7;">
-        Le modèle o1 ne se contente pas de prédire le mot suivant. Avant de vous répondre, il décompose votre requête en sous-étapes logiques, simule différents chemins de résolution et vérifie la cohérence de sa propre argumentation. C’est ce processus de "réflexion" qui réduit drastiquement les erreurs logiques et les hallucinations, garantissant des résultats plus fiables pour les tâches complexes comme le code ou l'analyse stratégique.
-    </p>
-</div>
-<div class="faq-item">
-    <h4>Pourquoi devrais-je utiliser o1 pour mes projets de programmation ?</h4>
-    <p style="color: var(--text-muted); line-height: 1.7;">
-        La programmation exige une rigueur mathématique et structurelle. Là où les modèles standards peuvent proposer une solution syntaxiquement correcte mais logiquement erronée, o1 teste mentalement l'exécution de votre code. Il est particulièrement efficace pour détecter des failles de sécurité, optimiser des algorithmes complexes ou corriger des bugs récurrents qui semblent invisibles à première vue.
-    </p>
-</div>
-<div class="faq-item">
-    <h4>o1 est-il adapté à l'analyse de données non structurées ?</h4>
-    <p style="color: var(--text-muted); line-height: 1.7;">
-        Absolument. Si vous avez des feedbacks clients, des rapports de réunion ou des notes éparses, o1 est capable de synthétiser ces informations en extrayant des patterns logiques. Il ne fait pas qu'une simple synthèse, il "comprend" les dépendances entre les différents points évoqués, ce qui vous permet d'obtenir une vision panoramique et structurée de vos données brutes pour mieux orienter vos décisions.
-    </p>
-</div>
     </section>
 
     <script>
-        function redirectToApp() {
-            const clientText = encodeURIComponent(document.getElementById('user-input').value);
-            if(clientText.trim() === "") { alert("Veuillez saisir votre problème pour le modèle o1."); return; }
-            window.location.href = "https://app.maffohub.com/?prompt=" + clientText + "&model=o1";
+        async function askAI() {
+            const userInput = document.getElementById('user-input').value.trim();
+            const btn = document.getElementById('generate-btn');
+            const responseBox = document.getElementById('response-box');
+            const responseText = document.getElementById('response-text');
+
+            if (userInput === "") { 
+                alert("Veuillez saisir votre problème pour le modèle o1."); 
+                return; 
+            }
+
+            // Désactiver le bouton et afficher un état de chargement
+            btn.disabled = true;
+            btn.innerText = "Réflexion en cours...";
+            responseBox.style.display = "block";
+            responseText.innerText = "L'IA analyse votre requête et structure sa logique...";
+
+            try {
+                // Remplace cette URL par ton point de terminaison backend (ex: ton API Node.js / Vercel Serverless Function connectée à Groq)
+                const apiEndpoint = "https://api.maffohub.com/v1/chat"; // Ou ton URL de backend
+
+                /* 
+                // EXEMPLE DE CODE FETCH POUR TON BACKEND :
+                const response = await fetch(apiEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: userInput, model: 'o1' })
+                });
+                const data = await response.json();
+                responseText.innerText = data.reply;
+                */
+
+                // Simulation temporaire en attendant la connexion complète de ton API backend :
+                setTimeout(() => {
+                    responseText.innerText = "Voici l'analyse détaillée générée par l'IA pour votre requête : \"" + userInput + "\"\n\n[Ici s'affichera la réponse en provenance directe de ton API Groq/Llama connectée sur ia.maffohub.com].";
+                }, 1500);
+
+            } catch (error) {
+                responseText.innerText = "Une erreur est survenue lors de la communication avec l'API. Veuillez réessayer.";
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Lancer le raisonnement IA o1 🚀";
+            }
         }
     </script>
 </body>
