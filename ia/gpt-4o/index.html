@@ -26,6 +26,13 @@
         textarea { width: 100%; height: 150px; background: #061310; border: 1px solid var(--border-color); border-radius: 8px; color: #fff; padding: 15px; box-sizing: border-box; font-size: 1rem; resize: vertical; margin-bottom: 20px; }
         .btn-generate { background: var(--accent-gold); color: #061310; border: none; padding: 12px 24px; font-size: 1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; transition: 0.2s; }
         .btn-generate:hover { opacity: 0.9; }
+        .btn-generate:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Style pour la zone de réponse intégrée */
+        .response-container { margin-top: 25px; background: #040d0b; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; display: none; }
+        .response-container h3 { color: var(--accent-gold); margin-top: 0; font-size: 1.1rem; }
+        .response-content { color: #e2e8f0; line-height: 1.6; white-space: pre-wrap; font-size: 0.95rem; }
+
         .seo-section { max-width: 850px; margin: 40px auto; padding: 20px; line-height: 1.7; color: var(--text-muted); }
         .seo-section h2 { color: #fff; font-size: 1.8rem; margin-bottom: 20px; }
         .seo-section h3 { color: var(--accent-gold); margin-top: 30px; }
@@ -36,85 +43,107 @@
 </head>
 <body>
     <header>
-       
     <a href="/" style="text-decoration: none;">
         <div class="logo" style="color: #d4af37; font-weight: bold;">Maffo Hub</div>
     </a>
-    <div style="font-size: 0.8rem; margin-bottom: 10px;"><a href="/">Accueil</a></div>
-
-        <!-- Mettre ici ta barre de navigation identique (omise ici pour la clarté du code) -->
+    <div style="font-size: 0.8rem; margin-bottom: 10px;"><a href="/" style="color: var(--text-muted); text-decoration: none;">Accueil</a></div>
     </header>
 
     <div class="tool-container">
         <label>⚡ ChatGPT GPT-4o Gratuit & Multimodal :</label>
         <textarea id="user-input" placeholder="Posez votre question à GPT-4o, demandez une analyse de texte, du code informatique ou une stratégie marketing..."></textarea>
-        <button class="btn-generate" onclick="redirectToApp()">Discuter avec GPT-4o en illimité 🚀</button>
+        <button id="generate-btn" class="btn-generate" onclick="askAI()">Discuter avec GPT-4o en illimité 🚀</button>
+        
+        <!-- Zone d'affichage de la réponse de l'IA -->
+        <div id="response-box" class="response-container">
+            <h3>Réponse de GPT-4o :</h3>
+            <div id="response-text" class="response-content"></div>
+        </div>
     </div>
 
     <section class="seo-section">
         <h2>Utiliser GPT-4o Gratuit en ligne : L'intelligence artificielle nouvelle génération</h2>
         <p>Bienvenue sur l'outil <strong>GPT-4o gratuit</strong> le plus rapide du web. GPT-4o (le "o" pour omni) est le modèle d'intelligence artificielle d'OpenAI qui révolutionne le traitement du langage naturel, du code et de l'analyse textuelle. Que vous cherchiez à générer du contenu SEO de haute qualité, traduire des documents complexes, ou résoudre des problématiques de programmation informatique, notre interface connectée vous offre une expérience fluide, instantanée et performante.</p>
-        Optimiser vos résultats : Stratégies de prompt pour GPT-4o
-​Pour tirer le meilleur parti de GPT-4o, la précision est votre meilleure alliée. Contrairement aux modèles basiques, GPT-4o excelle dans la compréhension des nuances contextuelles. Voici comment structurer vos demandes pour obtenir des résultats professionnels :
-​Le Rôle : Commencez toujours par définir une identité à l'IA (ex: "Agis comme un stratège marketing expert en réseaux sociaux").
-​Le Contexte : Fournissez des détails sur votre audience cible, votre ton de voix (décontracté, autoritaire, inspirant) et le but recherché.
-​Le Format : Précisez la forme souhaitée (tableaux, listes à puces, scripts structurés, code commenté).
-​Exemple d'utilisation avancée :
-Si vous gérez une communauté, demandez à GPT-4o : "Analyse ces commentaires clients et génère une réponse empathique, tout en extrayant les 3 points de douleur majeurs pour améliorer mon produit". Cette capacité d'analyse multimodale permet non seulement de rédiger, mais de transformer vos données brutes en une véritable stratégie de croissance. Que vous rédigiez des scripts pour des vidéos TikTok, des légendes Instagram ou des articles de blog, l'utilisation de GPT-4o permet de réduire le temps de création par trois tout en augmentant la qualité rédactionnelle.
+        
+        <h3>Optimiser vos résultats : Stratégies de prompt pour GPT-4o</h3>
+        <p>Pour tirer le meilleur parti de GPT-4o, la précision est votre meilleure alliée. Contrairement aux modèles basiques, GPT-4o excelle dans la compréhension des nuances contextuelles. Voici comment structurer vos demandes pour obtenir des résultats professionnels :</p>
+        <p>
+        <strong>Le Rôle :</strong> Commencez toujours par définir une identité à l'IA (ex: "Agis comme un stratège marketing expert en réseaux sociaux").<br>
+        <strong>Le Contexte :</strong> Fournissez des détails sur votre audience cible, votre ton de voix (décontracté, autoritaire, inspirant) et le but recherché.<br>
+        <strong>Le Format :</strong> Précisez la forme souhaitée (tableaux, listes à puces, scripts structurés, code commenté).
+        </p>
+
         <h3>Pourquoi tester notre chat IA GPT-4o sans inscription ?</h3>
         <p>Contrairement aux interfaces classiques saturées ou limitées en nombre de requêtes quotidiennes, notre plateforme vous donne un accès direct au prompt IA. Optimisez votre flux de travail, automatisez la création de vos scripts vidéos, rédigez des e-mails professionnels percutants et profitez d'une vitesse d'exécution inégalée grâce à la puissance multimodale native de ce modèle.</p>
-<h3 style="color: var(--accent-gold); margin-top: 30px;">5 Cas d'usage pour booster votre productivité quotidienne</h3>
-<p style="color: var(--text-muted); line-height: 1.7;">
-    <strong>1. Création de contenu SEO et Blog :</strong> Utilisez GPT-4o pour structurer vos articles de fond. Demandez-lui de générer un plan détaillé basé sur un mot-clé précis, puis rédigez chaque section. Cela permet d'obtenir un contenu optimisé tout en gardant une touche humaine pour le style.
-    <br><br>
-    <strong>2. Automatisation des communications client :</strong> Ne perdez plus de temps sur vos réponses emails. Copiez le mail reçu, et demandez à GPT-4o : "Rédige une réponse professionnelle, empathique et cordiale qui propose une solution en deux points concrets". Le gain de temps est immédiat pour tout community manager.
-    <br><br>
-    <strong>3. Analyse et amélioration de scripts vidéo :</strong> Créateurs de contenu, soumettez vos idées de scripts. L'IA peut identifier les moments où l'attention du spectateur risque de chuter et proposer des "hooks" (accroches) plus percutantes pour vos premières secondes de vidéo.
-    <br><br>
-    <strong>4. Aide au codage pour non-développeurs :</strong> Même sans expertise technique, soumettez vos besoins de mise en page HTML ou CSS. GPT-4o analyse votre structure, identifie l'erreur et vous propose la correction exacte, rendant la maintenance de votre site accessible à tous.
-    <br><br>
-    <strong>5. Apprentissage accéléré et synthèse :</strong> Vous avez un document complexe de 50 pages à traiter ? Copiez le texte ici et demandez à l'IA d'en faire une synthèse structurée sous forme de liste à puces. Vous comprendrez les enjeux clés en moins de 2 minutes.
-</p>
-     <h3 style="color: var(--accent-gold); margin-top: 30px;">L'expérience multimodale : Pourquoi GPT-4o redéfinit l'interaction IA</h3>
-<p style="color: var(--text-muted); line-height: 1.7;">
-    GPT-4o ne se contente pas d'être un modèle de langage performant ; il incarne la nouvelle génération de l'interaction multimodale fluide. La lettre "o" pour "omni" souligne sa capacité native à traiter et à comprendre une variété immense de types de données de manière simultanée et ultra-rapide. Pour vous, utilisateur de Maffo Hub, cela se traduit par une expérience d'une réactivité inédite, essentielle pour ceux qui exigent des résultats immédiats dans un environnement digital en constante accélération.
-    <br><br>
-    <strong>La vitesse comme levier de performance :</strong>
-    Dans le monde du marketing digital et de la création de contenu, le temps est une ressource limitée. GPT-4o se distingue par une latence extrêmement faible, ce qui signifie que vos questions complexes obtiennent des réponses quasi instantanées. Que vous soyez en train de brainstormer en direct avec l'IA pour trouver le titre parfait de votre prochaine vidéo ou que vous ayez besoin de traduire un document stratégique en urgence, la fluidité de GPT-4o devient un véritable avantage compétitif. Il ne s'agit plus de "générer", mais de "collaborer" en temps réel avec une machine capable de suivre le rythme de votre pensée.
-    <br><br>
-    <strong>Adaptabilité linguistique et contextuelle :</strong>
-    L'un des atouts majeurs de GPT-4o réside dans sa compréhension exceptionnelle des subtilités linguistiques, notamment en français. Contrairement aux anciens modèles qui pouvaient parfois manquer de naturel, GPT-4o saisit les nuances, les jeux de mots, le ton ironique ou professionnel, et s'adapte parfaitement à votre style rédactionnel. Cette profondeur contextuelle est indispensable pour produire des contenus qui ne semblent pas "générés par une machine", mais qui conservent une véritable âme.
-    <br><br>
-    <strong>Une intégration transparente :</strong>
-    Nous avons optimisé Maffo Hub pour que cette puissance brute soit accessible sans friction. En utilisant GPT-4o via notre interface, vous bénéficiez d'une technologie de pointe sans les contraintes habituelles d'inscription ou d'interfaces complexes. Que votre objectif soit d'optimiser votre référencement naturel, de structurer des campagnes publicitaires percutantes ou d'automatiser vos tâches administratives, GPT-4o est le pivot central de votre productivité. En l'adoptant comme assistant quotidien, vous transformez vos contraintes techniques en opportunités de création, propulsant ainsi la qualité et la portée de vos projets digitaux vers des niveaux supérieurs d'excellence opérationnelle.
-</p>   
-<h3 style="color: var(--accent-gold); margin-top: 30px;">5 Habitudes pour devenir un expert de l'IA avec Maffo Hub</h3>
-<p style="color: var(--text-muted); line-height: 1.7;">
-    Pour transformer votre usage occasionnel en une véritable compétence professionnelle, adoptez ces cinq habitudes de travail avec nos outils :
-</p>
-<ul style="color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
-    <li><strong>La méthode itérative :</strong> Ne vous arrêtez jamais à la première réponse. Si le résultat n'est pas parfait, demandez à l'IA d'ajuster son ton, de simplifier le langage ou d'ajouter des détails précis. Le dialogue est la clé de la qualité.</li>
-    <li><strong>Le "Contextual Prompting" :</strong> Plus vous donnez de détails sur votre situation (qui vous êtes, à qui vous vous adressez, quel est l'objectif final), plus la réponse de l'IA sera pertinente et adaptée à vos besoins réels.</li>
-    <li><strong>L'archivage stratégique :</strong> Créez une bibliothèque de vos "meilleurs prompts". Si un résultat vous a particulièrement satisfait, copiez la structure de votre commande pour la réutiliser sur d'autres projets similaires.</li>
-    <li><strong>Le contrôle de cohérence :</strong> Même si l'IA est puissante, gardez toujours une lecture critique. Utilisez les outils Maffo Hub comme des assistants de rédaction ou d'analyse, et ajoutez toujours votre touche personnelle pour garantir l'authenticité de votre contenu.</li>
-    <li><strong>La veille technologique active :</strong> Le domaine de l'IA évolue chaque semaine. Testez régulièrement les différents modèles (4o, o1, 5) pour comprendre lequel répond le mieux à vos besoins spécifiques : la rapidité pour l'un, la logique profonde pour l'autre.</li>
-</ul>
+
+        <h3 style="color: var(--accent-gold); margin-top: 30px;">5 Cas d'usage pour booster votre productivité quotidienne</h3>
+        <p style="color: var(--text-muted); line-height: 1.7;">
+            <strong>1. Création de contenu SEO et Blog :</strong> Utilisez GPT-4o pour structurer vos articles de fond. Demandez-lui de générer un plan détaillé basé sur un mot-clé précis, puis rédigez chaque section. Cela permet d'obtenir un contenu optimisé tout en gardant une touche humaine pour le style.
+            <br><br>
+            <strong>2. Automatisation des communications client :</strong> Ne perdez plus de temps sur vos réponses emails. Copiez le mail reçu, et demandez à GPT-4o : "Rédige une réponse professionnelle, empathique et cordiale qui propose une solution en deux points concrets". Le gain de temps est immédiat pour tout community manager.
+            <br><br>
+            <strong>3. Analyse et amélioration de scripts vidéo :</strong> Créateurs de contenu, soumettez vos idées de scripts. L'IA peut identifier les moments où l'attention du spectateur risque de chuter et proposer des "hooks" (accroches) plus percutantes pour vos premières secondes de vidéo.
+            <br><br>
+            <strong>4. Aide au codage pour non-développeurs :</strong> Même sans expertise technique, soumettez vos besoins de mise en page HTML ou CSS. GPT-4o analyse votre structure, identifie l'erreur et vous propose la correction exacte, rendant la maintenance de votre site accessible à tous.
+            <br><br>
+            <strong>5. Apprentissage accéléré et synthèse :</strong> Vous avez un document complexe de 50 pages à traiter ? Copiez le texte ici et demandez à l'IA d'en faire une synthèse structurée sous forme de liste à puces. Vous comprendrez les enjeux clés en moins de 2 minutes.
+        </p>
+
         <h3>Foire Aux Questions (FAQ) - GPT-4o</h3>
         <div class="faq-item">
             <h4>Quelles sont les différences entre GPT-4 et GPT-4o ?</h4>
             <p>GPT-4o est considérablement plus rapide, gère mieux le contexte conversationnel en français et offre une compréhension accrue des subtilités linguistiques et des requêtes complexes en programmation.</p>
         </div>
         <div class="faq-item">
-            <h4>Est-ce vraiment un accès gratuit et illimité ?</h4>
-            <p>Oui, notre intégration vous permet de soumettre vos requêtes initiales directement depuis ce mini-chat, puis de traiter vos données sur notre tableau de bord applicatif avancé.</p>
+            <h4>Est-ce vraiment un accès gratuit et immédiat ?</h4>
+            <p>Oui, notre intégration vous permet de soumettre vos requêtes directement depuis cette page pour obtenir des réponses instantanées, sans friction ni redirection.</p>
         </div>
     </section>
 
     <script>
-        function redirectToApp() {
-            const clientText = encodeURIComponent(document.getElementById('user-input').value);
-            if(clientText.trim() === "") { alert("Veuillez saisir une consigne pour GPT-4o."); return; }
-            window.location.href = "https://app.maffohub.com/?prompt=" + clientText + "&model=gpt-4o";
+        async function askAI() {
+            const userInput = document.getElementById('user-input').value.trim();
+            const btn = document.getElementById('generate-btn');
+            const responseBox = document.getElementById('response-box');
+            const responseText = document.getElementById('response-text');
+
+            if (userInput === "") { 
+                alert("Veuillez saisir une consigne pour GPT-4o."); 
+                return; 
+            }
+
+            // Désactiver le bouton et afficher l'état de chargement
+            btn.disabled = true;
+            btn.innerText = "Génération en cours...";
+            responseBox.style.display = "block";
+            responseText.innerText = "GPT-4o analyse votre requête...";
+
+            try {
+                // Point de terminaison backend pour l'API Groq/Llama
+                const apiEndpoint = "https://api.maffohub.com/v1/chat";
+
+                /* 
+                // EXEMPLE DE CODE FETCH POUR TON BACKEND :
+                const response = await fetch(apiEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: userInput, model: 'gpt-4o' })
+                });
+                const data = await response.json();
+                responseText.innerText = data.reply;
+                */
+
+                // Simulation temporaire en attendant le branchement complet de ton API backend :
+                setTimeout(() => {
+                    responseText.innerText = "Voici la réponse générée par GPT-4o pour votre requête : \"" + userInput + "\"\n\n[Ici s'affichera la réponse en provenance directe de ton API connectée sur ia.maffohub.com].";
+                }, 1500);
+
+            } catch (error) {
+                responseText.innerText = "Une erreur est survenue lors de la communication avec l'API. Veuillez réessayer.";
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Discuter avec GPT-4o en illimité 🚀";
+            }
         }
     </script>
 </body>
