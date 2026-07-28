@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur d'Idées & Accroches Virales | Maffo Hub</title>
+    <style>
+        :root { --bg-color: #061310; --card-bg: #0b1f1a; --accent-gold: #d4af37; --text-color: #ffffff; --text-muted: #94a9a4; --border-color: #163830; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        header { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; padding: 20px; box-sizing: border-box; border-bottom: 1px solid var(--border-color); }
+        .logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; color: #fff; }
+        
+        /* Carte de réassurance professionnelle */
+        .reassurance-card { width: 100%; max-width: 800px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(11, 31, 26, 0.9) 100%); border: 1px solid var(--accent-gold); border-radius: 12px; padding: 20px 25px; margin: 30px auto 10px auto; box-sizing: border-box; }
+        .reassurance-card h4 { color: var(--accent-gold); margin: 0 0 8px 0; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+        .reassurance-card p { color: var(--text-muted); margin: 0; font-size: 0.9rem; line-height: 1.5; }
+
+        .tool-container { width: 100%; max-width: 800px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; margin: 20px auto; box-sizing: border-box; }
+        label { display: block; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; }
+        textarea { width: 100%; height: 150px; background: #061310; border: 1px solid var(--border-color); border-radius: 8px; color: #fff; padding: 15px; box-sizing: border-box; font-size: 1rem; resize: vertical; margin-bottom: 20px; }
+        .btn-generate { background: var(--accent-gold); color: #061310; border: none; padding: 12px 24px; font-size: 1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; transition: 0.2s; }
+        .btn-generate:hover { opacity: 0.9; }
+        .btn-generate:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Zone de réponse intégrée */
+        .response-container { margin-top: 25px; background: #040d0b; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; display: none; }
+        .response-container h3 { color: var(--accent-gold); margin-top: 0; font-size: 1.1rem; }
+        .response-content { color: #e2e8f0; line-height: 1.6; white-space: pre-wrap; font-size: 0.95rem; }
+
+        .seo-section { max-width: 850px; margin: 40px auto; padding: 20px; line-height: 1.7; color: var(--text-muted); }
+        .seo-section h2 { color: #fff; font-size: 1.8rem; margin-bottom: 20px; }
+        .seo-section h3 { color: var(--accent-gold); margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" style="text-decoration: none;">
+            <div class="logo" style="color: #d4af37; font-weight: bold;">Maffo Hub</div>
+        </a>
+        <div style="font-size: 0.8rem;"><a href="/" style="color: var(--text-muted); text-decoration: none;">← Retour au Dashboard</a></div>
+    </header>
+
+    <!-- Carte de réassurance pro -->
+    <div class="reassurance-card">
+        <h4>🎯 Pourquoi cet outil a été conçu pour vous</h4>
+        <p>Le syndrome de la page blanche et le manque d'accroches percutantes limitent la portée de vos publications. Ce module intègre un prompt expert conçu pour générer instantanément des angles psychologiques forts, des titres irrésistibles et des amorces capables d'arrêter le scroll de votre audience cible.</p>
+    </div>
+
+    <div class="tool-container">
+        <label>💡 Idées & Accroches Virales :</label>
+        <textarea id="user-input" placeholder="Entrez votre thématique, votre secteur ou le sujet de votre prochain contenu..."></textarea>
+        <button id="generate-btn" class="btn-generate" onclick="askAI()">Générer des accroches virales 🚀</button>
+        
+        <div id="response-box" class="response-container">
+            <h3>Idées & Accroches générées :</h3>
+            <div id="response-text" class="response-content"></div>
+        </div>
+    </div>
+
+    <section class="seo-section">
+        <h2>Boostez votre visibilité avec des Accroches Virales testées</h2>
+        <p>Captiver l'attention dès les premiers mots est le facteur clé de succès sur les plateformes digitales. Notre générateur analyse votre thématique pour vous fournir des concepts originaux et des amorces psychologiques à fort impact.</p>
+    </section>
+
+    <script>
+        async function askAI() {
+            const userInput = document.getElementById('user-input').value.trim();
+            const btn = document.getElementById('generate-btn');
+            const responseBox = document.getElementById('response-box');
+            const responseText = document.getElementById('response-text');
+
+            if (userInput === "") { 
+                alert("Veuillez saisir votre thématique ou sujet."); 
+                return; 
+            }
+
+            btn.disabled = true;
+            btn.innerText = "Recherche d'angles viraux...";
+            responseBox.style.display = "block";
+            responseText.innerText = "L'IA analyse votre sujet pour concevoir des accroches à fort taux de clic...";
+
+            try {
+                const apiEndpoint = "https://api.maffohub.com/v1/chat";
+
+                /* 
+                // Code Fetch pour ton backend :
+                const response = await fetch(apiEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: userInput, model: 'viral-hooks' })
+                });
+                const data = await response.json();
+                responseText.innerText = data.reply;
+                */
+
+                // Simulation temporaire en attendant le branchement de l'API backend :
+                setTimeout(() => {
+                    responseText.innerText = "🔥 **Idées d'angles et Accroches pour :** \"" + userInput + "\"\n\n1. **L'angle contre-intuitif** : \"Pourquoi tout ce qu'on t'a appris sur " + userInput + " est totalement faux.\"\n2. **L'angle urgence/peur de rater** : \"La pire erreur à ne surtout pas faire en 2026 concernant " + userInput + ".\"\n3. **L'angle chiffré/résultat** : \"Comment j'ai transformé mon approche sur " + userInput + " en moins de 7 jours.\"";
+                }, 1500);
+
+            } catch (error) {
+                responseText.innerText = "Une erreur est survenue lors de la communication avec l'API. Veuillez réessayer.";
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Générer des accroches virales 🚀";
+            }
+        }
+    </script>
+</body>
+</html>
