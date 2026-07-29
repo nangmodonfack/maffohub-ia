@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convertisseur Salaire Brut en Net Interactif | Maffo Hub</title>
-    <meta name="description" content="Estimez rapidement votre salaire net mensuel et annuel à partir de votre salaire brut en France grâce à notre simulateur interactif gratuit.">
+    <title>Convertisseur Salaire Brut en Net International | Maffo Hub</title>
+    <meta name="description" content="Estimez rapidement votre salaire net en France, au Canada et aux États-Unis grâce à notre simulateur interactif gratuit.">
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -280,10 +280,10 @@
 
 <main>
         <div class="hero">
-            <h1>Convertisseur Brut en Net <span>Interactif</span></h1>
-            <p>Passez instantanément du salaire brut au salaire net (estimations basées sur les charges standards en France).</p>
+            <h1>Convertisseur Brut en Net <span>International</span></h1>
+            <p>Estimez rapidement votre salaire net en France, au Canada et aux États-Unis selon les charges et prélèvements locaux.</p>
             <div class="badge-container">
-                <span class="badge">💼 Emploi & Salaires</span>
+                <span class="badge">🌍 France, Canada, USA</span>
                 <span class="badge">⚡ Calcul Instantané</span>
                 <span class="badge">🚀 100% Gratuit</span>
             </div>
@@ -291,16 +291,25 @@
 
       <div class="tool-container">
         <div class="form-group">
-            <label for="montant-brut">Montant brut (€) :</label>
-            <input type="number" id="montant-brut" value="3000" min="0" step="50">
+            <label for="pays">Pays cible :</label>
+            <select id="pays" onchange="majOptionsStatut()">
+                <option value="france">🇫🇷 France</option>
+                <option value="canada">🇨🇦 Canada</option>
+                <option value="usa">🇺🇸 États-Unis</option>
+            </select>
         </div>
 
         <div class="form-group">
-            <label for="statut">Statut professionnel :</label>
+            <label for="montant-brut">Montant brut :</label>
+            <input type="number" id="montant-brut" value="3000" min="0" step="50">
+        </div>
+
+        <div class="form-group" id="groupe-statut">
+            <label for="statut">Profil / Statut :</label>
             <select id="statut">
-                <option value="non-cadre">Non-cadre (Salarié classique ~22% de charges)</option>
-                <option value="cadre">Cadre (~25% de charges)</option>
-                <option value="salarie-public">Fonctionnaire / Agent public (~15% de charges)</option>
+                <option value="non-cadre">Non-cadre (Salarié classique ~22%)</option>
+                <option value="cadre">Cadre (~25%)</option>
+                <option value="salarie-public">Fonctionnaire / Agent public (~15%)</option>
             </select>
         </div>
         
@@ -308,7 +317,7 @@
             <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark"></div>
         </div>
 
-        <button class="btn-generate" onclick="calculerBrutNet()">🔄 Calculer le salaire net</button>
+        <button class="btn-generate" onclick="calculerBrutNetInternational()">🔄 Calculer le revenu net</button>
       
         <div id="response-box" class="response-container">
             <h3>📊 Résultats de la conversion :</h3>
@@ -316,15 +325,38 @@
             <div id="response-text" class="response-content"></div>
         </div>
       </div> 
-
-<section class="seo-tool-description" style="max-width: 850px; margin: 40px auto; padding: 20px; line-height: 1.7; color: var(--text-muted);">
-    <h2 style="color: #fff; font-size: 1.8rem; margin-bottom: 20px;">Estimez vos revenus réels</h2>
-    <p>Que vous soyez en phase de négociation salariale ou que vous gériez la comptabilité de vos collaborateurs, ce convertisseur vous donne une estimation claire du montant perçu après déduction des cotisations sociales.</p>
-</section>
 </main>
 
 <script>
-    function calculerBrutNet() {
+    function majOptionsStatut() {
+        const pays = document.getElementById('pays').value;
+        const statutSelect = document.getElementById('statut');
+        const groupeStatut = document.getElementById('groupe-statut');
+
+        statutSelect.innerHTML = '';
+        if (pays === 'france') {
+            groupeStatut.style.display = 'block';
+            statutSelect.innerHTML = `
+                <option value="non-cadre">Non-cadre (Salarié classique ~22%)</option>
+                <option value="cadre">Cadre (~25%)</option>
+                <option value="salarie-public">Fonctionnaire / Agent public (~15%)</option>
+            `;
+        } else if (pays === 'canada') {
+            groupeStatut.style.display = 'block';
+            statutSelect.innerHTML = `
+                <option value="canada-standard">Standard / Provincial moyen (~30% cotisations + impôts)</option>
+                <option value="canada-quebec">Québec - Charges un peu plus élevées (~33%)</option>
+            `;
+        } else if (pays === 'usa') {
+            groupeStatut.style.display = 'block';
+            statutSelect.innerHTML = `
+                <option value="usa-standard">Salarié fédéral + État (~25% FICA + Impôts)</option>
+            `;
+        }
+    }
+
+    function calculerBrutNetInternational() {
+        const pays = document.getElementById('pays').value;
         const montantBrut = parseFloat(document.getElementById('montant-brut').value);
         const statut = document.getElementById('statut').value;
 
@@ -338,22 +370,34 @@
         }
 
         responseBox.style.display = 'block';
+        let tauxCharges = 0.22;
+        let symboleDevise = '€';
 
-        let tauxCharges = 0.22; // Non-cadre par défaut
-        if (statut === 'cadre') tauxCharges = 0.25;
-        if (statut === 'salarie-public') tauxCharges = 0.15;
+        if (pays === 'france') {
+            symboleDevise = '€';
+            if (statut === 'cadre') tauxCharges = 0.25;
+            else if (statut === 'salarie-public') tauxCharges = 0.15;
+            else tauxCharges = 0.22;
+        } else if (pays === 'canada') {
+            symboleDevise = '$ CAD';
+            if (statut === 'canada-quebec') tauxCharges = 0.33;
+            else tauxCharges = 0.30;
+        } else if (pays === 'usa') {
+            symboleDevise = '$ USD';
+            tauxCharges = 0.25;
+        }
 
         const netMensuel = montantBrut * (1 - tauxCharges);
         const netAnnuel = netMensuel * 12;
         const brutAnnuel = montantBrut * 12;
 
-        resultHighlight.textContent = `Net Mensuel : ${netMensuel.toFixed(2)} €`;
+        resultHighlight.textContent = `Net Estimé : ${netMensuel.toLocaleString('fr-FR', {maximumFractionDigits: 2})} ${symboleDevise}`;
         
         responseText.innerHTML = `
-            • <strong>Salaire Brut Annuel :</strong> ${brutAnnuel.toLocaleString('fr-FR', {maximumFractionDigits: 2})} €<br>
-            • <strong>Salaire Net Mensuel :</strong> ${netMensuel.toLocaleString('fr-FR', {maximumFractionDigits: 2})} €<br>
-            • <strong>Salaire Net Annuel :</strong> ${netAnnuel.toLocaleString('fr-FR', {maximumFractionDigits: 2})} €<br>
-            • <strong>Charges estimées :</strong> ${(tauxCharges * 100).toFixed(0)} %
+            • <strong>Brut Annuel :</strong> ${brutAnnuel.toLocaleString('fr-FR', {maximumFractionDigits: 2})} ${symboleDevise}<br>
+            • <strong>Net Mensuel :</strong> ${netMensuel.toLocaleString('fr-FR', {maximumFractionDigits: 2})} ${symboleDevise}<br>
+            • <strong>Net Annuel :</strong> ${netAnnuel.toLocaleString('fr-FR', {maximumFractionDigits: 2})} ${symboleDevise}<br>
+            • <strong>Prélèvements estimés :</strong> ${(tauxCharges * 100).toFixed(0)} %
         `;
     }
 </script> 
