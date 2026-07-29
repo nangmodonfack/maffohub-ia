@@ -28,6 +28,10 @@
     { "source": "/politique-donnees/", "destination": "/ia/legales/donnees/index.html" },
     { "source": "/cgv/", "destination": "/ia/legales/cgv/index.html" },
     { "source": "/qui-sommes-nous/", "destination": "/ia/legales/qui-sommes-nous/index.html" },
+    { "source": "/calculateurs/brut-net/", "destination": "/ia/calculateurs/brut-net/index.html" },
+    { "source": "/calculateurs/convertisseur-universel/", "destination": "/ia/calculateurs/convertisseur-universel/index.html" },
+    { "source": "/calculateurs/simulateur-pret/", "destination": "/ia/calculateurs/simulateur-pret/index.html" },
+    { "source": "/calculateurs/imc-calories/", "destination": "/ia/calculateurs/imc-calories/index.html" }
     {
       "source": "/",
       "has": [ { "type": "host", "value": "ia.maffohub.com" } ],
