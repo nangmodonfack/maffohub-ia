@@ -332,19 +332,29 @@
                 <div class="form-group">
                     <label for="de-devise">De :</label>
                     <select id="de-devise">
-                        <option value="EUR">EUR (€)</option>
-                        <option value="USD">USD ($)</option>
-                        <option value="GBP">GBP (£)</option>
-                        <option value="CAD">CAD ($)</option>
+                        <option value="EUR" selected>EUR (€) - Euro</option>
+                        <option value="USD">USD ($) - Dollar US</option>
+                        <option value="CAD">CAD ($) - Dollar canadien</option>
+                        <option value="XAF">XAF (FCFA) - Franc CFA (BEAC)</option>
+                        <option value="XOF">XOF (FCFA) - Franc CFA (BCEAO)</option>
+                        <option value="GBP">GBP (£) - Livre sterling</option>
+                        <option value="CHF">CHF (CHF) - Franc suisse</option>
+                        <option value="JPY">JPY (¥) - Yen japonais</option>
+                        <option value="AUD">AUD ($) - Dollar australien</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="vers-devise">Vers :</label>
                     <select id="vers-devise">
-                        <option value="USD" selected>USD ($)</option>
-                        <option value="EUR">EUR (€)</option>
-                        <option value="GBP">GBP (£)</option>
-                        <option value="CAD">CAD ($)</option>
+                        <option value="EUR">EUR (€) - Euro</option>
+                        <option value="USD" selected>USD ($) - Dollar US</option>
+                        <option value="CAD">CAD ($) - Dollar canadien</option>
+                        <option value="XAF">XAF (FCFA) - Franc CFA (BEAC)</option>
+                        <option value="XOF">XOF (FCFA) - Franc CFA (BCEAO)</option>
+                        <option value="GBP">GBP (£) - Livre sterling</option>
+                        <option value="CHF">CHF (CHF) - Franc suisse</option>
+                        <option value="JPY">JPY (¥) - Yen japonais</option>
+                        <option value="AUD">AUD ($) - Dollar australien</option>
                     </select>
                 </div>
             </div>
@@ -424,7 +434,7 @@
         }
     }
 
-    function calculerConversion() {
+    async function calculerConversion() {
         const responseBox = document.getElementById('response-box');
         const responseText = document.getElementById('response-text');
         responseBox.style.display = 'block';
@@ -434,20 +444,28 @@
             const de = document.getElementById('de-devise').value;
             const vers = document.getElementById('vers-devise').value;
 
-            if (isNaN(montant)) {
+            if (isNaN(montant) || montant < 0) {
                 responseText.textContent = "Veuillez entrer un montant valide.";
                 return;
             }
 
-            // Taux de change fictifs de référence basés sur les tendances du marché
-            const tauxVersEUR = { EUR: 1, USD: 0.92, GBP: 1.17, CAD: 0.67 };
-            const tauxDepuisEUR = { EUR: 1, USD: 1.09, GBP: 0.85, CAD: 1.49 };
+            responseText.textContent = "Récupération du taux en direct...";
 
-            // Conversion en EUR d'abord, puis vers la devise cible
-            const montantEnEUR = montant * tauxVersEUR[de];
-            const resultat = montantEnEUR * tauxDepuisEUR[vers];
+            try {
+                // Appel API en temps réel pour des taux de change exacts et actualisés
+                const response = await fetch(`https://open.er-api.com/v6/latest/${de}`);
+                const data = await response.json();
 
-            responseText.textContent = `${montant} ${de} = ${resultat.toFixed(2)} ${vers}`;
+                if (data && data.rates && data.rates[vers]) {
+                    const rate = data.rates[vers];
+                    const resultat = (montant * rate).toFixed(2);
+                    responseText.innerHTML = `${montant} ${de} = <span style="color:var(--accent-gold);">${resultat} ${vers}</span>`;
+                } else {
+                    responseText.textContent = "Erreur lors de la récupération des taux de change.";
+                }
+            } catch (error) {
+                responseText.textContent = "Impossible de contacter le serveur de devises.";
+            }
 
         } else {
             const valeur = parseFloat(document.getElementById('valeur-unite').value);
@@ -478,7 +496,7 @@
                 return;
             }
 
-            responseText.textContent = `${valeur} ${de} = ${resultat.toFixed(2)} ${vers}`;
+            responseText.innerHTML = `${valeur} ${de} = <span style="color:var(--accent-gold);">${resultat.toFixed(2)} ${vers}</span>`;
         }
     }
 </script> 
