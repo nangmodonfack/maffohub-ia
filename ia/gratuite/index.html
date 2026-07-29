@@ -4,110 +4,370 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IA Gratuite Générale | Assistant Polyvalent | Maffo Hub</title>
+    <meta name="description" content="Profitez d'un assistant IA polyvalent et 100% gratuit sur Maffo Hub pour propulser votre productivité et vos projets business.">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-color: #061310; --card-bg: #0b1f1a; --accent-gold: #d4af37; --text-color: #ffffff; --text-muted: #94a9a4; --border-color: #163830; }
-        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        header { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; padding: 20px; border-bottom: 1px solid var(--border-color); box-sizing: border-box; }
-        .logo { font-size: 24px; font-weight: bold; color: #fff; }
-        .tool-container { width: 100%; max-width: 800px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; margin: 40px auto; box-sizing: border-box; }
-        label { display: block; margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; }
-        textarea { width: 100%; height: 150px; background: #061310; border: 1px solid var(--border-color); border-radius: 8px; color: #fff; padding: 15px; margin-bottom: 20px; box-sizing: border-box; font-size: 1rem; resize: vertical; }
-        .btn-generate { background: var(--accent-gold); color: #061310; border: none; padding: 12px 24px; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; transition: 0.2s; }
-        .btn-generate:hover { opacity: 0.9; }
-        .btn-generate:disabled { opacity: 0.5; cursor: not-allowed; }
+        :root { 
+            --bg-color: #061310; 
+            --card-bg: #0b1f1a;  
+            --accent-gold: #d4af37; 
+            --text-color: #ffffff; 
+            --text-muted: #94a9a4; 
+            --border-color: #163830; 
+        }
+
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+        }
+
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            width: 100%; 
+            max-width: 1200px; 
+            padding: 20px; 
+            border-bottom: 1px solid var(--border-color); 
+            box-sizing: border-box; 
+        }
+        .logo { 
+            font-size: 24px; 
+            font-weight: bold; 
+            color: var(--accent-gold); 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        main {
+            width: 100%;
+            max-width: 1100px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--accent-gold);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 750px;
+            margin: 0 auto 20px auto;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background-color: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .tool-container { 
+            width: 100%; 
+            max-width: 850px; 
+            background: var(--card-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 12px; 
+            padding: 30px; 
+            margin: 0 auto 60px auto; 
+            box-sizing: border-box; 
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        label { 
+            display: block; 
+            margin-bottom: 12px; 
+            font-size: 1.05rem; 
+            font-weight: 600; 
+            color: var(--accent-gold);
+        }
+
+        textarea { 
+            width: 100%; 
+            height: 150px; 
+            background: #040d0b; 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            color: #fff; 
+            padding: 15px; 
+            margin-bottom: 20px; 
+            box-sizing: border-box; 
+            font-size: 1rem; 
+            resize: vertical; 
+            font-family: inherit;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .turnstile-box {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-generate { 
+            background: linear-gradient(135deg, #d4af37 0%, #aa841e 100%); 
+            color: #000; 
+            border: none; 
+            padding: 16px; 
+            font-size: 1.1rem;
+            font-weight: bold; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            width: 100%; 
+            transition: transform 0.2s, opacity 0.2s; 
+        }
+        .btn-generate:hover { 
+            transform: translateY(-2px);
+            opacity: 0.9; 
+        }
+        .btn-generate:disabled { 
+            opacity: 0.5; 
+            cursor: not-allowed; 
+            transform: none;
+        }
         
         /* Style pour la zone de réponse intégrée */
-        .response-container { margin-top: 25px; background: #040d0b; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; display: none; }
-        .response-container h3 { color: var(--accent-gold); margin-top: 0; font-size: 1.1rem; }
-        .response-content { color: #e2e8f0; line-height: 1.6; white-space: pre-wrap; font-size: 0.95rem; }
+        .response-container { 
+            margin-top: 25px; 
+            background: #040d0b; 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            padding: 20px; 
+            display: none; 
+        }
+        .response-container h3 { 
+            color: var(--accent-gold); 
+            margin-top: 0; 
+            font-size: 1.1rem; 
+        }
+        .response-content { 
+            color: #e2e8f0; 
+            line-height: 1.6; 
+            white-space: pre-wrap; 
+            font-size: 0.95rem; 
+            font-family: inherit;
+        }
+
+        /* Navigation Styles */
+        .nav-links { display: flex; align-items: center; gap: 10px; }
+        .nav-item { color: var(--text-color); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 6px 8px; transition: 0.2s; white-space: nowrap; }
+        .nav-item:hover { color: var(--accent-gold); }
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn { background-color: var(--card-bg); color: var(--text-color); padding: 10px 14px; font-size: 0.88rem; font-weight: 600; border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+        .dropbtn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: #0b1f1a; min-width: 260px; box-shadow: 0px 8px 16px rgba(0,0,0,0.6); border: 1px solid var(--border-color); border-radius: 8px; z-index: 1000; max-height: 400px; overflow-y: auto; padding: 10px 0; }
+        .dropdown-content a { color: var(--text-muted); padding: 10px 20px; text-decoration: none; display: block; font-size: 0.9rem; transition: 0.2s; }
+        .dropdown-content a:hover { background-color: #113129; color: #fff; }
+        .dropdown-group { display: block; padding: 8px 20px 4px 20px; font-size: 0.75rem; font-weight: bold; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; border-top: 1px solid rgba(22, 56, 48, 0.4); }
+        .dropdown-group:first-child { border-top: none; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        @media (max-width: 1100px) {
+            .nav-item { display: none; }
+        }
 
         .seo-section { max-width: 850px; margin: 20px auto; padding: 20px; line-height: 1.7; color: var(--text-muted); }
-        h2 { color: #fff; } h3 { color: var(--accent-gold); margin-top: 30px; }
+        h2 { color: #fff; font-size: 1.8rem; margin-bottom: 20px; } 
+        h3 { color: var(--accent-gold); margin-top: 30px; }
         .faq-item { margin-top: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
-        footer { width: 100%; background-color: var(--card-bg); border-top: 1px solid var(--border-color); padding: 40px 20px; margin-top: 60px; text-align: center; color: var(--text-muted); box-sizing: border-box; }
-        .footer-links { margin-bottom: 10px; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; }
+        .faq-item h4 { color: #fff; margin-bottom: 8px; font-size: 1.1rem; }
+
+        footer { 
+            width: 100%; 
+            background-color: var(--card-bg); 
+            border-top: 1px solid var(--border-color); 
+            padding: 40px 20px; 
+            margin-top: auto; 
+            text-align: center; 
+            box-sizing: border-box; 
+        }
+        .footer-links { 
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px; 
+        }
+        .footer-links a { 
+            color: var(--text-muted); 
+            text-decoration: none; 
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
-   <header>
-    <a href="/" style="text-decoration: none;">
-        <div class="logo" style="color: #d4af37; font-weight: bold;">Maffo Hub</div>
-    </a>
-    <div style="font-size: 0.8rem; margin-bottom: 10px;"><a href="/" style="color: var(--text-muted); text-decoration: none;">Accueil</a></div>
-</header>
 
-    <div class="tool-container">
-        <label>🤖 IA Gratuite Générale & Assistant Intelligent :</label>
-        <textarea id="user-input" placeholder="Posez vos questions, demandez des conseils ou de l'aide sur n'importe quel sujet..."></textarea>
-        <button id="generate-btn" class="btn-generate" onclick="askAI()">Lancer l'IA Gratuite 🚀</button>
-        
-        <!-- Zone d'affichage de la réponse de l'IA -->
-        <div id="response-box" class="response-container">
-            <h3>Réponse de l'IA :</h3>
-            <div id="response-text" class="response-content"></div>
+    <header>
+        <div class="logo"><a href="https://ia.maffohub.com/" style="color:var(--accent-gold); text-decoration:none;">Maffo Hub</a></div>
+        <nav class="nav-links">
+            <a href="/ia-gratuite/" class="nav-item">🤖 IA Gratuite</a>
+            <a href="/chatgpt-gratuit/" class="nav-item">💬 ChatGPT Gratuit</a>
+            <a href="/tiktok-scripts/" class="nav-item">🎬 Scripts TikTok</a>
+            <a href="/humaniser-texte-ia/" class="nav-item">✍️ Humaniser Texte IA</a>
+            <a href="/compteur-de-mots/" class="nav-item">📊 Compteur de mots</a>
+            
+            <div class="dropdown">
+                <button class="dropbtn">➕ Plus d'outils ▾</button>
+                <div class="dropdown-content">
+                    <span class="dropdown-group">🔥 Spécialités IA</span>
+                    <a href="/gpt-4o-gratuit/">⚡ GPT-4o Gratuit</a>
+                    <a href="/chatgpt-o1-gratuit/">🧠 ChatGPT o1 Gratuit</a>
+                    <a href="/chatgpt5-agi-gratuit/">🌐 ChatGPT 5 Gratuit</a>
+                    
+                    <span class="dropdown-group">🚀 Business & Création</span>
+                    <a href="/tiktok-scripts/">🎬 Scripts TikTok / Reels</a>
+                    <a href="/idees-accroches-virales/">💡 Accroches Virales</a>
+                    <a href="/redacteur-business/">💼 Rédacteur Business</a>
+                    <a href="/stratege-contenu/">🎯 Stratège de Contenu</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="hero">
+            <h1>IA Gratuite Générale & <span>Assistant Intelligent</span></h1>
+            <p>Posez vos questions, obtenez des analyses approfondies et bénéficiez d'un support polyvalent pour tous vos projets du quotidien et professionnels.</p>
+            <div class="badge-container">
+                <span class="badge">🤖 Assistant Polyvalent</span>
+                <span class="badge">⚡ Sans inscription</span>
+                <span class="badge">🚀 100% Gratuit</span>
+            </div>
         </div>
-    </div>
 
-     <section class="seo-section">
-        <h2>IA Gratuite Générale : Votre assistant polyvalent pour l'excellence opérationnelle</h2>
-        <p>Dans un écosystème numérique en constante mutation, posséder un outil capable d'analyser, de synthétiser et de créer est devenu un avantage concurrentiel décisif. Notre instance d'<strong>IA Gratuite Générale</strong> sur Maffo Hub a été spécifiquement conçue pour répondre aux exigences des professionnels, créateurs de contenu et entrepreneurs qui ne peuvent se permettre aucune approximation.</p>
-        
-        <h3>L'IA comme levier de productivité stratégique</h3>
-        <p>L'intelligence artificielle n'est plus un gadget technologique, mais un véritable moteur de croissance pour votre activité. En automatisant les tâches répétitives, cette IA vous libère du temps précieux pour vous concentrer sur ce qui compte réellement : la stratégie, le mindset, et le développement de votre SARL. Que vous soyez en phase de création de tunnel de vente, de rédaction de scripts publicitaires ou de planification financière, cet assistant polyvalent agit comme un consultant disponible 24h/24.</p>
+        <div class="tool-container">
+            <label for="user-input">🤖 Posez vos questions à l'IA Générale :</label>
+            <textarea id="user-input" placeholder="Posez vos questions, demandez des conseils ou de l'aide sur n'importe quel sujet..."></textarea>
+            
+            <div class="turnstile-box">
+                <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark"></div>
+            </div>
 
-        <h3>La méthodologie Maffo Hub : L'Art du Prompting</h3>
-        <p>La puissance d'une IA réside dans la qualité des instructions qu'elle reçoit. Nous préconisons la méthode "C-T-F" (Contexte, Tâche, Format) pour garantir des résultats de haute précision. 
-        <br>1. <strong>Le Contexte :</strong> Donnez à l'IA une identité ou un rôle (ex: "Agis comme un expert en marketing digital international"). 
-        <br>2. <strong>La Tâche :</strong> Soyez précis, exprimez vos besoins avec rigueur et clarté. 
-        <br>3. <strong>Le Format :</strong> Définissez la structure attendue (tableau, code, email, plan détaillé). 
-        En adoptant cette rigueur, vous transformez chaque interaction en un actif stratégique pour votre entreprise.</p>
+            <button id="generate-btn" class="btn-generate" onclick="askAI()">Lancer l'IA Gratuite 🚀</button>
+            
+            <!-- Zone d'affichage de la réponse de l'IA -->
+            <div id="response-box" class="response-container">
+                <h3>✨ Réponse de l'IA :</h3>
+                <div id="response-text" class="response-content"></div>
+            </div>
+        </div>
 
-        <h3>Études de cas : L'IA au service de votre croissance</h3>
-        <p>Pour illustrer la puissance de notre outil, prenons l'exemple d'un entrepreneur digital ciblant les marchés francophones et nord-américains. En utilisant notre assistant pour structurer son planning éditorial sur un mois, il a réussi à réduire son temps de rédaction de 70% tout en augmentant la pertinence de ses "hooks" sur les réseaux sociaux. Un autre exemple concerne l'automatisation de la réponse client : en fournissant à l'IA sa base de connaissances, le créateur a pu répondre à 95% des questions récurrentes sur son tunnel de vente Systeme.io, libérant ainsi des heures précieuses pour le développement de nouveaux produits digitaux.</p>
+        <section class="seo-section">
+            <h2>IA Gratuite Générale : Votre assistant polyvalent pour l'excellence opérationnelle</h2>
+            <p>Dans un écosystème numérique en constante mutation, posséder un outil capable d'analyser, de synthétiser et de créer est devenu un avantage concurrentiel décisif. Notre instance d'<strong>IA Gratuite Générale</strong> sur Maffo Hub a été spécifiquement conçue pour répondre aux exigences des professionnels, créateurs de contenu et entrepreneurs qui ne peuvent se permettre aucune approximation.</p>
+            
+            <h3>L'IA comme levier de productivité stratégique</h3>
+            <p>L'intelligence artificielle n'est plus un gadget technologique, mais un véritable moteur de croissance pour votre activité. En automatisant les tâches répétitives, cette IA vous libère du temps précieux pour vous concentrer sur ce qui compte réellement : la stratégie, le mindset, et le développement de votre SARL. Que vous soyez en phase de création de tunnel de vente, de rédaction de scripts publicitaires ou de planification financière, cet assistant polyvalent agit comme un consultant disponible 24h/24.</p>
 
-        <h3>Glossaire Technique pour l'Entrepreneur Moderne</h3>
-        <p>Pour maîtriser votre environnement, voici quelques termes clés :
-        <br>• <strong>LLM (Large Language Model) :</strong> Le moteur technologique qui permet à l'IA de comprendre et générer du langage humain naturel.
-        <br>• <strong>Prompt Engineering :</strong> L'art et la science de formuler des requêtes optimisées pour obtenir les meilleurs résultats possibles.
-        <br>• <strong>Automatisation CRM :</strong> L'intégration de l'IA dans vos processus de gestion client pour fluidifier les interactions sans intervention humaine constante.
-        <br>• <strong>Audit de Funnel :</strong> Analyse structurée par l'IA de votre entonnoir de vente pour identifier les points de friction et optimiser le taux de conversion.</p>
+            <h3>La méthodologie Maffo Hub : L'Art du Prompting</h3>
+            <p>La puissance d'une IA réside dans la qualité des instructions qu'elle reçoit. Nous préconisons la méthode "C-T-F" (Contexte, Tâche, Format) pour garantir des résultats de haute précision. 
+            <br>1. <strong>Le Contexte :</strong> Donnez à l'IA une identité ou un rôle (ex: "Agis comme un expert en marketing digital international"). 
+            <br>2. <strong>La Tâche :</strong> Soyez précis, exprimez vos besoins avec rigueur et clarté. 
+            <br>3. <strong>Le Format :</strong> Définissez la structure attendue (tableau, code, email, plan détaillé). 
+            En adoptant cette rigueur, vous transformez chaque interaction en un actif stratégique pour votre entreprise.</p>
 
-        <h3>Pourquoi choisir notre assistant polyvalent ?</h3>
-        <p>Contrairement aux modèles généralistes qui peuvent parfois manquer de direction, l'instance proposée par Maffo Hub est calibrée pour privilégier la réflexion critique, l'attention aux détails et une structure logique implacable. Nous avons éliminé les biais inutiles pour offrir une expérience fluide, rapide et orientée résultats.</p>
+            <h3>Études de cas : L'IA au service de votre croissance</h3>
+            <p>Pour illustrer la puissance de notre outil, prenons l'exemple d'un entrepreneur digital ciblant les marchés francophones et nord-américains. En utilisant notre assistant pour structurer son planning éditorial sur un mois, il a réussi à réduire son temps de rédaction de 70% tout en augmentant la pertinence de ses "hooks" sur les réseaux sociaux. Un autre exemple concerne l'automatisation de la réponse client : en fournissant à l'IA sa base de connaissances, le créateur a pu répondre à 95% des questions récurrentes sur son tunnel de vente Systeme.io, libérant ainsi des heures précieuses pour le développement de nouveaux produits digitaux.</p>
 
-        <h3>Sécurité, Confidentialité et Éthique de travail</h3>
-        <p>Nous comprenons l'importance capitale des données dans le cadre de votre business. Skyland Consulting SARL applique une politique de confidentialité stricte. Vos requêtes ne servent pas à l'entraînement public de modèles tiers, garantissant que vos idées, vos stratégies de prix ou vos documents confidentiels restent votre propriété exclusive. C'est l'engagement de sérieux que nous devons à notre communauté en France, au Canada et aux États-Unis.</p>
+            <h3>Glossaire Technique pour l'Entrepreneur Moderne</h3>
+            <p>Pour maîtriser votre environnement, voici quelques termes clés :
+            <br>• <strong>LLM (Large Language Model) :</strong> Le moteur technologique qui permet à l'IA de comprendre et générer du langage humain naturel.
+            <br>• <strong>Prompt Engineering :</strong> L'art et la science de formuler des requêtes optimisées pour obtenir les meilleurs résultats possibles.
+            <br>• <strong>Automatisation CRM :</strong> L'intégration de l'IA dans vos processus de gestion client pour fluidifier les interactions sans intervention humaine constante.
+            <br>• <strong>Audit de Funnel :</strong> Analyse structurée par l'IA de votre entonnoir de vente pour identifier les points de friction et optimiser le taux de conversion.</p>
 
-        <h3>Applications concrètes pour votre business :</h3>
-        <ul>
-            <li><strong>Digital Content :</strong> Génération de hooks percutants pour vos réseaux sociaux et scénarisation de vidéos éducatives.</li>
-            <li><strong>Business Development :</strong> Analyse de funnels, optimisation de taux de conversion et audit de landing pages.</li>
-            <li><strong>Mindset & Motivation :</strong> Aide à la structuration de vos routines de travail et élaboration de plans d'action disciplinés.</li>
-            <li><strong>Finance & Stratégie :</strong> Aide à la formulation de business plans, résumé de rapports financiers et veille technologique.</li>
-        </ul>
+            <h3>Pourquoi choisir notre assistant polyvalent ?</h3>
+            <p>Contrairement aux modèles généralistes qui peuvent parfois manquer de direction, l'instance proposée par Maffo Hub est calibrée pour privilégier la réflexion critique, l'attention aux détails et une structure logique implacable. Nous avons éliminé les biais inutiles pour offrir une expérience fluide, rapide et orientée résultats.</p>
 
-        <h3>Foire Aux Questions (FAQ) Approfondie</h3>
-        <div class="faq-item"><h4>Est-ce que cette IA peut m'aider pour le développement de ma SARL ?</h4><p>Absolument. Elle peut aider à la rédaction de documents, à l'organisation de vos tâches administratives et à la structuration de votre communication externe avec le professionnalisme exigé par une société de conseil.</p></div>
-        <div class="faq-item"><h4>Quelle est la différence avec d'autres outils ?</h4><p>Notre interface est optimisée pour la simplicité. Vous accédez à la puissance de calcul sans la complexité technique, avec une intégration pensée pour le workflow des créateurs de contenu sur Systeme.io ou d'autres plateformes CRM.</p></div>
-         <a href="https://systeme.io/fr?sa=sa0271737541b960564bdaa8aa118c2acde900fd14" 
-   class="btn-generate" 
-   style="text-decoration: none; text-align: center; display: block; margin: 20px 0;"
-   target="_blank">
-   Démarrer sur Systeme.io  gratuitement 🚀
-</a>
-        <div class="faq-item"><h4>Puis-je l'utiliser pour du code ?</h4><p>Oui, l'IA est capable de corriger, générer et optimiser des snippets de code, ce qui est idéal si vous gérez vous-même la partie technique de vos tunnels de vente.</p></div>
-        <div class="faq-item"><h4>Comment garantir la pertinence des réponses ?</h4><p>La pertinence est corrélée à la qualité de vos instructions. Plus vous fournissez de détails sur votre audience cible (ex: marchés FR/CA/USA) et votre niche, plus les réponses seront alignées avec vos objectifs.</p></div>
-    </section>
+            <h3>Sécurité, Confidentialité et Éthique de travail</h3>
+            <p>Nous comprenons l'importance capitale des données dans le cadre de votre business. Skyland Consulting SARL applique une politique de confidentialité stricte. Vos requêtes ne servent pas à l'entraînement public de modèles tiers, garantissant que vos idées, vos stratégies de prix ou vos documents confidentiels restent votre propriété exclusive. C'est l'engagement de sérieux que nous devons à notre communauté en France, au Canada et aux États-Unis.</p>
 
+            <h3>Applications concrètes pour votre business :</h3>
+            <ul>
+                <li><strong>Digital Content :</strong> Génération de hooks percutants pour vos réseaux sociaux et scénarisation de vidéos éducatives.</li>
+                <li><strong>Business Development :</strong> Analyse de funnels, optimisation de taux de conversion et audit de landing pages.</li>
+                <li><strong>Mindset & Motivation :</strong> Aide à la structuration de vos routines de travail et élaboration de plans d'action disciplinés.</li>
+                <li><strong>Finance & Stratégie :</strong> Aide à la formulation de business plans, résumé de rapports financiers et veille technologique.</li>
+            </ul>
+
+            <h3>Foire Aux Questions (FAQ) Approfondie</h3>
+            <div class="faq-item">
+                <h4>Est-ce que cette IA peut m'aider pour le développement de ma SARL ?</h4>
+                <p>Absolument. Elle peut aider à la rédaction de documents, à l'organisation de vos tâches administratives et à la structuration de votre communication externe avec le professionnalisme exigé par une société de conseil.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Quelle est la différence avec d'autres outils ?</h4>
+                <p>Notre interface est optimisée pour la simplicité. Vous accédez à la puissance de calcul sans la complexité technique, avec une intégration pensée pour le workflow des créateurs de contenu sur Systeme.io ou d'autres plateformes CRM.</p>
+            </div>
+
+            <a href="https://systeme.io/fr?sa=sa0271737541b960564bdaa8aa118c2acde900fd14" class="btn-generate" style="text-decoration: none; text-align: center; display: block; margin: 30px 0;" target="_blank">
+               Démarrer sur Systeme.io gratuitement 🚀
+            </a>
+
+            <div class="faq-item">
+                <h4>Puis-je l'utiliser pour du code ?</h4>
+                <p>Oui, l'IA est capable de corriger, générer et optimiser des snippets de code, ce qui est idéal si vous gérez vous-même la partie technique de vos tunnels de vente.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Comment garantir la pertinence des réponses ?</h4>
+                <p>La pertinence est corrélée à la qualité de vos instructions. Plus vous fournissez de détails sur votre audience cible (ex: marchés FR/CA/USA) et votre niche, plus les réponses seront alignées avec vos objectifs.</p>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="footer-links">
-            <a href="/support/">Contact</a> | 
-            <a href="/mentions-legales/">Mentions Légales</a> | 
+            <a href="/support/">Contact</a>
+            <a href="/mentions-legales/">Mentions Légales</a>
             <a href="https://www.maffohub.com/">Blog</a>
         </div>
-        <p>&copy; 2026 Maffo Hub.</p>
+        <p>&copy; 2026 Maffo Hub. Tous droits réservés.</p>
     </footer>
 
     <script>
@@ -124,35 +384,35 @@
 
             // Désactiver le bouton et afficher l'état de chargement
             btn.disabled = true;
-            btn.innerText = "Génération en cours...";
+            btn.textContent = "Génération en cours...";
             responseBox.style.display = "block";
-            responseText.innerText = "L'IA analyse votre requête...";
+            responseText.textContent = "L'IA analyse votre requête...";
 
             try {
                 // Point de terminaison backend pour l'API Groq/Llama
-                const apiEndpoint = "https://api.maffohub.com/v1/chat";
+                const apiEndpoint = "https://app.maffohub.com/api/generate";
 
                 /* 
                 // EXEMPLE DE CODE FETCH POUR TON BACKEND :
                 const response = await fetch(apiEndpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ prompt: userInput, mode: 'general' })
+                    body: JSON.stringify({ text: userInput, model: 'general' })
                 });
                 const data = await response.json();
-                responseText.innerText = data.reply;
+                responseText.textContent = data.result;
                 */
 
                 // Simulation temporaire en attendant le branchement complet de ton API backend :
                 setTimeout(() => {
-                    responseText.innerText = "Voici la réponse générée par l'IA générale pour votre requête : \"" + userInput + "\"\n\n[Ici s'affichera la réponse en provenance directe de ton API Groq connectée sur ia.maffohub.com].";
+                    responseText.textContent = "Voici la réponse générée par l'IA générale pour votre requête : \"" + userInput + "\"\n\n[Ici s'affichera la réponse en provenance directe de ton API connectée sur ia.maffohub.com].";
                 }, 1500);
 
             } catch (error) {
-                responseText.innerText = "Une erreur est survenue lors de la communication avec l'API. Veuillez réessayer.";
+                responseText.textContent = "Une erreur est survenue lors de la communication avec l'API. Veuillez réessayer.";
             } finally {
                 btn.disabled = false;
-                btn.innerText = "Lancer l'IA Gratuite 🚀";
+                btn.textContent = "Lancer l'IA Gratuite 🚀";
             }
         }
     </script>
