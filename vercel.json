@@ -32,6 +32,7 @@
     { "source": "/calculateurs/convertisseur-universel/", "destination": "/ia/calculateurs/convertisseur-universel/index.html" },
     { "source": "/calculateurs/simulateur-pret/", "destination": "/ia/calculateurs/simulateur-pret/index.html" },
     { "source": "/calculateurs/imc-calories/", "destination": "/ia/calculateurs/imc-calories/index.html" },
+    { "source": "/generateur-lettre-motivation/", "destination": "ia/generateur-lettre-motivation/index.html" },
     {
       "source": "/",
       "has": [ { "type": "host", "value": "ia.maffohub.com" } ],
