@@ -160,6 +160,34 @@
             opacity: 0.9;
         }
 
+        /* Style pour le bloc de transition professionnel */
+        .intro-catalog-banner {
+            background: linear-gradient(135deg, rgba(11, 31, 26, 0.9) 0%, rgba(6, 19, 16, 0.9) 100%);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-gold);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .intro-catalog-banner h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .intro-catalog-banner p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin: 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .catalog-section {
             margin-bottom: 60px;
         }
@@ -314,10 +342,9 @@
 <body>
 
 <header>
-        <div class="logo">Maffo Hub</div>
+        <div class="logo"><a href="https://ia.maffohub.com/" style="color:var(--accent-gold); text-decoration:none;">Maffo Hub</a></div>
         
         <nav class="nav-links">
-            <!-- Nouveau Menu Déroulant Calculateurs -->
             <div class="dropdown">
                 <button class="dropbtn">🧮 Calculateurs ▾</button>
                 <div class="dropdown-content">
@@ -380,39 +407,29 @@
             </div>
         </div>
 
+      <!-- OUTIL PHARE SUR LA PAGE D'ACCUEIL (AVEC AFFICHAGE SUR LA MÊME PAGE) -->
       <div class="tool-container">
-        <label for="user-input">✍️ Générateur de Lettre de Motivation IA Professionnelle :</label>
-        <textarea id="user-input" placeholder="Ex: Rédige une lettre de motivation pour un poste de Community Manager en alternance. J'ai de l'expérience en gestion de pages Facebook..."></textarea>
+        <label for="user-input">💬 Assistant ChatGPT Gratuit en Ligne :</label>
+        <textarea id="user-input" placeholder="Posez votre question, demandez un résumé, un conseil ou une rédaction... L'IA vous répond instantanément."></textarea>
         
         <div class="turnstile-box">
             <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark"></div>
         </div>
 
-        <button class="btn-generate" onclick="declencherMonetagEtRedirect()">✨ Tester l'IA instantanément</button>
+        <button class="btn-generate" onclick="appelerApiDirectement()">✨ Lancer l'assistant instantanément</button>
+        
+        <!-- CONTENEUR DE RÉSULTAT INTÉGRÉ SUR LA MÊME PAGE -->
+        <div id="result-container" style="margin-top: 25px; display: none;">
+            <label>✨ Réponse générée par l'IA :</label>
+            <div id="result-output" style="background-color: #040d0b; border: 1px solid var(--border-color); border-radius: 8px; padding: 15px; color: white; min-height: 120px; white-space: pre-wrap; font-family: inherit; font-size: 1rem; line-height: 1.5;"></div>
+        </div>
       </div> 
 
-<section class="seo-tool-description" style="max-width: 850px; margin: 40px auto; padding: 20px; line-height: 1.7; color: var(--text-muted);">
-    <h2 style="color: #fff; font-size: 1.8rem; margin-bottom: 20px;">Comment rédiger une lettre de motivation efficace grâce à l'intelligence artificielle ?</h2>
-    <p>La recherche d'un emploi, d'un stage ou d'une formation exige aujourd'hui une réactivité sans faille. Face à des dizaines de candidatures à envoyer, la rédaction d'une lettre de motivation originale et percutante devient rapidement chronophage. C'est ici que notre <strong>générateur de lettre de motivation en ligne gratuit</strong> intervient pour transformer cette corvée en une formalité de quelques secondes.</p>
-    
-    <p>En exploitant les avancées majeures du traitement automatique du langage naturel, cet outil conçoit des documents structurés selon les standards professionnels rigoureux. Que vous postuliez dans le secteur du marketing, de l'artisanat, de la santé ou de l'informatique, l'algorithme adapte instantanément son vocabulaire pour correspondre aux attentes des recruteurs les plus exigeants, le tout 100% en français et sans barrière financière.</p>
-
-    <h3 style="color: var(--accent-gold); margin-top: 30px;">Les avantages d'un outil de rédaction automatique sans inscription</h3>
-    <p>La majorité des plateformes actuelles forcent l'utilisateur à remplir de longs formulaires d'inscription ou à renseigner leurs coordonnées bancaires avant de pouvoir exporter leur travail. Notre philosophie repose sur l'accessibilité immédiate : un accès libre, anonyme, sans création de compte. Cette approche garantit la protection totale de vos données personnelles et professionnelles.</p>
-    <ul>
-        <li><strong>Gain de temps absolu :</strong> Générez une structure complète et personnalisée en moins d'une minute chrono.</li>
-        <li><strong>Zéro syndrome de la page blanche :</strong> L'IA vous fournit une base textuelle solide qu'il ne vous reste plus qu'à ajuster.</li>
-        <li><strong>Vocabulaire sectoriel adapté :</strong> Intégration naturelle des mots-clés et compétences recherchés par les directions des ressources humaines (RH).</li>
-        <li><strong>Optimisation syntaxique :</strong> Un style fluide, professionnel, exempt de fautes d'orthographe ou de tournures maladroites.</li>
-    </ul>
-
-    <h3 style="color: var(--accent-gold); margin-top: 30px;">Guide pratique : Réussir sa candidature avec l'assistance d'une IA</h3>
-    <p>Pour tirer le meilleur parti du module conversationnel présent en haut de cette page, la précision de vos indications est déterminante. Bien que l'intelligence artificielle soit capable de contextualiser une demande floue, lui fournir des détails concrets augmentera drastiquement la pertinence du document final. Voici la méthodologie recommandée :</p>
-    <p>Commencez par indiquer l'intitulé exact du poste visé ainsi que le type de contrat (CDI, CDD, stage, alternance). Mentionnez ensuite brièvement vos forces majeures : vos diplômes principaux, vos années d'expérience ou une compétence technique spécifique (comme la maîtrise d'un logiciel ou la gestion de projets). Enfin, si l'entreprise affiche des valeurs particulières, précisez-les. L'IA se chargera de l'agencement académique : l'en-tête, l'accroche capteuse d'attention, le développement de vos accomplissements, le paragraphe de liaison (le fameux "Vous, Moi, Nous") et les formules de politesse d'usage.</p>
-
-    <h3 style="color: var(--accent-gold); margin-top: 30px;">Une technologie flexible pour tous les profils professionnels</h3>
-    <p>Il n'existe pas une seule façon de rédiger une candidature. Un profil junior sans expérience significative devra mettre l'accent sur sa motivation, sa capacité d'apprentissage et son projet d'études. À l'inverse, un profil senior privilégiera la mise en avant de ses résultats chiffrés, de ses succès passés et de son leadership. Notre algorithme intègre ces nuances de ton et de posture. En un simple clic, le texte bascule d'une énergie dynamique et audacieuse à un ton corporate hautement formel, vous assurant de franchir avec succès l'étape du premier tri des candidatures (parfois géré par des logiciels de lecture automatique ATS).</p>
-</section>
+      <!-- VOLET DE TRANSITION PROFESSIONNEL AVANT LES BOUTONS DU CATALOGUE -->
+      <div class="intro-catalog-banner">
+          <h3>Une IA spécialisée pour chaque exigence professionnelle et quotidienne</h3>
+          <p>Contrairement aux interfaces de chat généralistes qui nécessitent des instructions complexes, chacun de nos outils est rigoureusement programmé et pré-optimisé pour résoudre un besoin spécifique précis (création de contenu, productivité, droit, code ou gestion administrative). Sélectionnez l'assistant idéal ci-dessous pour obtenir un résultat immédiat et sur-mesure.</p>
+      </div>
 
         <section class="catalog-section">
             <h2>Nos Assistants IA Spécialisés</h2>
@@ -585,70 +602,49 @@
         </section>
 </main>
 
+<!-- SCRIPT JS POUR GÉRER L'AFFICHAGE DE LA RÉPONSE SUR LA MÊME PAGE -->
 <script>
-function declencherMonetagEtRedirect() {
+async function appelerApiDirectement() {
     const texteUtilisateur = document.getElementById('user-input').value;
-    const promptOptimise = `Rédige une lettre de motivation professionnelle et percutante basée sur ces informations : ${texteUtilisateur}`;
-    window.location.href = `https://app.maffohub.com/?text=${encodeURIComponent(promptOptimise)}`;
-}
+    if (!texteUtilisateur.trim()) {
+        alert("Veuillez entrer une question ou un texte pour l'assistant.");
+        return;
+    }
 
-let currentToolId = 'discussion';
-let isRecording = false;
+    const bouton = document.querySelector('.btn-generate');
+    const resultContainer = document.getElementById('result-container');
+    const resultOutput = document.getElementById('result-output');
 
-function switchTool(toolId, toolName) {
-    currentToolId = toolId;
-    
-    document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
-    const activeItem = document.getElementById('btn-' + toolId);
-    if(activeItem) activeItem.classList.add('active');
+    // Prompt optimisé pour l'assistant généraliste
+    const promptOptimise = `Réponds à cette demande en tant qu'assistant IA expert : ${texteUtilisateur}`;
 
-    document.getElementById('current-tool-title').innerText = toolName;
+    // Animation du bouton pendant le traitement
+    bouton.textContent = "Réflexion en cours...";
+    bouton.disabled = true;
 
-    const history = document.getElementById('chat-history');
-    if(history) history.innerHTML = `<div class="message system">✨ Assistant activé : Mode <b>${toolName}</b>. Prêt à exécuter vos consignes.</div>`;
-}
+    try {
+        // Remplace l'URL ci-dessous par l'endpoint exact de ton API backend si besoin
+        const response = await fetch('https://app.maffohub.com/api/generate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ text: promptOptimise })
+        });
 
-function sendMessage() {
-    const input = document.getElementById('chat-input');
-    const history = document.getElementById('chat-history');
-    if(!input || !input.value.trim() || !history) return;
-
-    history.innerHTML += `<div class="message user"><b>Vous :</b> ${input.value}</div>`;
-    
-    const promptValue = input.value;
-    input.value = ''; 
-    history.scrollTop = history.scrollHeight;
-
-    setTimeout(() => {
-        history.innerHTML += `<div class="message ai"><b>IA Maffo Hub :</b> Connexion au serveur Vercel établie. Analyse en cours pour votre texte avec la consigne demandée...</div>`;
-        history.scrollTop = history.scrollHeight;
-    }, 400);
-}
-
-window.onload = function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const promptText = urlParams.get('prompt') || urlParams.get('text');
-    const targetModel = urlParams.get('model');
-
-    if(promptText && document.getElementById('chat-input')) {
-        let cleanedText = decodeURIComponent(promptText);
+        const data = await response.json();
         
-        if (window.location.href.includes('compteur') || cleanedText.length > 250) {
-            switchTool('discussion', 'Discussion libre 💬');
-            
-            if (!cleanedText.toLowerCase().includes('analyser et améliorer')) {
-                cleanedText = "Analyser et améliorer avec l'IA le texte suivant :\n\n" + cleanedText;
-            }
-        } else if(targetModel === 'gpt-4o') {
-            switchTool('discussion', 'Discussion libre (GPT-4o) 💬');
-        } else if(targetModel === 'o1') {
-            switchTool('informaticien', 'L\'Informaticien / Codeur (o1) 💻');
-        } else {
-            switchTool('script-tiktok', 'Scripts TikTok / Reels 🎬');
-        }
-
-        document.getElementById('chat-input').value = cleanedText;
-        sendMessage();
+        // Affichage direct du résultat sur la même page
+        resultOutput.textContent = data.result || "Voici la réponse générée...";
+        resultContainer.style.display = "block";
+    } catch (error) {
+        // Mode simulation / fallback en attendant de connecter l'API définitive
+        resultOutput.textContent = "Simulation de réponse pour : " + texteUtilisateur + "\n\n(Ce bloc affichera la réponse en direct de l'API dès que ton endpoint sera branché).";
+        resultContainer.style.display = "block";
+    } finally {
+        // Restauration du bouton
+        bouton.textContent = "✨ Lancer l'assistant instantanément";
+        bouton.disabled = false;
     }
 }
 </script> 
