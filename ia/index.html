@@ -160,7 +160,6 @@
             opacity: 0.9;
         }
 
-        /* Style pour le bloc de transition professionnel */
         .intro-catalog-banner {
             background: linear-gradient(135deg, rgba(11, 31, 26, 0.9) 0%, rgba(6, 19, 16, 0.9) 100%);
             border: 1px solid var(--border-color);
@@ -407,7 +406,7 @@
             </div>
         </div>
 
-      <!-- OUTIL PHARE SUR LA PAGE D'ACCUEIL (AVEC AFFICHAGE SUR LA MÊME PAGE) -->
+      <!-- OUTIL PHARE SUR LA PAGE D'ACCUEIL -->
       <div class="tool-container">
         <label for="user-input">💬 Assistant ChatGPT Gratuit en Ligne :</label>
         <textarea id="user-input" placeholder="Posez votre question, demandez un résumé, un conseil ou une rédaction... L'IA vous répond instantanément."></textarea>
@@ -418,14 +417,13 @@
 
         <button class="btn-generate" onclick="appelerApiDirectement()">✨ Lancer l'assistant instantanément</button>
         
-        <!-- CONTENEUR DE RÉSULTAT INTÉGRÉ SUR LA MÊME PAGE -->
         <div id="result-container" style="margin-top: 25px; display: none;">
             <label>✨ Réponse générée par l'IA :</label>
             <div id="result-output" style="background-color: #040d0b; border: 1px solid var(--border-color); border-radius: 8px; padding: 15px; color: white; min-height: 120px; white-space: pre-wrap; font-family: inherit; font-size: 1rem; line-height: 1.5;"></div>
         </div>
       </div> 
 
-      <!-- VOLET DE TRANSITION PROFESSIONNEL AVANT LES BOUTONS DU CATALOGUE -->
+      <!-- VOLET DE TRANSITION PROFESSIONNEL -->
       <div class="intro-catalog-banner">
           <h3>Une IA spécialisée pour chaque exigence professionnelle et quotidienne</h3>
           <p>Contrairement aux interfaces de chat généralistes qui nécessitent des instructions complexes, chacun de nos outils est rigoureusement programmé et pré-optimisé pour résoudre un besoin spécifique précis (création de contenu, productivité, droit, code ou gestion administrative). Sélectionnez l'assistant idéal ci-dessous pour obtenir un résultat immédiat et sur-mesure.</p>
@@ -519,63 +517,63 @@
             </div>
         </section>
 
-<section class="testimonials-section">
-    <h2 style="text-align: center; margin-bottom: 40px;">Ce qu'en disent nos utilisateurs</h2>
-    <div class="testimonial-grid">
-        <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p>"Je devais refaire mon CV en urgence pour une candidature. Je n'avais vraiment pas envie de m'inscrire sur une énième plateforme qui demande mon email. Ici, j'ai juste copié mon texte, lancé l'IA, et c'était réglé en 2 minutes. Efficace et direct."</p>
-            <div class="user-name">— Marc, Étudiant en alternance</div>
-        </div>
-        <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p>"En tant que créateur de contenu, la page blanche, c'est mon quotidien. J'utilise surtout l'outil pour les scripts TikTok. Ça ne fait pas tout le travail à ma place, mais ça me donne la structure qu'il me manquait pour filmer sans bafouiller. Un bon gain de temps."</p>
-            <div class="user-name">— Sarah, Créatrice digitale</div>
-        </div>
-        <div class="testimonial-card">
-            <div class="stars">★★★★☆</div>
-            <p>"C'est devenu mon réflexe quand j'ai besoin de traduire un mail pro ou de résumer un document long. L'interface est épurée, ça charge instantanément et c'est gratuit. Honnêtement, je ne vois pas pourquoi aller payer ailleurs pour des tâches simples."</p>
-            <div class="user-name">— Julien, Commercial</div>
-        </div>
-    </div>
-</section>
+        <section class="testimonials-section">
+            <h2 style="text-align: center; margin-bottom: 40px;">Ce qu'en disent nos utilisateurs</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Je devais refaire mon CV en urgence pour une candidature. Je n'avais vraiment pas envie de m'inscrire sur une énième plateforme qui demande mon email. Ici, j'ai juste copié mon texte, lancé l'IA, et c'était réglé en 2 minutes. Efficace et direct."</p>
+                    <div class="user-name">— Marc, Étudiant en alternance</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"En tant que créateur de contenu, la page blanche, c'est mon quotidien. J'utilise surtout l'outil pour les scripts TikTok. Ça ne fait pas tout le travail à ma place, mais ça me donne la structure qu'il me manquait pour filmer sans bafouiller. Un bon gain de temps."</p>
+                    <div class="user-name">— Sarah, Créatrice digitale</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★☆</div>
+                    <p>"C'est devenu mon réflexe quand j'ai besoin de traduire un mail pro ou de résumer un document long. L'interface est épurée, ça charge instantanément et c'est gratuit. Honnêtement, je ne vois pas pourquoi aller payer ailleurs pour des tâches simples."</p>
+                    <div class="user-name">— Julien, Commercial</div>
+                </div>
+            </div>
+        </section>
 
-<style>
-    .testimonials-section {
-        margin: 60px 0;
-        padding: 40px 20px;
-        background-color: #081a16;
-        border-radius: 12px;
-        border: 1px solid var(--border-color);
-    }
-    .testimonial-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-    }
-    .testimonial-card {
-        padding: 20px;
-        background-color: var(--card-bg);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-    }
-    .stars {
-        color: var(--accent-gold);
-        margin-bottom: 10px;
-        font-size: 1.2rem;
-    }
-    .testimonial-card p {
-        font-style: italic;
-        color: var(--text-muted);
-        line-height: 1.5;
-        margin-bottom: 15px;
-    }
-    .user-name {
-        font-weight: bold;
-        color: #fff;
-        font-size: 0.9rem;
-    }
-</style>
+        <style>
+            .testimonials-section {
+                margin: 60px 0;
+                padding: 40px 20px;
+                background-color: #081a16;
+                border-radius: 12px;
+                border: 1px solid var(--border-color);
+            }
+            .testimonial-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+            }
+            .testimonial-card {
+                padding: 20px;
+                background-color: var(--card-bg);
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+            }
+            .stars {
+                color: var(--accent-gold);
+                margin-bottom: 10px;
+                font-size: 1.2rem;
+            }
+            .testimonial-card p {
+                font-style: italic;
+                color: var(--text-muted);
+                line-height: 1.5;
+                margin-bottom: 15px;
+            }
+            .user-name {
+                font-weight: bold;
+                color: #fff;
+                font-size: 0.9rem;
+            }
+        </style>
         
         <section class="faq-section">
             <h2>Questions fréquentes sur nos outils d'IA</h2>
@@ -600,9 +598,58 @@
                 <p>Oui, l'accès à nos différents assistants est entièrement gratuit et conçu pour un usage quotidien fluide. En cas de forte affluence sur nos serveurs, de légères régulations de requêtes peuvent être appliquées pour maintenir une vitesse optimale pour chaque utilisateur.</p>
             </div>
         </section>
+
+        <!-- BLOC SEO 1000+ MOTS (SANS IMAGES) -->
+        <section class="seo-footer-content" style="max-width: 900px; margin: 60px auto; padding: 20px; line-height: 1.8; color: var(--text-muted);">
+            
+            <h2 style="color: #fff; font-size: 1.8rem; margin-bottom: 20px; border-left: 4px solid var(--accent-gold); padding-left: 15px;">Maffo Hub : La Plateforme de Référence des Assistants d'Intelligence Artificielle Gratuits</h2>
+            
+            <p>Dans un paysage numérique en constante évolution, l'accès aux technologies de pointe ne devrait jamais être un luxe réservé à une élite. C'est la conviction fondatrice et le moteur de <strong>Maffo Hub</strong> : offrir une suite d'outils d'intelligence artificielle entièrement gratuite, ouverte à tous, immédiate et exempte de toute barrière technique ou financière. Qu'il s'agisse de rédiger un e-mail professionnel percutant, de structurer une stratégie marketing digitale, de traduire un document technique ou d'obtenir des réponses instantanées à des questions complexes, notre plateforme centralise les meilleures spécialisations conversationnelles du marché francophone et international (France, Canada, États-Unis).</p>
+
+            <p>Conçu pour répondre aux exigences élevées des entrepreneurs, des créateurs de contenu indépendants, des étudiants rigoureux et des professionnels de tous secteurs, Maffo Hub s'affranchit des contraintes habituelles du web moderne. <strong>Aucune inscription n'est requise</strong>, aucun abonnement payant mensuel ne vient bloquer l'accès aux fonctionnalités avancées, et aucune installation de logiciel lourd n'est nécessaire sur vos appareils. Tout s'exécute directement depuis votre navigateur web, en quelques secondes, avec un niveau de sécurité, de fluidité et de confidentialité des données rigoureusement préservé.</p>
+
+            <h3 style="color: var(--accent-gold); margin-top: 30px; font-size: 1.3rem;">Pourquoi choisir Maffo Hub pour vos tâches quotidiennes et professionnelles ?</h3>
+            
+            <p>Les interfaces de chat généralistes traditionnelles exigent souvent de formuler des instructions (« prompts ») longues, complexes et répétitives pour obtenir un résultat correct. De plus, elles imposent généralement des quotas stricts d'utilisation, des créations de comptes obligatoires ou des politiques de monétisation agressives qui brident la créativité. <strong>Maffo Hub</strong> adopte une philosophie radicalement différente et centrée sur l'efficacité : chaque assistant présent sur notre plateforme est pré-paramétré, pré-optimisé et taillé sur-mesure pour un domaine d'expertise spécifique.</p>
+
+            <p>Cette approche modulaire présente un avantage décisif pour l'utilisateur final : vous n'avez pas à deviner comment parler à l'IA pour obtenir le ton juste. En sélectionnant directement l'outil adapté à votre besoin précis — qu'il s'agisse du Rédacteur Business, du générateur de scripts vidéo TikTok, du correcteur orthographique ou de l'assistant juridique —, l'intelligence artificielle intègre instantanément son rôle, son niveau de langage professionnel et sa structure de réponse idéale, éliminant ainsi les pertes de temps inutiles.</p>
+
+            <h3 style="color: var(--accent-gold); margin-top: 30px; font-size: 1.3rem;">Une panoplie complète d'assistants spécialisés pour chaque besoin de productivité</h3>
+            
+            <p>Pour couvrir l'ensemble des besoins de productivité moderne et de création numérique, Maffo Hub structure son offre autour de pôles métiers clairement identifiés et optimisés en continu :</p>
+
+            <ul style="margin-bottom: 20px; padding-left: 20px;">
+                <li><strong>L'écosystème ChatGPT & Modèles Avancés :</strong> Un accès direct et instantané aux technologies conversationnelles de pointe (GPT-4o, o1, ChatGPT 5 / AGI) pour dialoguer librement, résoudre des problèmes logiques complexes ou synthétiser de vastes volumes d'informations textuelles en un clin d'œil.</li>
+                <li><strong>Le pôle Business & Création de Contenu :</strong> Pensé spécifiquement pour les entrepreneurs du web, les community managers et les agences de communication. Il regroupe des générateurs d'accroches virales, des rédacteurs commerciaux orientés conversion et des concepteurs de scripts vidéo optimisés pour capter l'attention sur les plateformes sociales majeures (TikTok, Instagram Reels, YouTube Shorts).</li>
+                <li><strong>Le pôle Vie Professionnelle & Études :</strong> Des outils de précision chirurgicale pour la rédaction de lettres de motivation percutantes, la reformulation de textes académiques, la correction rigoureuse de fautes d'orthographe, l'analyse syntaxique ou encore l'assistance technique en programmation informatique et en mathématiques appliquées.</li>
+            </ul>
+
+            <h3 style="color: var(--accent-gold); margin-top: 30px; font-size: 1.3rem;">Sécurité, rapidité d'exécution et confidentialité absolue des données</h3>
+            
+            <p>L'utilisation quotidienne de nos services ne nécessite en aucun cas la transmission d'informations personnelles sensibles ou la création de profils d'utilisateurs traçables. En éliminant l'étape fastidieuse de l'authentification et de l'enregistrement de comptes, nous garantissons un espace de travail neutre, extrêmement rapide et totalement sécurisé. L'intégration de protocoles de protection technologiques de pointe, à l'instar de Cloudflare Turnstile, permet de blinder nos infrastructures contre les robots malveillants tout en préservant une fluidité d'accès totale, transparente et instantanée pour les utilisateurs légitimes.</p>
+
+            <p>Que vous soyez basé en France, au Canada, aux États-Unis ou dans n'importe quel autre pays de la sphère francophone et internationale, notre architecture cloud hautement performante garantit des temps de réponse ultra-rapides, une disponibilité constante de l'infrastructure, ainsi qu'une adaptation parfaite des requêtes aux fuseaux horaires et aux particularités linguistiques régionales.</p>
+
+            <h3 style="color: var(--accent-gold); margin-top: 30px; font-size: 1.3rem;">Comment exploiter pleinement le potentiel de l'intelligence artificielle gratuite au quotidien ?</h3>
+            
+            <p>Pour tirer le meilleur parti possible de nos différents assistants spécialisés, nous vous conseillons vivement de suivre quelques bonnes pratiques rédactionnelles lors de la saisie de vos requêtes dans les modules :</p>
+
+            <ul style="margin-bottom: 20px; padding-left: 20px;">
+                <li><strong>Soyez précis et contextuel dans la description de votre objectif :</strong> Plus le contexte initial fourni est clair (public cible visé, ton éditorial souhaité, format de sortie attendu), plus la réponse générée par l'IA sera immédiatement exploitable sans retouche majeure.</li>
+                <li><strong>Exploitez la synergie et la complémentarité des outils :</strong> N'hésitez pas à croiser les expertises de notre catalogue. Par exemple, générez une idée de contenu originale avec notre stratège, rédigez le texte brut via le module business spécialisé, puis passez le tout par l'outil d'humanisation textuelle pour obtenir un rendu rédactionnel fluide et parfaitement naturel.</li>
+                <li><strong>Considérez l'intelligence artificielle comme un coéquipier technologique :</strong> Les textes et codes produits constituent une base de travail d'une efficacité redoutable, vous permettant d'économiser de précieuses dizaines de minutes de réflexion ou de rédaction pure. Une relecture finale attentive vous permet d'y injecter votre patte personnelle, votre ton de marque unique et vos données chiffrées exactes.</li>
+            </ul>
+
+            <h3 style="color: var(--accent-gold); margin-top: 30px; font-size: 1.3rem;">Une vision d'avenir : Démocratiser l'accès aux assistants intelligents</h3>
+            
+            <p>L'ambition à long terme de Maffo Hub s'inscrit dans une démarche de simplification radicale des usages du web. Alors que la complexité logicielle ne cesse de croître à travers le monde, nous faisons le pari inverse : épurer l'interface, concentrer la puissance de calcul là où elle est réellement utile, et la mettre instantanément entre les mains des utilisateurs, sans contrepartie financière cachée.</p>
+
+            <p style="margin-top: 30px;">En unifiant l'accès aux meilleures technologies d'intelligence artificielle au sein d'une interface ergonomique, ultra-rapide et 100% gratuite, Maffo Hub s'impose naturellement comme l'accélérateur de productivité indispensable de votre quotidien numérique. Explorez notre catalogue d'assistants spécialisés dès maintenant, testez nos outils sur-mesure directement depuis cette page d'accueil, et transformez durablement votre manière de créer, d'écrire, d'optimiser et d'entreprendre sur Internet.</p>
+
+        </section>
+
 </main>
 
-<!-- SCRIPT JS POUR GÉRER L'AFFICHAGE DE LA RÉPONSE SUR LA MÊME PAGE -->
 <script>
 async function appelerApiDirectement() {
     const texteUtilisateur = document.getElementById('user-input').value;
@@ -615,15 +662,12 @@ async function appelerApiDirectement() {
     const resultContainer = document.getElementById('result-container');
     const resultOutput = document.getElementById('result-output');
 
-    // Prompt optimisé pour l'assistant généraliste
     const promptOptimise = `Réponds à cette demande en tant qu'assistant IA expert : ${texteUtilisateur}`;
 
-    // Animation du bouton pendant le traitement
     bouton.textContent = "Réflexion en cours...";
     bouton.disabled = true;
 
     try {
-        // Remplace l'URL ci-dessous par l'endpoint exact de ton API backend si besoin
         const response = await fetch('https://app.maffohub.com/api/generate', {
             method: 'POST',
             headers: {
@@ -634,15 +678,12 @@ async function appelerApiDirectement() {
 
         const data = await response.json();
         
-        // Affichage direct du résultat sur la même page
         resultOutput.textContent = data.result || "Voici la réponse générée...";
         resultContainer.style.display = "block";
     } catch (error) {
-        // Mode simulation / fallback en attendant de connecter l'API définitive
         resultOutput.textContent = "Simulation de réponse pour : " + texteUtilisateur + "\n\n(Ce bloc affichera la réponse en direct de l'API dès que ton endpoint sera branché).";
         resultContainer.style.display = "block";
     } finally {
-        // Restauration du bouton
         bouton.textContent = "✨ Lancer l'assistant instantanément";
         bouton.disabled = false;
     }
