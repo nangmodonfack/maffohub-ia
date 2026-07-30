@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligence Artificielle Gratuite en Ligne et Sans Inscription | Maffo Hub</title>
+    <meta name="description" content="Accédez à notre suite d'outils d'intelligence artificielle 100% gratuite, illimitée et sans inscription. Utilisez ChatGPT, des générateurs de texte et de scripts en ligne.">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #061310; 
+            --card-bg: #0b1f1a;  
+            --accent-gold: #d4af37;
+            --text-color: #ffffff;
+            --text-muted: #94a9a4;
+            --border-color: #163830;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            box-sizing: border-box;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        main {
+            width: 100%;
+            max-width: 1100px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--accent-gold);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 750px;
+            margin: 0 auto 20px auto;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background-color: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .tool-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+            margin-bottom: 60px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--accent-gold);
+            font-size: 1.05rem;
+        }
+
+        textarea {
+            width: 100%;
+            height: 160px;
+            background-color: #040d0b;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: white;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            resize: vertical;
+            margin-bottom: 20px;
+            font-family: inherit;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .turnstile-box {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-generate {
+            width: 100%;
+            background: linear-gradient(135deg, #d4af37 0%, #aa841e 100%);
+            color: #000;
+            border: none;
+            padding: 16px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .catalog-section {
+            margin-bottom: 60px;
+        }
+
+        .catalog-section h2 {
+            color: #ffffff;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--accent-gold);
+            padding-left: 15px;
+        }
+
+        .category-block {
+            margin-bottom: 40px;
+        }
+
+        .category-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 15px;
+        }
+
+        .catalog-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .catalog-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-gold);
+            background-color: #0f2b24;
+        }
+
+        .catalog-icon {
+            font-size: 24px;
+        }
+
+        .catalog-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .faq-section {
+            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 40px;
+            width: 100%;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .faq-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .faq-item h3 {
+            margin-top: 0;
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .faq-item p {
+            margin-bottom: 0;
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .nav-links { display: flex; align-items: center; gap: 10px; }
+        .nav-item { color: var(--text-color); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 6px 8px; transition: 0.2s; white-space: nowrap; }
+        .nav-item:hover { color: var(--accent-gold); }
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn { background-color: var(--card-bg); color: var(--text-color); padding: 10px 14px; font-size: 0.88rem; font-weight: 600; border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+        .dropbtn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: #0b1f1a; min-width: 260px; box-shadow: 0px 8px 16px rgba(0,0,0,0.6); border: 1px solid var(--border-color); border-radius: 8px; z-index: 1000; max-height: 400px; overflow-y: auto; padding: 10px 0; }
+        .dropdown-content a { color: var(--text-muted); padding: 10px 20px; text-decoration: none; display: block; font-size: 0.9rem; transition: 0.2s; }
+        .dropdown-content a:hover { background-color: #113129; color: #fff; }
+        .dropdown-group { display: block; padding: 8px 20px 4px 20px; font-size: 0.75rem; font-weight: bold; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; border-top: 1px solid rgba(22, 56, 48, 0.4); }
+        .dropdown-group:first-child { border-top: none; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        @media (max-width: 1100px) {
+            .nav-item { display: none; }
+        }
+
+        footer {
+            width: 100%;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            margin-top: 60px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+        <div class="logo">Maffo Hub</div>
+        
+        <nav class="nav-links">
+            <!-- Nouveau Menu Déroulant Calculateurs -->
+            <div class="dropdown">
+                <button class="dropbtn">🧮 Calculateurs ▾</button>
+                <div class="dropdown-content">
+                    <span class="dropdown-group">⚡ Outils Interactifs</span>
+                    <a href="/calculateurs/convertisseur-universel/">💱 Convertisseur Universel</a>
+                    <a href="/calculateurs/simulateur-pret/">📈 Simulateur de Prêt</a>
+                    <a href="/calculateurs/brut-net/">💼 Salaire Brut / Net</a>
+                    <a href="/calculateurs/imc-calories/">🍎 Calculateur IMC & Calories</a>
+                </div>
+            </div>
+
+            <a href="/chatgpt-gratuit/" class="nav-item">💬 ChatGPT Gratuit</a>
+            <a href="/tiktok-scripts/" class="nav-item">🎬 Scripts TikTok</a>
+            <a href="/humaniser-texte-ia/" class="nav-item">✍️ Humaniser Texte IA</a>
+            <a href="/compteur-de-mots/" class="nav-item">📊 Compteur de mots</a>
+            
+            <div class="dropdown">
+                <button class="dropbtn">➕ Plus d'outils ▾</button>
+                <div class="dropdown-content">
+                    <span class="dropdown-group">🔥 Spécialités IA</span>
+                    <a href="/gpt-4o-gratuit/">⚡ GPT-4o Gratuit</a>
+                    <a href="/chatgpt-o1-gratuit/">🧠 ChatGPT o1 Gratuit</a>
+                    <a href="/chatgpt5-agi-gratuit/">🌐 ChatGPT 5 Gratuit</a>
+                    <a href="/chatgpt-gratuit/">💬 ChatGPT Gratuit</a>
+                    
+                    <span class="dropdown-group">🚀 Business & Création</span>
+                    <a href="/tiktok-scripts/">🎬 Scripts TikTok / Reels</a>
+                    <a href="/idees-accroches-virales/">💡 Accroches Virales</a>
+                    <a href="/redacteur-business/">💼 Rédacteur Business</a>
+                    <a href="/stratege-contenu/">🎯 Stratège de Contenu</a>
+                    
+                    <span class="dropdown-group">📈 Vie Pro & Études</span>
+                    <a href="/humaniser-texte-ia/">✍️ Humaniser Texte IA</a>
+                    <a href="/detecteur-ia/">🔍 Détecteur d'IA</a>
+                    <a href="/compteur-de-mots/">📊 Compteur de mots</a>
+                    <a href="/lettre-motivation/">📝 Lettre de Motivation</a>
+                    <a href="/reformuler-texte/">🔄 Reformuler Texte</a>
+                    <a href="/corriger-fautes/">✅ Corriger Fautes</a>
+                    <a href="/repondre-mail/">✉️ Répondre à un Mail</a>
+                    <a href="/analyseur-synthese/">📊 Analyseur & Synthèse</a>
+                    <a href="/traducteur-universel/">🌐 Traducteur Universel</a>
+                    <a href="/codeur-informaticien/">💻 Codeur / Informaticien</a>
+                    <a href="/aide-administratif/">📂 Aide Administratif</a>
+                    <a href="/conseiller-juridique-avocat/">⚖️ Conseiller Juridique</a>
+                    <a href="/prof-maths/">📐 Le Prof de Maths</a>
+                    <a href="/prof-langues/">🗣️ Le Prof de Langues</a>
+                </div>
+            </div>
+        </nav>
+</header>
+
+<main>
+       <section class="hero-section" style="max-width: 900px; margin: 40px auto; padding: 20px; text-align: center; color: #fff;">
+    <h1 style="font-size: 2.2rem; font-weight: bold; margin-bottom: 15px;">
+        Le Générateur de <span style="color: var(--accent-gold, #f39c12);">Lettre de Motivation</span> IA Gratuit
+    </h1>
+    <p style="font-size: 1.1rem; color: var(--text-muted, #ccc); margin-bottom: 25px; line-height: 1.6;">
+        Décrochez l'entretien de vos rêves en quelques secondes. Décrivez votre profil et le poste visé : notre intelligence artificielle rédige une lettre sur-mesure, percutante et adaptée aux attentes des recruteurs.
+    </p>
+    
+    <!-- Badges de rassurance -->
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px;">
+        <span style="background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color, #444); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">
+            ✨ 100% Gratuit
+        </span>
+        <span style="background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color, #444); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">
+            🔒 Sans inscription
+        </span>
+        <span style="background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color, #444); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">
+            ⚡ Utilisation illimitée
+        </span>
+    </div>
+
+
+      <div class="tool-container">
+        <label for="user-input">✍️ Générateur de Lettre de Motivation IA Professionnelle :</label>
+        <textarea id="user-input" placeholder="Ex: Rédige une lettre de motivation pour un poste de Community Manager en alternance. J'ai de l'expérience en gestion de pages Facebook..."></textarea>
+        
+        <div class="turnstile-box">
+            <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark"></div>
+        </div>
+
+        <button class="btn-generate" onclick="declencherMonetagEtRedirect()">✨ Tester l'IA instantanément</button>
+      </div> 
+
+<section class="seo-tool-description" style="max-width: 850px; margin: 40px auto; padding: 20px; line-height: 1.7; color: var(--text-muted);">
+    <h2 style="color: #fff; font-size: 1.8rem; margin-bottom: 20px;">Comment rédiger une lettre de motivation efficace grâce à l'intelligence artificielle ?</h2>
+    <p>La recherche d'un emploi, d'un stage ou d'une formation exige aujourd'hui une réactivité sans faille. Face à des dizaines de candidatures à envoyer, la rédaction d'une lettre de motivation originale et percutante devient rapidement chronophage. C'est ici que notre <strong>générateur de lettre de motivation en ligne gratuit</strong> intervient pour transformer cette corvée en une formalité de quelques secondes.</p>
+    
+    <p>En exploitant les avancées majeures du traitement automatique du langage naturel, cet outil conçoit des documents structurés selon les standards professionnels rigoureux. Que vous postuliez dans le secteur du marketing, de l'artisanat, de la santé ou de l'informatique, l'algorithme adapte instantanément son vocabulaire pour correspondre aux attentes des recruteurs les plus exigeants, le tout 100% en français et sans barrière financière.</p>
+
+    <h3 style="color: var(--accent-gold); margin-top: 30px;">Les avantages d'un outil de rédaction automatique sans inscription</h3>
+    <p>La majorité des plateformes actuelles forcent l'utilisateur à remplir de longs formulaires d'inscription ou à renseigner leurs coordonnées bancaires avant de pouvoir exporter leur travail. Notre philosophie repose sur l'accessibilité immédiate : un accès libre, anonyme, sans création de compte. Cette approche garantit la protection totale de vos données personnelles et professionnelles.</p>
+    <ul>
+        <li><strong>Gain de temps absolu :</strong> Générez une structure complète et personnalisée en moins d'une minute chrono.</li>
+        <li><strong>Zéro syndrome de la page blanche :</strong> L'IA vous fournit une base textuelle solide qu'il ne vous reste plus qu'à ajuster.</li>
+        <li><strong>Vocabulaire sectoriel adapté :</strong> Intégration naturelle des mots-clés et compétences recherchés par les directions des ressources humaines (RH).</li>
+        <li><strong>Optimisation syntaxique :</strong> Un style fluide, professionnel, exempt de fautes d'orthographe ou de tournures maladroites.</li>
+    </ul>
+
+    <h3 style="color: var(--accent-gold); margin-top: 30px;">Guide pratique : Réussir sa candidature avec l'assistance d'une IA</h3>
+    <p>Pour tirer le meilleur parti du module conversationnel présent en haut de cette page, la précision de vos indications est déterminante. Bien que l'intelligence artificielle soit capable de contextualiser une demande floue, lui fournir des détails concrets augmentera drastiquement la pertinence du document final. Voici la méthodologie recommandée :</p>
+    <p>Commencez par indiquer l'intitulé exact du poste visé ainsi que le type de contrat (CDI, CDD, stage, alternance). Mentionnez ensuite brièvement vos forces majeures : vos diplômes principaux, vos années d'expérience ou une compétence technique spécifique (comme la maîtrise d'un logiciel ou la gestion de projets). Enfin, si l'entreprise affiche des valeurs particulières, précisez-les. L'IA se chargera de l'agencement académique : l'en-tête, l'accroche capteuse d'attention, le développement de vos accomplissements, le paragraphe de liaison (le fameux "Vous, Moi, Nous") et les formules de politesse d'usage.</p>
+
+    <h3 style="color: var(--accent-gold); margin-top: 30px;">Une technologie flexible pour tous les profils professionnels</h3>
+    <p>Il n'existe pas une seule façon de rédiger une candidature. Un profil junior sans expérience significative devra mettre l'accent sur sa motivation, sa capacité d'apprentissage et son projet d'études. À l'inverse, un profil senior privilégiera la mise en avant de ses résultats chiffrés, de ses succès passés et de son leadership. Notre algorithme intègre ces nuances de ton et de posture. En un simple clic, le texte bascule d'une énergie dynamique et audacieuse à un ton corporate hautement formel, vous assurant de franchir avec succès l'étape du premier tri des candidatures (parfois géré par des logiciels de lecture automatique ATS).</p>
+</section>
+
+  
+<script>
+function declencherMonetagEtRedirect() {
+    const texteUtilisateur = document.getElementById('user-input').value;
+    const promptOptimise = `Rédige une lettre de motivation professionnelle et percutante basée sur ces informations : ${texteUtilisateur}`;
+    window.location.href = `https://app.maffohub.com/?text=${encodeURIComponent(promptOptimise)}`;
+}
+
+let currentToolId = 'discussion';
+let isRecording = false;
+
+function switchTool(toolId, toolName) {
+    currentToolId = toolId;
+    
+    document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
+    const activeItem = document.getElementById('btn-' + toolId);
+    if(activeItem) activeItem.classList.add('active');
+
+    document.getElementById('current-tool-title').innerText = toolName;
+
+    const history = document.getElementById('chat-history');
+    if(history) history.innerHTML = `<div class="message system">✨ Assistant activé : Mode <b>${toolName}</b>. Prêt à exécuter vos consignes.</div>`;
+}
+
+function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const history = document.getElementById('chat-history');
+    if(!input || !input.value.trim() || !history) return;
+
+    history.innerHTML += `<div class="message user"><b>Vous :</b> ${input.value}</div>`;
+    
+    const promptValue = input.value;
+    input.value = ''; 
+    history.scrollTop = history.scrollHeight;
+
+    setTimeout(() => {
+        history.innerHTML += `<div class="message ai"><b>IA Maffo Hub :</b> Connexion au serveur Vercel établie. Analyse en cours pour votre texte avec la consigne demandée...</div>`;
+        history.scrollTop = history.scrollHeight;
+    }, 400);
+}
+
+window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const promptText = urlParams.get('prompt') || urlParams.get('text');
+    const targetModel = urlParams.get('model');
+
+    if(promptText && document.getElementById('chat-input')) {
+        let cleanedText = decodeURIComponent(promptText);
+        
+        if (window.location.href.includes('compteur') || cleanedText.length > 250) {
+            switchTool('discussion', 'Discussion libre 💬');
+            
+            if (!cleanedText.toLowerCase().includes('analyser et améliorer')) {
+                cleanedText = "Analyser et améliorer avec l'IA le texte suivant :\n\n" + cleanedText;
+            }
+        } else if(targetModel === 'gpt-4o') {
+            switchTool('discussion', 'Discussion libre (GPT-4o) 💬');
+        } else if(targetModel === 'o1') {
+            switchTool('informaticien', 'L\'Informaticien / Codeur (o1) 💻');
+        } else {
+            switchTool('script-tiktok', 'Scripts TikTok / Reels 🎬');
+        }
+
+        document.getElementById('chat-input').value = cleanedText;
+        sendMessage();
+    }
+}
+</script> 
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-links">
+            <a href="/support/">Contact</a>
+            <a href="/mentions-legales/">Mentions Légales</a>
+            <a href="/politique-donnees/">Politique de données</a>
+            <a href="/cgv/">Conditions Générales de Vente</a>
+            <a href="https://www.maffohub.com/">Blog</a>
+            <a href="/qui-sommes-nous/">Qui sommes-nous ?</a>
+        </div>
+        <p>&copy; 2026 Maffo Hub. Tous droits réservés.</p>
+    </div>
+</footer>
+</body>
+</html>
