@@ -50,19 +50,19 @@
         main {
             width: 100%;
             max-width: 1100px;
-            padding: 40px 20px;
+            padding: 30px 20px;
             box-sizing: border-box;
         }
 
         .hero {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
 
         .hero h1 {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             color: #ffffff;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             font-weight: 700;
             line-height: 1.2;
         }
@@ -73,16 +73,16 @@
 
         .hero p {
             color: var(--text-muted);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             max-width: 750px;
-            margin: 0 auto 20px auto;
+            margin: 0 auto 15px auto;
         }
 
         .badge-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 12px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
         }
 
@@ -90,44 +90,45 @@
             background-color: rgba(212, 175, 55, 0.1);
             border: 1px solid var(--accent-gold);
             color: var(--accent-gold);
-            padding: 6px 16px;
+            padding: 5px 14px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
         }
 
+        /* Dashboard/Outil plus compact et remonté */
         .tool-container {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
-            margin-bottom: 60px;
-            max-width: 850px;
+            border-radius: 10px;
+            padding: 20px 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            margin-bottom: 40px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
         label {
             display: block;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             font-weight: 600;
             color: var(--accent-gold);
-            font-size: 1.05rem;
+            font-size: 0.98rem;
         }
 
         textarea {
             width: 100%;
-            height: 160px;
+            height: 120px;
             background-color: #040d0b;
             border: 1px solid var(--border-color);
             border-radius: 8px;
             color: white;
-            padding: 15px;
+            padding: 12px;
             box-sizing: border-box;
-            font-size: 1rem;
+            font-size: 0.95rem;
             resize: vertical;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-family: inherit;
         }
 
@@ -137,7 +138,7 @@
         }
 
         .turnstile-box {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex;
             justify-content: center;
         }
@@ -147,8 +148,8 @@
             background: linear-gradient(135deg, #d4af37 0%, #aa841e 100%);
             color: #000;
             border: none;
-            padding: 16px;
-            font-size: 1.1rem;
+            padding: 14px;
+            font-size: 1.05rem;
             font-weight: bold;
             border-radius: 8px;
             cursor: pointer;
@@ -182,7 +183,7 @@
             background-color: var(--card-bg);
             border-top: 1px solid var(--border-color);
             padding: 40px 20px;
-            margin-top: 60px;
+            margin-top: 40px;
             text-align: center;
             box-sizing: border-box;
         }
@@ -268,10 +269,12 @@
 </header>
 
 <main>
-        <!-- Bloc d'identification discret, élégant et proportionné -->
-        <div style="display: inline-flex; align-items: center; gap: 12px; margin-bottom: 20px; padding: 8px 16px; background: rgba(212, 175, 55, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 30px;">
-            <span style="font-size: 24px; line-height: 1;">🎬</span>
-            <span style="color: var(--accent-gold); font-size: 0.9rem; font-weight: 600;">Outil officiel : Générateur de Scripts TikTok & Reels</span>
+        <!-- Bloc d'identification discret et compact -->
+        <div style="display: flex; justify-content: center; margin-bottom: 15px;">
+            <div style="display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; background: rgba(212, 175, 55, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 20px;">
+                <span style="font-size: 20px; line-height: 1;">🎬</span>
+                <span style="color: var(--accent-gold); font-size: 0.85rem; font-weight: 600;">Générateur de Scripts TikTok & Reels IA</span>
+            </div>
         </div>
 
         <div class="hero">
@@ -295,9 +298,9 @@
         <button class="btn-generate" onclick="appelerApiDirectement()">Générer mon script viral 🚀</button>
         
         <!-- Conteneur de résultat intégré -->
-        <div id="result-container" style="margin-top: 25px; display: none;">
+        <div id="result-container" style="margin-top: 20px; display: none;">
             <label>✨ Script généré par l'IA :</label>
-            <div id="result-output" style="background-color: #040d0b; border: 1px solid var(--border-color); border-radius: 8px; padding: 15px; color: white; min-height: 120px; white-space: pre-wrap; font-family: inherit; font-size: 1rem; line-height: 1.5;"></div>
+            <div id="result-output" style="background-color: #040d0b; border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; color: white; min-height: 100px; white-space: pre-wrap; font-family: inherit; font-size: 0.95rem; line-height: 1.5;"></div>
         </div>
       </div> 
 
@@ -349,7 +352,7 @@
     </ul>
 
     <h3 style="color: var(--accent-gold); margin-top: 30px;">Comment bien utiliser les scripts générés</h3>
-    <p>Un script généré, c'est une base solide, pas un texte à réciter mot pour mot devant la caméra. Voici comment en tirer le maximum :</p>
+    <p>Un script généré, c'est une base solide, pas un texte à réciter mot pour mot devant la caméra. Voici how en tirer le maximum :</p>
     <ul>
         <li><strong>Adapte le ton à ta voix :</strong> Reprends la structure mais reformule avec tes propres mots, tes expressions, ton humour. L'authenticité reste ce qui différencie une vidéo qui marche d'une vidéo qui sonne robotique.</li>
         <li><strong>Teste plusieurs variantes du même sujet :</strong> Génère 2-3 scripts pour la même idée avec des angles légèrement différents, et vois lequel te parle le plus avant de filmer.</li>
