@@ -321,7 +321,179 @@
     <p>Le problème, c'est que la plupart des créateurs commencent leur vidéo comme un roman : mise en contexte, petite intro, "salut tout le monde, aujourd'hui on va parler de...". Le spectateur, lui, a déjà scrollé. Un bon hook doit créer une tension, une curiosité, ou une promesse claire dès le premier mot. Genre : "Voici pourquoi tu perds 2h par jour sans t'en rendre compte" plutôt que "Aujourd'hui je vais te parler de productivité".</p>
     
     <p>C'est précisément ce que le générateur automatise pour toi. Il ne se contente pas de reformuler ton sujet, il structure le hook pour capter l'attention avant même que le cerveau ait le temps de décider de scroller.</p>
+<style>
+  .mh-script-mockup{
+    font-family: 'Sora', sans-serif;
+    color: #eaf1f8;
+    background: radial-gradient(circle at 20% -10%, #16324f 0%, #0c1a2b 55%);
+    padding: 56px 24px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    border-radius: 20px;
+  }
 
+  .mh-script-mockup *{ box-sizing: border-box; }
+
+  .mh-script-mockup .eyebrow{
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #f0b429;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .mh-script-mockup h3{
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: clamp(24px, 4vw, 34px);
+    margin: 0 0 8px;
+    text-align:center;
+  }
+
+  .mh-script-mockup h3 em{ font-style: italic; color: #f0b429; }
+
+  .mh-script-mockup .sub{
+    color: #9fb3c8;
+    text-align:center;
+    max-width: 580px;
+    margin: 0 0 36px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .mh-script-mockup .idea-box{
+    width: 100%;
+    max-width: 780px;
+    background: #12263d;
+    border: 1px solid #1e3a56;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    font-size: 14px;
+    color: #cfe0ee;
+  }
+
+  .mh-script-mockup .idea-box .icon{
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f0b42933;
+    color: #f0b429;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 15px;
+  }
+
+  .mh-script-mockup .idea-box i{ font-style: italic; color: #9fb3c8; }
+
+  .mh-script-mockup .stage{
+    width: 100%;
+    max-width: 780px;
+    display:flex;
+    flex-direction:column;
+    gap: 14px;
+  }
+
+  .mh-script-mockup .block{
+    background: #12263d;
+    border: 1px solid #1e3a56;
+    border-radius: 16px;
+    padding: 20px 22px;
+    position: relative;
+    padding-left: 26px;
+  }
+
+  .mh-script-mockup .block::before{
+    content:"";
+    position:absolute;
+    left:0; top:14px; bottom:14px;
+    width: 4px;
+    border-radius: 4px;
+  }
+
+  .mh-script-mockup .block.hook::before{ background:#ef476f; }
+  .mh-script-mockup .block.corps::before{ background:#4fb8e8; }
+  .mh-script-mockup .block.cta::before{ background:#f0b429; }
+
+  .mh-script-mockup .block .tag{
+    display:inline-flex;
+    align-items:center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .mh-script-mockup .block.hook .tag{ color: #ef476f; }
+  .mh-script-mockup .block.corps .tag{ color: #4fb8e8; }
+  .mh-script-mockup .block.cta .tag{ color: #f0b429; }
+
+  .mh-script-mockup .block p{
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #eaf1f8;
+  }
+
+  .mh-script-mockup .block .strong{ color: #ffe9b3; font-weight: 600; }
+
+  .mh-script-mockup .foot{
+    margin-top: 28px;
+    font-size: 13px;
+    color: #9fb3c8;
+    text-align:center;
+  }
+
+  .mh-script-mockup .foot b{ color: #f0b429; font-weight: 600; }
+
+  @media (max-width: 640px){
+    .mh-script-mockup .idea-box{ flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<div class="mh-script-mockup">
+
+  <div class="eyebrow">Générateur de Scripts TikTok & Reels</div>
+  <h3>Une idée. <em>Un script prêt à filmer.</em></h3>
+  <p class="sub">Décris ton sujet en une phrase, et obtiens un script structuré : hook, corps, appel à l'action.</p>
+
+  <div class="idea-box">
+    <div class="icon">✎</div>
+    <div><i>« Donne les 3 meilleures astuces pour booster sa productivité le matin sans se fatiguer »</i></div>
+  </div>
+
+  <div class="stage">
+    <div class="block hook">
+      <span class="tag">Hook — 0 à 3 sec</span>
+      <p><span class="strong">« Voici pourquoi tu perds 2h chaque matin sans même t'en rendre compte. »</span></p>
+    </div>
+
+    <div class="block corps">
+      <span class="tag">Corps</span>
+      <p>Astuce 1 : prépare ta tenue et ton petit-déjeuner la veille.<br>
+      Astuce 2 : évite ton téléphone les 30 premières minutes.<br>
+      Astuce 3 : commence par la tâche la plus importante, pas la plus facile.</p>
+    </div>
+
+    <div class="block cta">
+      <span class="tag">Appel à l'action</span>
+      <p>« Abonne-toi si tu veux plus d'astuces comme celle-ci chaque semaine. »</p>
+    </div>
+  </div>
+
+  <p class="foot">Généré par <b>Générateur de Scripts TikTok & Reels</b> — 100% gratuit, sans inscription.</p>
+
+</div>
+        
     <h3 style="color: var(--accent-gold); margin-top: 30px;">Comment fonctionne le générateur de scripts</h3>
     <p>L'outil suit une méthode simple mais redoutablement efficace, utilisée par la plupart des créateurs qui cartonnent en vidéo courte :</p>
     
